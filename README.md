@@ -1,1 +1,1 @@
-# Hurtownia
+# HurtowniaSpozywcza

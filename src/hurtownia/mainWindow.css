@@ -5,3 +5,45 @@ TabPane{
     -fx-tab-max-width:60px;
     -fx-open-tab-animation:grow;
 }
+
+#tabWyszukiwarka{
+    -fx-background-image:url("icons/towar.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+
+#tabWydanie{
+    -fx-background-image:url("icons/wydanie.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+
+#tabPrzyjecie{
+    -fx-background-image:url("icons/przyjecie.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+
+#tabDostawcy{
+    -fx-background-image:url("icons/dostawcy.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+
+#tabRaporty{
+    -fx-background-image:url("icons/raport.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+
+#tabZarzadzanie{
+    -fx-background-image:url("icons/zarzadzaj.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}

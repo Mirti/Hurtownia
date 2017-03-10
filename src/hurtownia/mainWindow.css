@@ -1,0 +1,7 @@
+TabPane{
+    -fx-tab-min-height:60px;
+    -fx-tab-min-width:60px;
+    -fx-tab-max-height:60px;
+    -fx-tab-max-width:60px;
+    -fx-open-tab-animation:grow;
+}

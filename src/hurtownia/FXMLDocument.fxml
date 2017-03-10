@@ -35,28 +35,28 @@
     <children>
         <TabPane prefHeight="513.0" prefWidth="732.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
             <tabs>
-                <Tab fx:id="tabWyszukiwarka" text="Wyszukiwarka" />
-                <Tab fx:id="tabWydanie" text="Wydanie Towaru">
+                <Tab fx:id="tabWyszukiwarka" />
+                <Tab fx:id="tabWydanie">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabPrzyjecie" text="Przyjęcie Towaru">
+                <Tab fx:id="tabPrzyjecie">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabDostawcy" text="Dostawcy / Importerzy">
+                <Tab fx:id="tabDostawcy">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabRaporty" text="Raporty">
+                <Tab fx:id="tabRaporty">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
-                <Tab fx:id="tabZarzadzanie" text="Zarządzanie">
+                <Tab fx:id="tabZarzadzanie">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>

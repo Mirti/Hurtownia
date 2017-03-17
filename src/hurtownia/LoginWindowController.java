@@ -40,15 +40,15 @@ public class LoginWindowController implements Initializable {
     @FXML
     protected void login(ActionEvent event) throws IOException {
         //Funkcja logowania
-        if ((tfLogin.getText().equals("login")) && (pfPassword.getText().equals("haslo"))) {
+      //  if ((tfLogin.getText().equals("login")) && (pfPassword.getText().equals("haslo"))) {
             Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-        } else {
-            txtWrong.setText("Nieprawidłowy login lub hasło");
-        }
+      //  } else {
+      //      txtWrong.setText("Nieprawidłowy login lub hasło");
+       // }
     }
 
     @Override

@@ -47,3 +47,11 @@ TabPane{
     -fx-background-repeat:stretch;
     -fx-cursor:hand;
 }
+
+#tabZarzadzanie1{
+    -fx-background-image:url("icons/zamowienia.png");
+    -fx-background-position:center;
+    -fx-background-repeat:stretch;
+    -fx-cursor:hand;
+}
+

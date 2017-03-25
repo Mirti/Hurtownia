@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="714.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.OrderWindowController">
+    <stylesheets>
+        <URL value="@orderwindow.css" />
+    </stylesheets>
+   <children>
+      <Button layoutX="467.0" layoutY="400.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" text="Potwierdź wydanie" />
+      <Button layoutX="91.0" layoutY="472.0" mnemonicParsing="false" text="Zgłoś problem" />
+      <TextArea layoutX="25.0" layoutY="392.0" prefHeight="57.0" prefWidth="245.0" promptText="Uwagi" />
+      <ScrollPane layoutX="26.0" layoutY="87.0" prefHeight="254.0" prefWidth="663.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="649.0">
+               <children>
+                  <TableView prefHeight="262.0" prefWidth="663.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="ID Towaru" />
+                      <TableColumn prefWidth="99.0" text="Nazwa towaru" />
+                        <TableColumn prefWidth="75.0" text="Ilość" />
+                        <TableColumn prefWidth="75.0" text="Miejsce 1" />
+                        <TableColumn prefWidth="75.0" text="Miejsce 2" />
+                        <TableColumn prefWidth="75.0" text="Seria" />
+                        <TableColumn prefWidth="117.0" text="Uwagi" />
+                        <TableColumn prefWidth="57.0" text="Wydane" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Label layoutX="35.0" layoutY="37.0" text="Zamówienie: #123">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

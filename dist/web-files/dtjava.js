@@ -1,5 +1,9 @@
 /*
+<<<<<<< HEAD
  * Copyright (c) 2006, 2016, Oracle and/or its affiliates. All rights reserved.
+=======
+ * Copyright (c) 2006, 2015, Oracle and/or its affiliates. All rights reserved.
+>>>>>>> origin/v01
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
@@ -168,6 +172,7 @@ var dtjava = function() {
             ie = false;
         }
 
+<<<<<<< HEAD
         var edge = false;
         var noActiveX = false;
         edge = (navigator.userAgent.match(/Edge/i) != null);
@@ -189,6 +194,8 @@ var dtjava = function() {
 
 	var noPluginWebBrowser = edge || chrome || noActiveX;
 
+=======
+>>>>>>> origin/v01
         //we are not required to detect everything and can leave values null as
         // long as we later treat them accordingly.
         //We use "cputype" to detect if given hardware is supported,
@@ -212,6 +219,7 @@ var dtjava = function() {
            }
         }
 
+<<<<<<< HEAD
         // startsWith() is not supported by IE
         if(typeof String.prototype.startsWith !== 'function') {
            String.prototype.startsWith = function(searchString, position) {
@@ -221,6 +229,8 @@ var dtjava = function() {
         }
 
 
+=======
+>>>>>>> origin/v01
         // Check mime types. Works with netscape family browsers and checks latest installed plugin only
         var mm = navigator.mimeTypes;
         var jre = null;
@@ -265,6 +275,7 @@ var dtjava = function() {
         }
 		
         return {haveDom:dom, wk:webkit, ie:ie, win:windows,
+<<<<<<< HEAD
                 linux:linux, mac:mac, op: opera, chrome:chrome, edge:edge,
                 jre:jre, deploy:deploy, fx:fx, noPluginWebBrowser:noPluginWebBrowser,
                 cputype: cputype, osVersion: osVersion, override: override};
@@ -285,6 +296,13 @@ var dtjava = function() {
         document.body.appendChild(divTag);              
 
     }
+=======
+                linux:linux, mac:mac, op: opera, chrome:chrome,
+                jre:jre, deploy:deploy, fx:fx,
+                cputype: cputype, osVersion: osVersion, override: override};
+    }
+
+>>>>>>> origin/v01
     //partially derived from swfobject.js
     var initDone = false;
 
@@ -390,6 +408,7 @@ var dtjava = function() {
             installNativePlugin();
         }
     }
+<<<<<<< HEAD
     
    function getAbsoluteUrl(jnlp){
         var absoluteUrl;
@@ -419,6 +438,8 @@ var dtjava = function() {
        return false;
      }
 
+=======
+>>>>>>> origin/v01
 
     /**
      This class provides details on why current platform does not meet
@@ -622,10 +643,13 @@ var dtjava = function() {
 
     function doLaunch(ld, platform, cb) {
         var app = normalizeApp(ld, true);
+<<<<<<< HEAD
         if(ua.noPluginWebBrowser){
             launchWithJnlpProtocol(app.url);
             return;
 	}
+=======
+>>>>>>> origin/v01
 
         //required argument is missing
         if (!(notNull(app) && notNull(app.url))) {
@@ -826,6 +850,7 @@ var dtjava = function() {
     //returns same mismatch event if not resolved, null if resolved
     function resolveAndLaunch(app, platform, v, cb, launchFunction) {
         var p = getPlugin();
+<<<<<<< HEAD
         if( p == null && ua.noPluginWebBrowser){
             var readyStateCheck = setInterval(function() {
                     if(document.readyState  == "complete"){
@@ -835,6 +860,9 @@ var dtjava = function() {
                 }, 15);
             return;
         }
+=======
+
+>>>>>>> origin/v01
         //Special case: Chrome/Windows
         // (Note: IE may also block activeX control but then it will block attempts to use it too)
         if (ua.chrome && ua.win && p != null && !isDTInitialized(p)) {
@@ -842,7 +870,11 @@ var dtjava = function() {
             //tell user to grant permissions and retry
             var actionLabel;
             if (notNull(app.placeholder)) {
+<<<<<<< HEAD
                 var onClickFunc = function() {w.open("https://www.java.com/en/download/faq/chrome.xml"); return false;};
+=======
+                var onClickFunc = function() {w.open("http://www.java.com/en/download/faq/chrome.xml"); return false;};
+>>>>>>> origin/v01
                 var msg1 = "Please give Java permission to run on this browser web page.";
                 var msg2 = "Click for more information.";
                 var altText = "";
@@ -2101,7 +2133,11 @@ var dtjava = function() {
         return doValidate(p);
     }
 
+<<<<<<< HEAD
     function doValidate(platform, noPluginWebBrowser) {
+=======
+    function doValidate(platform) {
+>>>>>>> origin/v01
         //ensure some platform is set (we could get array too!)
         platform = new dtjava.Platform(platform);
 
@@ -2122,6 +2158,7 @@ var dtjava = function() {
             if (details.os) {
                 jre = "unsupported";
                 os = true;
+<<<<<<< HEAD
             } else if(noPluginWebBrowser) {
 		jre = "ok";
 	    } else {
@@ -2139,6 +2176,36 @@ var dtjava = function() {
             } else if(noPluginWebBrowser) {
                 fx = "ok";
 	    } else if( details.browser) {
+=======
+            }
+            browser = details.browser;
+        }
+/*        if (notNull(platform.plugin) && jre == "ok") {
+            try {
+                p = getPlugin();
+                //TEMPORARY DISABLE because isPlugin2() is broken in 1.7.0
+                // it is not fixed in 7-client but if FX is enabled then
+                // it must be new plugin anyways
+                //=> keep this disabled for now until we find use case
+                if (false && (p == null || !p.isPlugin2())) {
+                    //TODO: FIXME: seem to get here always because isPlugin2() returns 0?
+                    jre = "oldplugin";
+                    relaunch = true;
+                }
+            } catch (err) { //pre 6u10 or no DT
+                jre = "oldplugin";
+                relaunch = true;
+            }
+        }
+*/
+        //check FX
+        if (notNull(platform.javafx)) {
+            details = checkFXSupport();
+            if (details.os || details.browser) { //FX is not supported,
+                                                  //do not even try
+                fx = "unsupported";
+                os = os || details.os;
+>>>>>>> origin/v01
                 browser = browser || details.browser;
             } else {
                 //on non windows platforms automated install is not possible
@@ -2195,7 +2262,11 @@ var dtjava = function() {
                     platform: platform});
         } else {
             //if all looks good check JRE again, it could be false positive
+<<<<<<< HEAD
             if (ua.override == false && !noPluginWebBrowser && !doublecheckJrePresence()) {
+=======
+            if (ua.override == false && !doublecheckJrePresence()) {
+>>>>>>> origin/v01
                return new PlatformMismatchEvent(
                  {fx: fx, jre: "none", relaunch: restart, os: os,
                      browser: browser, platform: platform});
@@ -2225,7 +2296,11 @@ var dtjava = function() {
         if (!notNull(loc)) {
             loc = guessLocale();
         }
+<<<<<<< HEAD
         return 'https://java.com/dt-redirect?' +
+=======
+        return 'http://java.com/dt-redirect?' +
+>>>>>>> origin/v01
             ((notNull(window.location) && notNull(window.location.href)) ?
                 ('&returnPage=' + window.location.href) : '') +
             (notNull(loc) ? ('&locale=' + loc) : '');
@@ -2462,6 +2537,7 @@ var dtjava = function() {
 
         var codes, status;
         if (isMissingComponent(s)) { //otherwise nothing to install
+<<<<<<< HEAD
             if (s.jre != "ok") {
                 if (isDef(cb.onInstallStarted)) {
                     cb.onInstallStarted(placeholder, "Java",
@@ -2470,6 +2546,220 @@ var dtjava = function() {
                 startManualJREInstall();
             } else { //what it could be??
               reportPlatformError(app, s, cb);
+=======
+            if (s.canAutoInstall()) {
+                var p = getPlugin();
+                //helper function to launch FX installer
+                var installFX = function() {
+                    var handleResultFX = function(cd) {
+                        //return codes from DT (JREInstall.h) where BASE is 10000:
+                        //  #define INSTALL_ERR_SUCCESS  BASE+0
+                        //  #define INSTALL_ERR_STARTED  BASE+1
+                        //  #define INSTALL_ERR_DOWNLOAD BASE+2
+                        //  #define INSTALL_ERR_VALIDATE BASE+3
+                        //  #define INSTALL_ERR_EXEC     4
+                        //  #define INSTALL_ERR_PLATFORM BASE+5
+                        //  #define INSTALL_ERR_SYSTEM   BASE+6
+                        //  #define INSTALL_ERR_USER_CANCEL BASE+7
+                        if (cd == 10000+1) { //skip start notification
+                           return;
+                        }
+                        codes = ["success", "ignore", "error:download", "error:generic",
+                            "error:generic", "error:generic", "error:generic", "error:cancelled"];
+                        if (cd > 19900) {
+                            //we got process exit code (20000 + code) and it is not good
+                            //for now treat everything as same error
+                            if (cd == 20000 + 1602 || cd === 20000 - 2) {
+                                //-2 is exit code for welcome panel
+                                //1602 is MSI exit code for user cancel
+                                status = "error:cancelled";
+                            } else {
+                                status = "error:generic";
+                            }
+                        } else if (cd >= 10000 && cd <= 19900) {
+                            //this is DT error case
+                            status = (cd >= 10000 && cd < 10000+codes.length) ?
+                                codes[cd-10000] : "error:unknown";
+                        } else {
+                            //Generally we do not expect codes in this range
+                            // unless it is old DT?
+                            //JRE7 DT will return 1 for any error
+                            status = "error:generic";
+                        }
+                        if (isDef(cb.onInstallFinished)) {
+                            cb.onInstallFinished(placeholder, "javafx",
+                                                 status, s.isRelaunchNeeded());
+                        }
+                        if (cd == 0) { //proceed on success only
+                            if (notNull(postInstallFunc)) {
+                                postInstallFunc();
+                            }
+                        }
+                    }
+                    //TODO: hook install progress callback once installer support it
+                    if (isDef(cb.onInstallStarted)) {
+                        cb.onInstallStarted(placeholder, "JavaFX",
+                        //need to restart as DT plugin is used for sure ..
+                        //TODO: restart not needed if can detect FX version
+                        //  (if DT does not know how to detect then
+                        //   need to restart)
+                        // NOte - for launchable apps it is different!
+                                            true, true);
+                    }
+                    var ret = 0;
+                    try {
+                       //try new way (callbacks first)
+                       ret = p.installJavaFX(platform.javafx, handleResultFX);
+                    } catch (ee) { //in IE it will throw exception,
+                                   //in FF/Chrome will return 0
+                        ret = 0;
+                    }
+                    if (ret == 0) { //failed to call installJavaFX with 2 args
+                           // or we called it but it did nothing (returned -1)
+                           // => will try to use JRE7 API (one arg and no callbacks)
+                           ret = p.installJavaFX(platform.javafx);
+                           setTimeout(function() {
+                               //ret will be boolean here
+                               setTimeout(function() {handleResultFX(ret ? 1:0)}, 0);
+                           }, 0);
+                    }
+                }
+                if (s.jre != "ok" || canJavaFXCoBundleSatisfy(platform)) {
+                    //TODO: hook install progress callback once installer support it
+                    //NB: we use setTimeout here to make sure main thread
+                    //    will get control before we stuck in the call to launch installer
+                    //    This way UI can be updated.
+                    setTimeout(function() {
+                        var handleResultJRE = function(cc) {
+                            if (cc == 10000+1) { //skip start notification
+                              return;
+                            }
+                            if (cc > 19900) {
+                               //we got process exit code (20000 + code) and it is not good
+                               //for now treat everything as same error
+                               //TODO: separate user cancel event
+                               status = "error:generic";
+                            } else if (cc == -1) {
+                               status = "error:generic";
+                            } else if (cc > 10000) { //DT error
+                               status = "error:generic";
+                            } else if (cc == 0) {
+                                status = "success";
+                            } else {
+                                status = "error:generic"; //just in case
+                            }
+                            if (isDef(cb.onInstallFinished)) {
+                               cb.onInstallFinished(placeholder, "jre",
+                                               status, s.isRelaunchNeeded());
+                            }
+                            //may also need to launch FX install but only on success!
+                            if (cc == 0) {
+                                //revalidate, if it was cobundle install there is a chance we are good by now
+                                s = doValidate(platform);
+                                if (s != null && s.jre == "ok" && !noFXAutoInstall && s.fx != "ok" ) {
+                                    setTimeout(installFX, 0);
+                                } else {
+                                    //nothing more to install => call postInstallFunction
+                                    if (postInstallFunc != null) {
+                                        postInstallFunc();
+                                    }
+                                }
+                            }
+                        }
+                        if (isDef(cb.onInstallStarted)) {
+                            cb.onInstallStarted(placeholder, "Java",
+                                                true, true);
+                        }
+
+                        var ret = 0;
+
+                        try {
+                           // pass in javafx requirement and see if we can
+                           // install a co-bundle that satisfy the application
+                           // requirement
+                           ret = p.installJRE(platform.jvm, platform.javafx,
+                                    handleResultJRE);
+                        } catch (ee) { //in IE it will throw exception,
+                                       //in FF/Chrome will return 0
+                            ret = 0;
+                        }
+
+                        if (ret == 0) {
+
+                            var jvm_req = platform.jvm;
+
+                            if (s.fx != "ok" && canJavaFXCoBundleSatisfy(platform)) {
+                                // We would like to avoid standalone JavaFX
+                                // Runtime install if possible (unless app
+                                // requires JRE 6*)
+                                //
+                                // Starting in 7u6 - JavaFX runtime is co-bundle
+                                // inside JRE.
+                                // So if we need to install JavaFX, and the
+                                // application platform requirement can allow
+                                // JRE 7u6+ and FX 2.2+, we will try to increase
+                                // the minimum platform requirement to 7u6
+                                // to install co-bundle JRE, which should
+                                // satisfy the application requirement and avoid
+                                // standalone JavaFX install
+                                //
+                                // override java and javafx version requirement to latest
+                                // co-bundle
+                                jvm_req = minJRECobundleVersion;
+                                if (platform.jvm.indexOf('*') != -1) {
+                                    jvm_req += "*";
+                                } else if (platform.jvm.indexOf('+') != -1) {
+                                    jvm_req += "+";
+                                }
+                            }
+
+                            try {
+                                //since 7-client/FX2.0 installJRE may take additional
+                                // callback argument.
+                                ret = p.installJRE(jvm_req, handleResultJRE);
+                            } catch (ee) { //in IE it will throw exception,
+                                //in FF/Chrome will return 0
+                                ret = 0;
+                            }
+
+                            if (ret == 0) {
+                               // //failed to call installRE
+                               // or we called it but it did nothing (returned -1)
+                               // => will try to use old API (one arg and no callbacks)
+                               try {
+                                  ret = p.installJRE(jvm_req);
+                               } catch (ee) {
+                                   ret = 0; //just in case we got exception
+                               }
+                               setTimeout(function() {
+                                   setTimeout(function() {handleResultJRE(ret)}, 0);
+                               }, 0);
+                            }
+                        }
+                    }, 0);
+                } else if (!noFXAutoInstall && s.fx != "ok") {
+                    setTimeout(installFX, 0);
+                }
+            } else {
+                //auto install not possible => can only do manual install
+                //
+                //Start from JRE install first, even if it is JavaFX case but cobundle can help
+                if (s.jre != "ok" || canJavaFXCoBundleSatisfy(platform)) {
+                    if (isDef(cb.onInstallStarted)) {
+                        cb.onInstallStarted(placeholder, "Java",
+                                            false, getPlugin() != null);
+                    }
+                    startManualJREInstall();
+                } else if (s.fx != "ok") {
+                    if (isDef(cb.onInstallStarted)) {
+                        cb.onInstallStarted(placeholder, "JavaFX",
+                                            false, getPlugin() != null);
+                    }
+                    startManualFXInstall();
+                } else { //what it could be??
+                  reportPlatformError(app, s, cb);
+                }
+>>>>>>> origin/v01
             }
         } else {
             //nothing to install
@@ -2825,34 +3115,60 @@ var dtjava = function() {
         } catch(err) {}
     }
 
+<<<<<<< HEAD
     var javafxURL = "https://java.com/javafx";
+=======
+    var javafxURL = "http://java.com/javafx";
+>>>>>>> origin/v01
 
     //TODO: validate ALL messages are shown as expected and when expected (for applet/webstart/install)
     var errorMessages = {
         "launch:fx:generic" : ["JavaFX application could not launch due to system configuration.",
+<<<<<<< HEAD
             " See ", "a", "https://java.com/javafx", "java.com/javafx",
             " for troubleshooting information."],
         "launch:fx:generic:embedded" : ["JavaFX application could not launch due to system configuration ",
             "(", "onclick", "show error details", ").",
             " See ", "a", "https://java.com/javafx", "java.com/javafx",
+=======
+            " See ", "a", "http://java.com/javafx", "java.com/javafx",
+            " for troubleshooting information."],
+        "launch:fx:generic:embedded" : ["JavaFX application could not launch due to system configuration ",
+            "(", "onclick", "show error details", ").",
+            " See ", "a", "http://java.com/javafx", "java.com/javafx",
+>>>>>>> origin/v01
             " for troubleshooting information."],
         "install:fx:restart" : ["Restart your browser to complete the JavaFX installation,",
             " then return to this page."],
         "install:fx:error:generic" : ["JavaFX install not completed.",
+<<<<<<< HEAD
             " See ", "a", "https://java.com/javafx", "java.com/javafx",
             " for troubleshooting information."],
         "install:fx:error:download" : ["JavaFX install could not start because of a download error.",
             " See ", "a", "https://java.com/javafx", "java.com/javafx",
+=======
+            " See ", "a", "http://java.com/javafx", "java.com/javafx",
+            " for troubleshooting information."],
+        "install:fx:error:download" : ["JavaFX install could not start because of a download error.",
+            " See ", "a", "http://java.com/javafx", "java.com/javafx",
+>>>>>>> origin/v01
             " for troubleshooting information."],
         "install:fx:error:cancelled" : ["JavaFX install was cancelled.",
             " Reload the page and click on the download button to try again."],
         "install:jre:error:cancelled" : ["Java install was cancelled.",
             " Reload the page and click on the download button to try again."],
         "install:jre:error:generic" : ["Java install not completed.",
+<<<<<<< HEAD
             " See ", "a", "https://java.com/", "java.com",
             " for troubleshooting information."],
         "install:jre:error:download" : ["Java install could not start because of a download error.",
             " See ", "a", "https://java.com/", "java.com/",
+=======
+            " See ", "a", "http://java.com/", "java.com",
+            " for troubleshooting information."],
+        "install:jre:error:download" : ["Java install could not start because of a download error.",
+            " See ", "a", "http://java.com/", "java.com/",
+>>>>>>> origin/v01
             " for troubleshooting information."],
         "install:inprogress:jre" : ["Java install in progress."],
         "install:inprogress:javafx" : ["JavaFX install in progress."],
@@ -2869,6 +3185,7 @@ var dtjava = function() {
             " and run the installer. Then reload the page to install JavaFX."],
         "browser":    [ 'Content can not be displayed using your Web browser. Please open this page using another browser.'],
         "jre:none":    [ 'JavaFX application requires a recent Java runtime. Please download and install the latest JRE from ',
+<<<<<<< HEAD
             'a', 'https://java.com', "java.com", '.'],
         "jre:old" :    [ 'JavaFX application requires a recent Java runtime. Please download and install the latest JRE from ',
             'a', 'https://java.com', "java.com", '.'],
@@ -2882,6 +3199,21 @@ var dtjava = function() {
         "jre:browser" : ["b", "Java plugin is required to view this content but Java plugin is currently unsupported in this browser.",
             "br", "Please try to launch this application using other browser. Please consult ",
             "a", "https://java.com", "the Java documentation",
+=======
+            'a', 'http://java.com', "java.com", '.'],
+        "jre:old" :    [ 'JavaFX application requires a recent Java runtime. Please download and install the latest JRE from ',
+            'a', 'http://java.com', "java.com", '.'],
+        "jre:plugin":  ['b', "A Java plugin is required to view this content.", 'br',
+            "Make sure that ", "a", 'http://java.com', "a recent Java runtime",
+            " is installed, and the Java plugin is enabled."],
+        "jre:blocked": ["Please give Java permission to run. This will allow Java to present content provided on this page."],
+        "jre:unsupported": ["b", "Java is required to view this content but Java is currently unsupported on this platform.",
+            "br", "Please consult ", "a", "http://java.com", "the Java documentation",
+            " for list of supported platforms."],
+        "jre:browser" : ["b", "Java plugin is required to view this content but Java plugin is currently unsupported in this browser.",
+            "br", "Please try to launch this application using other browser. Please consult ",
+            "a", "http://java.com", "the Java documentation",
+>>>>>>> origin/v01
             " for list of supported browsers for your OS."],
         "javafx:unsupported" : ["b", "JavaFX 2.0 is required to view this content but JavaFX is currently unsupported on this platform.",
             "br", "Please consult ", "a", javafxURL, "the JavaFX documentation",
@@ -3370,7 +3702,11 @@ var dtjava = function() {
          Return PlatformMismatchEvent describing the problem otherwise.
          */
         validate: function(platform) {
+<<<<<<< HEAD
             return doValidate(platform, ua.noPluginWebBrowser);
+=======
+            return doValidate(platform);
+>>>>>>> origin/v01
         },
 
         /**

@@ -27,8 +27,8 @@ TabPane{
     -fx-cursor:hand;
 }
 
-#tabDostawcy{
-    -fx-background-image:url("icons/dostawcy.png");
+#tabKontrahenci{
+    -fx-background-image:url("icons/kontrahenci.png");
     -fx-background-position:center;
     -fx-background-repeat:stretch;
     -fx-cursor:hand;

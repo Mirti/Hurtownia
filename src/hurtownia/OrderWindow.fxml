@@ -26,10 +26,9 @@
                       <TableColumn prefWidth="99.0" text="Nazwa towaru" />
                         <TableColumn prefWidth="75.0" text="Ilość" />
                         <TableColumn prefWidth="75.0" text="Miejsce 1" />
-                        <TableColumn prefWidth="75.0" text="Miejsce 2" />
-                        <TableColumn prefWidth="75.0" text="Seria" />
-                        <TableColumn prefWidth="117.0" text="Uwagi" />
-                        <TableColumn prefWidth="57.0" text="Wydane" />
+                        <TableColumn prefWidth="96.0" text="Data ważności" />
+                        <TableColumn prefWidth="122.0" text="Uwagi" />
+                        <TableColumn prefWidth="71.0" text="Wydane" />
                     </columns>
                   </TableView>
                </children>

@@ -131,12 +131,12 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="668.0" layoutY="395.0" mnemonicParsing="false" prefHeight="32.0" onAction="#openFormularzZamowienie" prefWidth="94.0" text="Utwórz">
+                        <Button layoutX="668.0" layoutY="393.0" mnemonicParsing="false" onAction="#openFormularzZamowienie" prefHeight="32.0" prefWidth="94.0" text="Utwórz">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <ScrollPane layoutX="14.0" layoutY="33.0" prefHeight="357.0" prefWidth="748.0">
+                        <ScrollPane layoutX="14.0" layoutY="27.0" prefHeight="357.0" prefWidth="748.0">
                            <content>
                               <TableView editable="true" prefHeight="357.0" prefWidth="748.0">
                                  <columns>
@@ -154,7 +154,21 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <Label layoutX="14.0" layoutY="6.0" text="Lista zamówień">
+                        <TableView editable="true" layoutX="14.0" layoutY="27.0" prefHeight="357.0" prefWidth="748.0">
+                           <columns>
+                              <TableColumn prefWidth="27.0" text="Id" />
+                              <TableColumn prefWidth="66.0" text="Priorytet" />
+                              <TableColumn prefWidth="72.0" text="Numer" />
+                              <TableColumn prefWidth="113.0" text="Data przyjęcia" />
+                              <TableColumn prefWidth="119.0" text="Klient" />
+                              <TableColumn prefWidth="86.0" text="Stan" />
+                              <TableColumn prefWidth="65.0" text="Podgląd" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="1.0" text="Lista zamówień">
                            <font>
                               <Font size="18.0" />
                            </font>

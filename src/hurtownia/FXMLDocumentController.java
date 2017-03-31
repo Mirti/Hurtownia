@@ -68,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
            e.printStackTrace();
           }
     }
-    @FXML  
+   @FXML  
     public void openFormularzZamowienie(ActionEvent event) throws Exception {               
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FormularzZamowienie.fxml"));

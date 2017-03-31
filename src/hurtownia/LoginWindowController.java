@@ -7,6 +7,8 @@ package hurtownia;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,17 +40,22 @@ public class LoginWindowController implements Initializable {
     private Button btnLogin;
 
     @FXML
-    protected void login(ActionEvent event) throws IOException {
-        //Funkcja logowania
-      //  if ((tfLogin.getText().equals("login")) && (pfPassword.getText().equals("haslo"))) {
+    protected void login(ActionEvent event) throws IOException, SQLException {
+        String login = tfLogin.getText();
+        String pass = pfPassword.getText();
+        String query = "SELECT * FROM UZYTKOWNIK WHERE login= \""+login+"\" AND haslo = \""+pass +"\"";
+        Polaczenie con = new Polaczenie();
+        ResultSet rs = con.getData(query);
+      //Funkcja logowania
+        if (rs.next()) {
             Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-      //  } else {
-      //      txtWrong.setText("Nieprawidłowy login lub hasło");
-       // }
+       } else {
+            txtWrong.setText("Nieprawidłowy login lub hasło");
+        }
     }
 
     @Override

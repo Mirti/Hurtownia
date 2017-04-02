@@ -40,51 +40,11 @@ public class FXMLDocumentController implements Initializable {
         label.setText("Hello World!");
     }
     
-    
-    @FXML  
-    public void openSupplierForm(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SupplierForm.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }
-    
-     @FXML  
-    public void openOrderWindow(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderWindow.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }
+
     @FXML  
     public void openListaZamowien(ActionEvent event) throws Exception {               
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ListaZamowien.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }
-    @FXML  
-    public void openEdycjaDodawanieUsera(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaDodawanieUsera.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));  

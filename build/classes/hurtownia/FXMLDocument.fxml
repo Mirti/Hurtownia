@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="811.0" stylesheets="@mainWindow.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.FXMLDocumentController">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="811.0" stylesheets="@mainWindow.css" fx:controller="hurtownia.FXMLDocumentController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="676.0" minWidth="10.0" prefWidth="221.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="676.0" minWidth="10.0" prefWidth="329.0" />
@@ -51,92 +51,17 @@
             <tabs>
                 <Tab fx:id="tabWyszukiwarka">
                     <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                            <children>
-                                <TextField layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="315.0" promptText="szukaj..." />
-                                <Button layoutX="347.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Szukaj" />
-                                <ScrollPane layoutX="14.0" layoutY="65.0" prefHeight="370.0" prefWidth="785.0">
-                                    <content>
-                                        <TableView fx:id="tblSearch" editable="true" prefHeight="371.0" prefWidth="785.0">
-                                            <columns>
-                                                <TableColumn prefWidth="132.0" text="Nazwa" />
-                                                <TableColumn prefWidth="125.0" text="Cena/jendostka" />
-                                                <TableColumn prefWidth="102.0" text="Data ważności" />
-                                                <TableColumn prefWidth="78.0" text="Ilość" />
-                                                <TableColumn prefWidth="76.0" text="Położenie" />
-                                                <TableColumn prefWidth="112.0" text="Dostawca" />
-                                                <TableColumn prefWidth="140.0" text="Kraj pochodzenia" />
-                                            </columns>
-                                        </TableView>
-                                    </content>
-                                </ScrollPane>
-                            </children>
-                        </AnchorPane>
+                     <fx:include fx:id="cargoTab" source="CargoTab.fxml"/>
                     </content>
                 </Tab>
                 <Tab fx:id="tabWydanie">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                        <ScrollPane layoutX="14.0" layoutY="41.0" prefHeight="393.0" prefWidth="780.0">
-                           <content>
-                                      <TableView editable="true" prefHeight="393.0" prefWidth="780.0">
-                                          <columns>
-                                              <TableColumn prefWidth="79.0" text="ID" />
-                                              <TableColumn prefWidth="192.0" text="Klient" />
-                                              <TableColumn prefWidth="130.0" text="Wartość zamówienia" />
-                                              <TableColumn minWidth="0.0" prefWidth="103.0" text="Przyjmujący" />
-                                              <TableColumn prefWidth="84.0" text="Waga łączna" />
-                                    <TableColumn prefWidth="176.0" text="Uwagi" />
-                                          </columns>
-                                      </TableView>
-                           </content>
-                        </ScrollPane>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="155.0" text="Lista zamówień" textFill="#ebebeb">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnOrderWindow" layoutX="650.0" layoutY="15.0" mnemonicParsing="false" onAction="#openOrderWindow" text="2klik" />
-                            </children>
-                        </AnchorPane>
+                      <fx:include fx:id="outTab" source="OutTab.fxml"/> 
                     </content>
                 </Tab>
                 <Tab fx:id="tabPrzyjecie">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <AnchorPane layoutX="23.0" layoutY="22.0" prefHeight="135.0" prefWidth="770.0" style="-fx-background-color: white;">
-                                    <children>
-                                        <TextField alignment="CENTER" layoutX="14.0" layoutY="2.0" prefHeight="25.0" prefWidth="152.0" promptText="Nazwa towaru" />
-                                        <TextField alignment="CENTER" layoutX="182.0" layoutY="2.0" prefHeight="25.0" prefWidth="107.0" promptText="Ilość" />
-                              <ComboBox layoutX="14.0" layoutY="55.0" prefWidth="150.0" promptText="Dostawca" />
-                              <TextField layoutX="312.0" layoutY="2.0" prefHeight="25.0" prefWidth="128.0" promptText="Cena/jednostka" />
-                              <TextField layoutX="460.0" layoutY="2.0" promptText="Położenie" />
-                              <TextField layoutX="180.0" layoutY="55.0" promptText="Kraj pochodzenia" />
-                              <Button layoutX="392.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Dodaj towar" />
-                              <Button disable="true" layoutX="628.0" layoutY="55.0" mnemonicParsing="false" text="Zaakceptuj zaznaczone" />
-                              <Button disable="true" layoutX="628.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Usuń zaznaczone" />
-                                    </children>
-                                </AnchorPane>
-                        <ScrollPane layoutX="14.0" layoutY="176.0" prefHeight="252.0" prefWidth="788.0">
-                           <content>
-                                      <TableView editable="true" prefHeight="256.0" prefWidth="789.0">
-                                          <columns>
-                                              <TableColumn prefWidth="130.0" text="Nazwa" />
-                                              <TableColumn prefWidth="122.0" text="Cena/jendnostka" />
-                                              <TableColumn prefWidth="95.0" text="Data dostawy" />
-                                              <TableColumn prefWidth="86.0" text="Ilość" />
-                                              <TableColumn text="Połozenie" />
-                                              <TableColumn prefWidth="96.0" text="Dostawca" />
-                                              <TableColumn prefWidth="132.0" text="Kraj pochodzenia" />
-                                    <TableColumn minWidth="0.0" prefWidth="27.0" text="X" />
-                                          </columns>
-                                      </TableView>
-                           </content>
-                        </ScrollPane>
-                            </children>
-                        </AnchorPane>
+                        <fx:include fx:id="inTab" source="inTab.fxml"/> 
                     </content>
                 </Tab>
                  <Tab fx:id="tabZarzadzanie1">
@@ -186,95 +111,17 @@
                 </Tab>
                <Tab fx:id="tabKontrahenci">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView layoutX="14.0" layoutY="80.0" prefHeight="350.0" prefWidth="780.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="ID" />
-                            <TableColumn prefWidth="75.0" text="Nazwa" />
-                              <TableColumn prefWidth="75.0" text="Towar" />
-                              <TableColumn prefWidth="75.0" text="Właściciel" />
-                              <TableColumn prefWidth="75.0" text="Adres" />
-                              <TableColumn prefWidth="75.0" text="Telefon" />
-                              <TableColumn prefWidth="75.0" text="E-mail" />
-                          </columns>
-                        </TableView>
-                        <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#openSupplierForm" prefHeight="40.0" prefWidth="83.0" text="Dodaj" />
-                        <Button layoutX="106.0" layoutY="22.0" mnemonicParsing="false" onAction="#openSupplierForm" prefHeight="40.0" prefWidth="83.0" text="Edytuj" />
-                        <Button layoutX="199.0" layoutY="22.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="83.0" text="Usuń" />
-                     </children></AnchorPane>
+                        <fx:include fx:id="ContractorTab" source="ContractorTab.fxml"/>
                     </content>
                 </Tab>
                 <Tab fx:id="tabRaporty">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <ScrollPane layoutX="225.0" layoutY="66.0" prefHeight="372.0" prefWidth="570.0">
-                                    <content>
-                                        <TableView prefHeight="446.0" prefWidth="555.0">
-                                            <columns>
-                                                <TableColumn prefWidth="127.0" text="Typ raportu" />
-                                                <TableColumn prefWidth="146.0" text="Data wygenerowania" />
-                                                <TableColumn minWidth="0.0" prefWidth="145.0" text="Wygenerowany przez" />
-                                                <TableColumn prefWidth="136.0" text="Uwagi" />
-                                            </columns>
-                                        </TableView>
-                                    </content>
-                                </ScrollPane>
-                                <Label layoutX="583.0" layoutY="34.0" text="Szukaj:" />
-                                <TextField layoutX="636.0" layoutY="30.0" />
-                                <ComboBox layoutX="43.0" layoutY="94.0" prefWidth="150.0" promptText="Wybierz typ ">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="Raport dat ważności" />
-                                            <String fx:value="Raport sprzedaży" />
-                                            <String fx:value="Raport przyjęć" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
-                        <Label layoutX="43.0" layoutY="164.0" text="Data od:" />
-                        <DatePicker layoutX="43.0" layoutY="193.0" prefHeight="25.0" prefWidth="147.0" promptText="Od:" />
-                        <DatePicker layoutX="43.0" layoutY="295.0" prefHeight="25.0" prefWidth="149.0" promptText="Do:" />
-                        <Label layoutX="43.0" layoutY="260.0" text="Data do:" />
-                        <Button layoutX="79.0" layoutY="354.0" mnemonicParsing="false" text="Generuj" />
-                        <Label layoutX="43.0" layoutY="66.0" text="Typ raportu:" />
-                            </children>
-                        </AnchorPane>
+                     <fx:include fx:id="ReportTab" source="ReportTab.fxml"/>  
                     </content>
                 </Tab>
                 <Tab fx:id="tabZarzadzanie">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="25.0" layoutY="19.0" text="Użytkownicy">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-
-                        <Button layoutX="556.0" layoutY="331.0" mnemonicParsing="false" onAction="#openEdycjaDodawanieUsera" prefHeight="64.0" prefWidth="191.0" text="Dodaj">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-
-                        <ScrollPane layoutX="25.0" layoutY="44.0" prefHeight="280.0" prefWidth="722.0">
-                           <content>
-                              <TableView prefHeight="285.0" prefWidth="723.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Imie" />
-                                    <TableColumn prefWidth="75.0" text="Nazwisko" />
-                                    <TableColumn prefWidth="75.0" text="Stanowisko" />
-                                    <TableColumn prefWidth="75.0" text="Login" />
-                                    <TableColumn prefWidth="75.0" text="Edytuj / Usuń" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                              </TableView>
-                           </content>
-                        </ScrollPane>
-                     </children></AnchorPane>
+                        <fx:include fx:id="userTab" source="UserTab.fxml"/>
                     </content>
                 </Tab>        
             </tabs>

@@ -68,10 +68,10 @@ public class FXMLDocumentController implements Initializable {
            e.printStackTrace();
           }
     }
-    @FXML  
-    public void openListaZamowien(ActionEvent event) throws Exception {               
+   @FXML  
+    public void openFormularzZamowienie(ActionEvent event) throws Exception {               
         try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ListaZamowien.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FormularzZamowienie.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));  

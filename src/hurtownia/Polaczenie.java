@@ -9,9 +9,9 @@ import java.sql.*;
 
 public class Polaczenie {
 
-    private Connection con;
-    private Statement st;
-    private ResultSet rs;
+    private static Connection con;
+    private static Statement st;
+    private static ResultSet rs;
 
     public Polaczenie() {
         try {
@@ -30,7 +30,7 @@ public class Polaczenie {
         }
     }
 
-    public ResultSet getData(String query) throws SQLException {
+    public static ResultSet getData(String query) throws SQLException {
         rs = st.executeQuery(query);
         return rs;
 

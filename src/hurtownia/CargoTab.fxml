@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.CargoController">
+    <children>
+        <TextField layoutX="14.0" layoutY="29.0" prefHeight="25.0" prefWidth="315.0" promptText="szukaj..." />
+        <Button layoutX="347.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Szukaj" />
+        <ScrollPane layoutX="14.0" layoutY="65.0" prefHeight="370.0" prefWidth="785.0">
+            <content>
+                <TableView fx:id="cargoTable" editable="true" prefHeight="371.0" prefWidth="785.0">
+                    <columns>
+                        <TableColumn fx:id="crgNameColumn" prefWidth="132.0" text="Nazwa" />
+                        <TableColumn fx:id="crgPriceColumn" prefWidth="125.0" text="Cena/jendostka" />
+                        <TableColumn fx:id="crgExpirationDateColumn" prefWidth="102.0" text="Data ważności" />
+                        <TableColumn fx:id="crgQuantityColumn" prefWidth="78.0" text="Ilość" />
+                        <TableColumn fx:id="crgPositionColumn" prefWidth="76.0" text="Położenie" />
+                        <TableColumn fx:id="crgProviderColumn" prefWidth="112.0" text="Dostawca" />
+                        <TableColumn fx:id="crgOriginColumn" prefWidth="140.0" text="Kraj pochodzenia" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+      <Button layoutX="434.0" layoutY="29.0" mnemonicParsing="false" onAction="#searchCargo" prefHeight="25.0" prefWidth="108.0" text="Pokaż wszystkie" />
+    </children>    
+</AnchorPane>

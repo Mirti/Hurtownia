@@ -66,47 +66,7 @@
                 </Tab>
                  <Tab fx:id="tabZarzadzanie1">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <Button layoutX="544.0" layoutY="325.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="94.0" text="Utwórz">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </Button>
-                                <ComboBox layoutX="15.0" layoutY="127.0" prefHeight="25.0" prefWidth="338.0" promptText="Dostawca" />
-                                <Label layoutX="380.0" layoutY="28.0" prefHeight="25.0" prefWidth="73.0" text="Uwagi">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </Label>
-                                <TextArea layoutX="380.0" layoutY="60.0" prefHeight="254.0" prefWidth="240.0" />
-                                <Button layoutX="10.0" layoutY="276.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="349.0" text="Dodaj">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </Button>
-                                <Spinner layoutX="15.0" layoutY="88.0" prefHeight="25.0" prefWidth="338.0" />
-                                <Label layoutX="16.0" layoutY="66.0" prefHeight="25.0" prefWidth="73.0" text="Ilość" />
-                                <DatePicker layoutX="15.0" layoutY="174.0" prefHeight="25.0" prefWidth="338.0" />
-                                <Label layoutX="16.0" layoutY="152.0" prefHeight="25.0" prefWidth="152.0" text="Maksymalna data ważności" />
-                                <TextField layoutX="16.0" layoutY="212.0" prefHeight="25.0" prefWidth="338.0" promptText="Cena" />
-                        <ScrollPane layoutX="10.0" layoutY="324.0" prefHeight="115.0" prefWidth="530.0">
-                           <content>
-                                      <TableView prefHeight="108.0" prefWidth="531.0">
-                                          <columns>
-                                              <TableColumn prefWidth="158.0" text="Nazwa" />
-                                              <TableColumn text="Ilość" />
-                                              <TableColumn prefWidth="116.0" text="Dostawca" />
-                                              <TableColumn prefWidth="167.0" text="Max data ważności" />
-                                          </columns>
-                                      </TableView>
-                           </content>
-                        </ScrollPane>
-                        <Label layoutX="638.0" layoutY="33.0" text="      Lista zamówień" />
-                        <Button layoutX="638.0" layoutY="58.0" mnemonicParsing="false" onAction="#openListaZamowien" prefHeight="41.0" prefWidth="138.0" text="Wyświetl" />
-                        <ComboBox layoutX="17.0" layoutY="28.0" prefHeight="25.0" prefWidth="337.0" promptText="Nazwa towaru" />
-                            </children>
-                        </AnchorPane>
+                     <fx:include fx:id="orderTab" source="orderTab.fxml"/>  
                     </content>
                 </Tab>
                <Tab fx:id="tabKontrahenci">

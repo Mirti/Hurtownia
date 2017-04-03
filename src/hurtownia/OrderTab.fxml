@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.OrderController">
+                     <children>
+                        <Button layoutX="668.0" layoutY="393.0" mnemonicParsing="false" onAction="#openFormularzZamowien" prefHeight="32.0" prefWidth="94.0" text="Utwórz">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <ScrollPane layoutX="14.0" layoutY="27.0" prefHeight="357.0" prefWidth="748.0">
+                           <content>
+                              <TableView editable="true" prefHeight="357.0" prefWidth="748.0">
+                                 <columns>
+                                    <TableColumn prefWidth="27.0" text="Id" />
+                                    <TableColumn prefWidth="66.0" text="Priorytet" />
+                                    <TableColumn prefWidth="72.0" text="Numer" />
+                                    <TableColumn prefWidth="113.0" text="Data przyjęcia" />
+                                    <TableColumn prefWidth="119.0" text="Klient" />
+                                    <TableColumn prefWidth="86.0" text="Stan" />
+                                    <TableColumn prefWidth="65.0" text="Podgląd" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <TableView fx:id="orderTable" editable="true" layoutX="14.0" layoutY="27.0" prefHeight="357.0" prefWidth="748.0">
+                           <columns>
+                              <TableColumn fx:id="orderCustomerColumn" prefWidth="66.0" text="Klient" />
+                              <TableColumn prefWidth="72.0" text="Wartość zamówienia" />
+                              <TableColumn fx:id="orderUserColumn" prefWidth="113.0" text="Przyjmujący" />
+                              <TableColumn fx:id="orderCommentColumn" prefWidth="119.0" text="Uwagi" />
+                              <TableColumn prefWidth="86.0" text="Stan" />
+                              <TableColumn prefWidth="65.0" text="Podgląd" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="1.0" text="Lista zamówień">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+      <Button layoutX="14.0" layoutY="393.0" mnemonicParsing="false" onAction="#searchOrder" prefHeight="39.0" prefWidth="183.0" text="Pokaż wszystkie">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+                     </children>
+            
+</AnchorPane>

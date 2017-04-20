@@ -20,14 +20,13 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="649.0">
                <children>
-                  <TableView prefHeight="262.0" prefWidth="663.0">
+                  <TableView fx:id="orderDetailsTable" prefHeight="262.0" prefWidth="663.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="ID Towaru" />
-                      <TableColumn prefWidth="99.0" text="Nazwa towaru" />
-                        <TableColumn prefWidth="75.0" text="Ilość" />
+                      <TableColumn fx:id="orderDetailsNameColumn" prefWidth="99.0" text="Nazwa towaru" />
+                        <TableColumn fx:id="orderDetailsQuantityColumn" prefWidth="75.0" text="Ilość" />
                         <TableColumn prefWidth="75.0" text="Miejsce 1" />
-                        <TableColumn prefWidth="96.0" text="Data ważności" />
-                        <TableColumn prefWidth="122.0" text="Uwagi" />
+                        <TableColumn fx:id="orderDetailsDateColumn" prefWidth="96.0" text="Data ważności" />
+                        <TableColumn fx:id="orderDetailsCommentColumn" prefWidth="122.0" text="Uwagi" />
                         <TableColumn prefWidth="71.0" text="Wydane" />
                     </columns>
                   </TableView>
@@ -40,5 +39,6 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button layoutX="302.0" layoutY="400.0" mnemonicParsing="false" onAction="#searchOrderDetails" prefHeight="42.0" prefWidth="133.0" text="Pokaż produkty" />
    </children>
 </AnchorPane>

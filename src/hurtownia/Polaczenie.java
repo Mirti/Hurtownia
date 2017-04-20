@@ -5,6 +5,10 @@
  */
 package hurtownia;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
 public class Polaczenie {
@@ -18,7 +22,6 @@ public class Polaczenie {
 
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException a) {
-            System.out.print("zjebane");
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
@@ -34,5 +37,11 @@ public class Polaczenie {
         rs = st.executeQuery(query);
         return rs;
 
+    }
+
+    public static void runScript(String path) throws FileNotFoundException, IOException, SQLException {
+        ScriptRunner runner = new ScriptRunner(con, false, false);
+        String file = path;
+        runner.runScript(new BufferedReader(new FileReader(file)));
     }
 }

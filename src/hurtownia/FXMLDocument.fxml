@@ -33,7 +33,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="811.0" stylesheets="@mainWindow.css" fx:controller="hurtownia.FXMLDocumentController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="811.0" stylesheets="@mainWindow.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="hurtownia.FXMLDocumentController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="676.0" minWidth="10.0" prefWidth="221.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="676.0" minWidth="10.0" prefWidth="329.0" />
@@ -51,37 +51,37 @@
             <tabs>
                 <Tab fx:id="tabWyszukiwarka">
                     <content>
-                     <fx:include fx:id="cargoTab" source="CargoTab.fxml"/>
+                     <fx:include fx:id="cargoTab" source="CargoTab.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabWydanie">
                     <content>
-                      <fx:include fx:id="outTab" source="OutTab.fxml"/> 
+                      <fx:include fx:id="outTab" source="OutTab.fxml" /> 
                     </content>
                 </Tab>
                 <Tab fx:id="tabPrzyjecie">
                     <content>
-                        <fx:include fx:id="inTab" source="inTab.fxml"/> 
+                        <fx:include fx:id="inTab" source="inTab.fxml" /> 
                     </content>
                 </Tab>
                  <Tab fx:id="tabZarzadzanie1">
                     <content>
-                     <fx:include fx:id="orderTab" source="orderTab.fxml"/>  
+                     <fx:include fx:id="orderTab" source="orderTab.fxml" />  
                     </content>
                 </Tab>
                <Tab fx:id="tabKontrahenci">
                     <content>
-                        <fx:include fx:id="ContractorTab" source="ContractorTab.fxml"/>
+                        <fx:include fx:id="ContractorTab" source="ContractorTab.fxml" />
                     </content>
                 </Tab>
                 <Tab fx:id="tabRaporty">
                     <content>
-                     <fx:include fx:id="ReportTab" source="ReportTab.fxml"/>  
+                     <fx:include fx:id="ReportTab" source="ReportTab.fxml" />  
                     </content>
                 </Tab>
                 <Tab fx:id="tabZarzadzanie">
                     <content>
-                        <fx:include fx:id="userTab" source="UserTab.fxml"/>
+                        <fx:include fx:id="userTab" source="UserTab.fxml" />
                     </content>
                 </Tab>        
             </tabs>
@@ -97,9 +97,10 @@
                         <MenuItem mnemonicParsing="false" text="Close" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Menu">
+                <Menu mnemonicParsing="false" text="Baza danych">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" text="Utwórz bazę danych" fx:id="MIcreateDB" onAction="#createDB" />
+                  <MenuItem mnemonicParsing="false" text="Importuj bazę danych" fx:id="MIimportDB" onAction="#importDB" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Pomoc">

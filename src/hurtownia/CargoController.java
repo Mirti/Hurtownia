@@ -32,7 +32,9 @@ public class CargoController implements Initializable {
     @FXML
     private TableColumn<Cargo, String> crgOriginColumn;   
     @FXML
-    private TableView cargoTable;   
+    private TableView cargoTable; 
+    @FXML
+    private TextField tfSearch;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,10 +48,22 @@ public class CargoController implements Initializable {
     } 
     
     @FXML
-    private void searchCargo(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void showCargo(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
-            ObservableList<Cargo> crgData = CargoDAO.searchCargo();
+            ObservableList<Cargo> crgData = CargoDAO.showCargo();
+            //Populate Employees on TableView
+            populateCargo(crgData);
+        } catch (SQLException e){
+            System.out.println("Error occurred while getting cargos information from DB.\n" + e);
+            throw e;
+        }
+    }
+     @FXML
+    private void searchCargo(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        try {
+            String pharse = tfSearch.getText();
+            ObservableList<Cargo> crgData = CargoDAO.searchCargo(pharse);
             //Populate Employees on TableView
             populateCargo(crgData);
         } catch (SQLException e){
@@ -63,4 +77,6 @@ public class CargoController implements Initializable {
         //Set items to the employeeTable
         cargoTable.setItems(crgData);
     }
+   
+    
 }

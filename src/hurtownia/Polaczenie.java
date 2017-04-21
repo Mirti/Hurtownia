@@ -24,7 +24,7 @@ public class Polaczenie {
         } catch (ClassNotFoundException a) {
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/hurtowniaspozywcza", "root", "");
             st = con.createStatement();
             System.out.print("ok");
 
@@ -33,11 +33,16 @@ public class Polaczenie {
         }
     }
 
+   
     public static ResultSet getData(String query) throws SQLException {
         rs = st.executeQuery(query);
         return rs;
 
     }
+     public static void update(String query) throws SQLException {
+        st.executeUpdate(query);
+    }
+    
 
     public static void runScript(String path) throws FileNotFoundException, IOException, SQLException {
         ScriptRunner runner = new ScriptRunner(con, false, false);

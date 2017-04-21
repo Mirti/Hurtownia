@@ -9,9 +9,39 @@ public class CargoDAO {
     //*******************************
     //SELECT Cargos
     //*******************************
-    public static ObservableList<Cargo> searchCargo () throws SQLException, ClassNotFoundException {
+    public static ObservableList<Cargo> showCargo () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM produkt";
+ 
+        //Execute SELECT statement
+        try {
+            //Get ResultSet from dbExecuteQuery method
+            ResultSet rsCrgs = Polaczenie.getData(selectStmt);
+ 
+            //Send ResultSet to the getCargoList method and get Cargo object
+            ObservableList<Cargo> crgList = getCargoList(rsCrgs);
+ 
+            //Return Cargo object
+            return crgList;
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has been failed: " + e);
+            //Return exception
+            throw e;
+        }
+    }
+    
+        public static ObservableList<Cargo> searchCargo (String pharse) throws SQLException, ClassNotFoundException {
+        //Declare a SELECT statement
+        String selectStmt = "SELECT DISTINCT * FROM produkt p, dostawca_importer d WHERE p.dostawca_importer_id = d.dostawca_importer_id AND "
+                + "p.nazwa LIKE \"%" + pharse + "%\" OR "
+                + "p.cena_jednostkowa =\""+pharse + "\" OR "
+                + "p.ilosc =\""+ pharse+ "\" OR "
+                + "p.polozenie LIKE \"%" + pharse +"%\" OR "
+                + "p.kraj_pochodzenia LIKE \"%"+ pharse +"%\" OR "
+                + "d.nazwa LIKE \"%"+ pharse + "%\" "
+                + "GROUP BY p.nazwa"
+                ;
+  
  
         //Execute SELECT statement
         try {

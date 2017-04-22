@@ -50,7 +50,7 @@ public class UserDAO {
             usr.setUserId(rs.getInt("uzytkownik_id"));
             usr.setUserFirstName(rs.getString("imie"));
             usr.setUserLastName(rs.getString("nazwisko"));
-            usr.setUserPermissions(rs.getString("stanowisko"));
+            usr.setUserPermissions(rs.getString("uprawnienia"));
             usr.setUserLogin(rs.getString("login"));
             //Add Cargo to the ObservableList
             usrList.add(usr);

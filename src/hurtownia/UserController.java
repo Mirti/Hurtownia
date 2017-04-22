@@ -42,7 +42,7 @@ public class UserController implements Initializable {
         usrFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().UserFirstNameProperty());
         usrLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().UserLastNameProperty());
         usrPermissionsColumn.setCellValueFactory(cellData -> cellData.getValue().UserPermissionsProperty());
-        usrLoginColumn.setCellValueFactory(cellData -> cellData.getValue().UserPermissionsProperty());
+        usrLoginColumn.setCellValueFactory(cellData -> cellData.getValue().UserLoginProperty());
     } 
     
     @FXML
@@ -78,4 +78,21 @@ public class UserController implements Initializable {
           }
     }
     
-}
+    
+   public void openPotwierdzenieUsuwaniaUsera(ActionEvent event) throws Exception {               
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PotwierdzenieUsuwaniaUsera.fxml"));
+                Parent root2 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root2));  
+                stage.showAndWait();
+                
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+    }
+   
+  
+    }
+    
+

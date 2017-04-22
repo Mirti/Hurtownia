@@ -9,9 +9,9 @@ public class CargoDAO {
     //*******************************
     //SELECT Cargos
     //*******************************
-    public static ObservableList<Cargo> showCargo () throws SQLException, ClassNotFoundException {
+    public static ObservableList<Cargo> showCargo (String limit) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT * FROM produkt";
+        String selectStmt = "SELECT * FROM produkt LIMIT " +limit;
  
         //Execute SELECT statement
         try {
@@ -30,7 +30,7 @@ public class CargoDAO {
         }
     }
     
-        public static ObservableList<Cargo> searchCargo (String pharse) throws SQLException, ClassNotFoundException {
+        public static ObservableList<Cargo> searchCargo (String pharse, String limit) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT DISTINCT * FROM produkt p, dostawca_importer d WHERE p.dostawca_importer_id = d.dostawca_importer_id AND "
                 + "p.nazwa LIKE \"%" + pharse + "%\" OR "
@@ -39,8 +39,10 @@ public class CargoDAO {
                 + "p.polozenie LIKE \"%" + pharse +"%\" OR "
                 + "p.kraj_pochodzenia LIKE \"%"+ pharse +"%\" OR "
                 + "d.nazwa LIKE \"%"+ pharse + "%\" "
-                + "GROUP BY p.nazwa"
+                + "GROUP BY p.nazwa "
+                + "LIMIT " + limit
                 ;
+                
   
  
         //Execute SELECT statement

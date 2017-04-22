@@ -1,10 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Wersja serwera: 10.1.21-MariaDB
--- Wersja PHP: 7.1.1
+-- Host: 127.0.0.1:3307
+-- Czas generowania: 21 Kwi 2017, 18:19
+-- Wersja serwera: 10.1.16-MariaDB
+-- Wersja PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -187,19 +188,20 @@ CREATE TABLE `uzytkownik` (
   `uzytkownik_id` int(11) NOT NULL,
   `imie` varchar(255) NOT NULL,
   `nazwisko` varchar(255) NOT NULL,
-  `stanowisko` varchar(255) NOT NULL,
+  `uprawnienia` varchar(255) NOT NULL,
   `login` varchar(255) NOT NULL,
-  `haslo` varchar(255) NOT NULL
+  `haslo` varchar(255) NOT NULL,
+  `uwagi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `uzytkownik`
 --
 
-INSERT INTO `uzytkownik` (`uzytkownik_id`, `imie`, `nazwisko`, `stanowisko`, `login`, `haslo`) VALUES
-(1, 'Magdalena', 'Mag', 'Kierownik', 'user9', 'heheheh23'),
-(99, 'admin', 'admin', 'admin', 'admin', 'admin'),
-(100, 'Gregory', 'Greg', 'Pracownik', 'pracownik1', 'pracownik');
+INSERT INTO `uzytkownik` (`uzytkownik_id`, `imie`, `nazwisko`, `uprawnienia`, `login`, `haslo`, `uwagi`) VALUES
+(1, 'Magdalena', 'Mag', 'Kierownik', 'user9', 'heheheh23', ''),
+(99, 'admin', 'admin', 'admin', 'admin', 'admin', ''),
+(100, 'Gregory', 'Greg', 'Pracownik', 'pracownik1', 'pracownik', '');
 
 -- --------------------------------------------------------
 
@@ -331,7 +333,7 @@ ALTER TABLE `raport`
 -- AUTO_INCREMENT dla tabeli `uzytkownik`
 --
 ALTER TABLE `uzytkownik`
-  MODIFY `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --

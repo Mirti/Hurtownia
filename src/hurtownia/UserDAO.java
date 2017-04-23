@@ -52,10 +52,46 @@ public class UserDAO {
             usr.setUserLastName(rs.getString("nazwisko"));
             usr.setUserPermissions(rs.getString("uprawnienia"));
             usr.setUserLogin(rs.getString("login"));
+            usr.setUserPassword(rs.getString("haslo"));
+            usr.setUserComment(rs.getString("uwagi"));            
             //Add Cargo to the ObservableList
             usrList.add(usr);
         }
         //return crgList (ObservableList of Contractors)
         return usrList;
-    }     
+    }
+    
+        public static void updateUser (int userId, String userFirstName, String userLastName, String userPermission, String userLogin, String userPassword, String userComment) throws SQLException, ClassNotFoundException {
+        //Declare a UPDATE statement
+        String updateStmt =
+                        "   UPDATE uzytkownik\n" +
+                        "      SET imie = '" + userFirstName + "',nazwisko = '" + userLastName + "',uprawnienia = '" + userPermission + "',login = '" + userLogin + "',haslo = '" + userPassword +"',uwagi = '" + userComment +    "'\n" +
+                        "    WHERE uzytkownik_ID = " + userId + ";\n";
+ 
+        //Execute UPDATE operation
+        try {
+            Polaczenie.update(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while UPDATE Operation: " + e);
+            throw e;
+        }
+    }
+ 
+    //*************************************
+    //DELETE an user
+    //*************************************
+    public static void deleteUserWithId (int userId) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt =
+                        "   DELETE FROM uzytkownik\n" +
+                        "         WHERE uzytkownik_id ="+ userId +";\n";
+ 
+        //Execute UPDATE operation
+        try {
+            Polaczenie.update(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+    }
 }

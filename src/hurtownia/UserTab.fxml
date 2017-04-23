@@ -24,12 +24,13 @@
 
        <ScrollPane layoutX="25.0" layoutY="44.0" prefHeight="280.0" prefWidth="722.0">
           <content>
-             <TableView fx:id="UserTable" prefHeight="285.0" prefWidth="723.0">
+             <TableView fx:id="userTable" prefHeight="285.0" prefWidth="723.0">
                 <columns>
                    <TableColumn fx:id="usrFirstNameColumn" prefWidth="75.0" text="Imie" />
                    <TableColumn fx:id="usrLastNameColumn" prefWidth="75.0" text="Nazwisko" />
                    <TableColumn fx:id="usrPermissionsColumn" prefWidth="75.0" text="Stanowisko" />
                    <TableColumn fx:id="usrLoginColumn" prefWidth="75.0" text="Login" />
+                  <TableColumn fx:id="usrCommentColumn" prefWidth="75.0" text="uwagi" />
                 </columns>
                 <columnResizePolicy>
                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -42,7 +43,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="228.0" layoutY="333.0" mnemonicParsing="false" onAction="#openEdycjaDodawanieUsera" prefHeight="49.0" prefWidth="158.0" text="Edytuj">
+      <Button layoutX="228.0" layoutY="333.0" mnemonicParsing="false" onAction="#openUserUpdate" prefHeight="49.0" prefWidth="158.0" text="Edytuj">
          <font>
             <Font size="18.0" />
          </font>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.UserUpdateController">
+  <children>
+      <Button layoutX="464.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="126.0" prefWidth="122.0" text="Zatwierdź">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="userFirstNameText" layoutX="19.0" layoutY="42.0" />
+      <TextField fx:id="userLastNameText" layoutX="19.0" layoutY="94.0" />
+      <ComboBox fx:id="userPermissionText" layoutX="19.0" layoutY="151.0" prefHeight="25.0" prefWidth="149.0">
+          <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="1" />
+          <String fx:value="2" />
+          <String fx:value="3" />
+        </FXCollections>
+      </items>
+      <value>
+        <String fx:value="1" />
+    </value>
+    </ComboBox>
+    
+      <Label layoutX="22.0" layoutY="22.0" text="Imie">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="73.0" text="Nazwisko">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="131.0" text="Stopień uprawnień">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="257.0" layoutY="22.0" text="Login">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="257.0" layoutY="73.0" text="Hasło">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="userCommentText" layoutX="14.0" layoutY="260.0" prefHeight="126.0" prefWidth="443.0" />
+      <Label layoutX="16.0" layoutY="234.0" text="Uwagi">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userLoginText" layoutX="257.0" layoutY="42.0" />
+      <TextField fx:id="userPasswordText" layoutX="257.0" layoutY="94.0" />
+      <Text fx:id="alertText" fill="BLACK" layoutX="380.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font></Text>
+   </children>    
+</AnchorPane>

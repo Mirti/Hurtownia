@@ -13,6 +13,8 @@ public class User {
     private StringProperty userLastName;
     private StringProperty userPermissions;
     private StringProperty userLogin;
+    private StringProperty userPassword;    
+    private StringProperty userComment;  
     
     //Constructor
     public User(){
@@ -20,7 +22,9 @@ public class User {
         this.userFirstName = new SimpleStringProperty();
         this.userLastName =  new SimpleStringProperty();
         this.userPermissions = new SimpleStringProperty();
-        this.userLogin =  new SimpleStringProperty();     
+        this.userLogin =  new SimpleStringProperty(); 
+        this.userPassword =  new SimpleStringProperty();   
+        this.userComment =  new SimpleStringProperty();           
     }
         //Contractor Id
         public int getUserId(){
@@ -85,6 +89,30 @@ public class User {
         
         public StringProperty UserLoginProperty(){
             return userLogin;
-        }       
+        } 
+        //Contractor Adress
+        public String getUserPassword(){
+            return userPassword.get();
+        }
+        
+        public void setUserPassword(String UserPassword){
+            this.userPassword.set(UserPassword);            
+        }
+        
+        public StringProperty UserPasswordProperty(){
+            return userPassword;
+        } 
+        //Contractor Adress
+        public String getUserComment(){
+            return userComment.get();
+        }
+        
+        public void setUserComment(String UserComment){
+            this.userComment.set(UserComment);            
+        }
+        
+        public StringProperty UserCommentProperty(){
+            return userComment;
+        }         
     
 }

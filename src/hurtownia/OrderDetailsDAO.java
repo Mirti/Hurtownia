@@ -18,9 +18,9 @@ public class OrderDetailsDAO {
    //*******************************
     //SELECT Cargos
     //*******************************
-    public static ObservableList<OrderDetails> searchOrderDetails () throws SQLException, ClassNotFoundException {
+    public static ObservableList<OrderDetails> searchOrderDetails (int id) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT pz.produkt_zamowienie_id,p.nazwa,pz.ilosc,p.data_waznosci,z.uwagi from produkt p,produkt_zamowienie pz,zamowienie z where pz.produkt_id = p.produkt_id and pz.zamowienie_id = z.zamowienie_id and z.zamowienie_id =1";
+        String selectStmt = "SELECT pz.produkt_zamowienie_id,p.nazwa,pz.ilosc,p.data_waznosci,z.uwagi from produkt p,produkt_zamowienie pz,zamowienie z where pz.produkt_id = p.produkt_id and pz.zamowienie_id = z.zamowienie_id and z.zamowienie_id ="+id;
  
         //Execute SELECT statement
         try {

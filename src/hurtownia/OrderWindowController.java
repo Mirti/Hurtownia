@@ -32,6 +32,7 @@ public class OrderWindowController implements Initializable {
     private TableColumn<OrderDetails, String> orderDetailsCommentColumn; 
     @FXML
     private TableView orderDetailsTable;   
+    private int orderDetailId = OutController.getSelectedOutId();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,7 +46,7 @@ public class OrderWindowController implements Initializable {
     private void searchOrderDetails(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
-            ObservableList<OrderDetails> ordData = OrderDetailsDAO.searchOrderDetails();
+            ObservableList<OrderDetails> ordData = OrderDetailsDAO.searchOrderDetails(orderDetailId);
             //Populate Employees on TableView
             populateOrderDetails(ordData);
         } catch (SQLException e){

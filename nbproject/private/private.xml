@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Hurtownia/src/hurtownia/UserController.java</file>
-            <file>file:/C:/Hurtownia/src/hurtownia/Polaczenie.java</file>
-            <file>file:/C:/Hurtownia/src/hurtownia/UserDAO.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/UserController.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/UserTab.fxml</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/In.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/InController.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/UserAddController.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/EdycjaDodawanieUsera.fxml</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/User.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/CargoController.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/InAddController.java</file>
+            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/InTab.fxml</file>
         </group>
     </open-files>
 </project-private>

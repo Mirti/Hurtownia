@@ -49,7 +49,7 @@ public class InDAO {
             in.setInId(rs.getInt("produkt_temp_id"));
             in.setInName(rs.getString("nazwa"));
             in.setInPrice(rs.getString("cena_jednostkowa"));
-            in.setInDate(rs.getDate("data_przyjecia"));
+            in.setInDate(rs.getDate("data_dostawy"));
             in.setInQuantity(rs.getInt("ilosc"));
             in.setInPosition(rs.getString("polozenie"));
             in.setInProvider(rs.getString("dostawca"));

@@ -11,12 +11,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 
+/**
+ * Class to handling connection with SQL Database
+ *
+ * @author Kinga, Mirti
+ * 
+ */
 public class Polaczenie {
 
     private static Connection con;
     private static Statement st;
     private static ResultSet rs;
 
+    /**
+     * Constructor Creates connection with SQL Database when initialize
+     *
+     */
     public Polaczenie() {
         try {
 
@@ -33,17 +43,38 @@ public class Polaczenie {
         }
     }
 
-   
+    /**
+     *
+     * Executes query in database and returns result in ResultSet
+     *
+     * @param query - String with SQL query
+     * @return ResultSet of the executed query
+     * @throws SQLException - When statement is incorrect
+     */
     public static ResultSet getData(String query) throws SQLException {
         rs = st.executeQuery(query);
         return rs;
 
     }
-     public static void update(String query) throws SQLException {
+
+    /**
+     * Executes update statement in datebase
+     *
+     * @param query - Query with update statement
+     * @throws SQLException - When statement is incorrect
+     */
+    public static void update(String query) throws SQLException {
         st.executeUpdate(query);
     }
-    
 
+    /**
+     * Runs MySQL script form file
+     *
+     * @param path - URL to script file
+     * @throws FileNotFoundException - if file isn't exist
+     * @throws IOException - When e.x file has invalid file format
+     * @throws SQLException - When statement is incorrect
+     */
     public static void runScript(String path) throws FileNotFoundException, IOException, SQLException {
         ScriptRunner runner = new ScriptRunner(con, false, false);
         String file = path;

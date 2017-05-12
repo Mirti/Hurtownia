@@ -85,7 +85,7 @@ public class OutController implements Initializable {
     private void searchOut(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
             //Get all Contractorsinformation
-            ObservableList<Out> OutData = OutDAO.searchOut();
+            ObservableList<Out> OutData = OutDAO.searchNewOut();
             //Populate Contractors on TableView
             populateOut(OutData);
         } catch (SQLException e){

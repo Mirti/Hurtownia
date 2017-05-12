@@ -13,9 +13,9 @@
         <URL value="@orderwindow.css" />
     </stylesheets>
    <children>
-      <Button layoutX="467.0" layoutY="400.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" text="Potwierdź wydanie" />
-      <Button layoutX="91.0" layoutY="472.0" mnemonicParsing="false" text="Zgłoś problem" />
-      <TextArea layoutX="25.0" layoutY="392.0" prefHeight="57.0" prefWidth="245.0" promptText="Uwagi" />
+      <Button layoutX="467.0" layoutY="400.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="133.0" text="Potwierdź wydanie" onAction="#confirmRelease" />
+      <Button layoutX="91.0" layoutY="472.0" mnemonicParsing="false" text="Zgłoś problem" onAction="#reportProblem" />
+      <TextArea fx:id="taComments" layoutX="25.0" layoutY="392.0" prefHeight="57.0" prefWidth="245.0" promptText="Uwagi" />
       <ScrollPane layoutX="26.0" layoutY="87.0" prefHeight="254.0" prefWidth="663.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="649.0">
@@ -34,7 +34,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Label layoutX="35.0" layoutY="37.0" text="Zamówienie: #123">
+      <Label fx:id="lblOrderId" layoutX="35.0" layoutY="37.0">
          <font>
             <Font size="20.0" />
          </font>

@@ -21,7 +21,9 @@ public class OutDAO {
     //*******************************
     public static ObservableList<Out> searchOut () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi from zamowienie z,klient k,uzytkownik u where z.uzytkownik_id=u.uzytkownik_id AND z.klient_id=k.klient_id";
+        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
+                + " from zamowienie z,klient k,uzytkownik u "
+                + "where z.uzytkownik_id=u.uzytkownik_id AND z.klient_id=k.klient_id ";
  
         //Execute SELECT statement
         try {
@@ -39,6 +41,31 @@ public class OutDAO {
             throw e;
         }
     }
+    
+     public static ObservableList<Out> searchNewOut () throws SQLException, ClassNotFoundException {
+        //Declare a SELECT statement
+        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
+                + " from zamowienie z,klient k,uzytkownik u "
+                + "where z.uzytkownik_id=u.uzytkownik_id AND z.klient_id=k.klient_id "
+                + "AND z.stan='nowe'";
+ 
+        //Execute SELECT statement
+        try {
+            //Get ResultSet from dbExecuteQuery method
+            ResultSet rsOut = Polaczenie.getData(selectStmt);
+ 
+            //Send ResultSet to the getContractorList method and get Contractor object
+            ObservableList<Out> OutList = getOutList(rsOut);
+ 
+            //Return Contractor object
+            return OutList;
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has been failed: " + e);
+            //Return exception
+            throw e;
+        }
+    }
+    
  
     //Select * from Contractor operation
     private static ObservableList<Out> getOutList(ResultSet rs) throws SQLException, ClassNotFoundException {

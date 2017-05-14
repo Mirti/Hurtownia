@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/student/Desktop/git/Hurtownia/src/hurtownia/UserAddController.java</file>
-            <file>file:/C:/Users/student/Desktop/git/Hurtownia/src/hurtownia/ZamowienieDataModel.java</file>
-            <file>file:/C:/Users/student/Desktop/git/Hurtownia/src/hurtownia/UserDAO.java</file>
+            <file>file:/C:/Users/nykie_000/Desktop/gówno/src/hurtownia/Polaczenie.java</file>
+            <file>file:/C:/Users/nykie_000/Desktop/gówno/src/hurtownia/FormularzZamowienie.fxml</file>
+            <file>file:/C:/Users/nykie_000/Desktop/gówno/src/hurtownia/ZamowienieDataModel.java</file>
+            <file>file:/C:/Users/nykie_000/Desktop/gówno/src/hurtownia/FormularzZamowienieController.java</file>
         </group>
     </open-files>
 </project-private>

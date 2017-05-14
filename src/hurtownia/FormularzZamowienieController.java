@@ -40,6 +40,7 @@ public class FormularzZamowienieController implements Initializable {
     private String zapytanie = "insert into produkt_zamowienie(produkt_id,zamowienie_id,ilosc,cena_jednostkowa) VALUES";
     private int cenaZamowienia = 0;
     private ObservableList<ZamowienieDataModel> data;
+    private int klientid;
     @FXML
     private TextField ilosc_towaru;
     @FXML
@@ -52,6 +53,8 @@ public class FormularzZamowienieController implements Initializable {
     private ComboBox dostawcy;
     @FXML
     private ComboBox towar;
+    @FXML
+    private ComboBox klient;
     @FXML
     private Button dodaj_towar;
     @FXML
@@ -80,14 +83,14 @@ public class FormularzZamowienieController implements Initializable {
     protected void zatwierdzanie(ActionEvent event) throws IOException, SQLException {
         String uwagi_zam = uwagi.getText();
         String nowe = "Nowe";
-        String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(1,1,\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe +"\")";
+        System.out.print(klientid);
+        String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\""+klientid+"\",1,\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe +"\")";
         Polaczenie con = new Polaczenie();
         con.update(tworzZam);
         //wykonanie dodawania do bazy
         zapytanie = zapytanie.substring(0, zapytanie.length() - 1);
         System.out.println(zapytanie);
         con.update(zapytanie);
-        System.out.println(zapytanie);
         zapytanie = "insert into produkt_zamowienie(produkt_id,zamowienie_id,ilosc,cena_jednostkowa) VALUES";
     }
 
@@ -98,8 +101,19 @@ public class FormularzZamowienieController implements Initializable {
         String cena_tow = cena.getText();
         String dostawca = dostawcy.getSelectionModel().getSelectedItem().toString();
         String towar_zam = towar.getSelectionModel().getSelectedItem().toString();
+        String klientcb = klient.getSelectionModel().getSelectedItem().toString();
+        
 
         Polaczenie con = new Polaczenie();
+        
+        //ustalanie id klienta
+        String querynaid = "SELECT klient_id FROM klient where nazwa = \"" + klientcb + "\" order by klient_id DESC limit 1";
+        int klie_id = 0;
+        ResultSet rs0 = con.getData(querynaid);
+        while (rs0.next()) {
+            klie_id = rs0.getInt(1);
+        }
+        klientid =klie_id;
 
         String dostawca_id = "SELECT dostawca_importer_id FROM dostawca_importer where nazwa = \"" + dostawca + "\" order by dostawca_importer_id DESC limit 1";
         int dost_id = 0;
@@ -178,6 +192,27 @@ public class FormularzZamowienieController implements Initializable {
                 temp++;
             }
             dostawcy.getItems().setAll(pom);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormularzZamowienieController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Polaczenie con = new Polaczenie();
+            String query = "Select distinct nazwa from klient";
+            String query2 = "SELECT COUNT(distinct nazwa) FROM klient";
+            ResultSet pomrs = con.getData(query2);
+            int rozm = 0;
+            while (pomrs.next()) {
+                rozm = pomrs.getInt(1);
+            }
+            String[] pom = new String[rozm];
+            int temp = 0;
+            ResultSet rsa = con.getData(query);
+            while (rsa.next()) {
+                pom[temp] = rsa.getString(1);
+                temp++;
+            }
+            klient.getItems().setAll(pom);
         } catch (SQLException ex) {
             Logger.getLogger(FormularzZamowienieController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -92,6 +92,8 @@ public class FormularzZamowienieController implements Initializable {
         System.out.println(zapytanie);
         con.update(zapytanie);
         zapytanie = "insert into produkt_zamowienie(produkt_id,zamowienie_id,ilosc,cena_jednostkowa) VALUES";
+        data.clear();
+            tabela.setItems(data);
     }
 
     @FXML
@@ -159,6 +161,8 @@ public class FormularzZamowienieController implements Initializable {
             ZamowienieDataModel zdm = new ZamowienieDataModel(towar_zam, ilosc_tow, dostawca, ""+data_zam);
             data.add(zdm); 
             tabela.setItems(data);
+            
+            System.out.println(zapytanie);
     }
 
     public void dostBlockUnblock(ActionEvent e) {

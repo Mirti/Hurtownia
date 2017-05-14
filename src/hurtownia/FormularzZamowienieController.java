@@ -72,6 +72,10 @@ public class FormularzZamowienieController implements Initializable {
     @FXML
     private TableColumn<ZamowienieDataModel, String> data_col;
 
+    public FormularzZamowienieController() {
+        this.data = FXCollections.observableArrayList();
+    }
+
     @FXML
     protected void zatwierdzanie(ActionEvent event) throws IOException, SQLException {
         String uwagi_zam = uwagi.getText();
@@ -134,15 +138,13 @@ public class FormularzZamowienieController implements Initializable {
             zapytanie += dodawanieElemZamow;
         }
         
-        data =
-            FXCollections.observableArrayList(
-            new ZamowienieDataModel(towar_zam, ilosc_tow, dostawca, ""+data_zam));
+        //data =
+        //    FXCollections.observableArrayList(
+         //   new ZamowienieDataModel(towar_zam, ilosc_tow, dostawca, ""+data_zam));
         
-        nazwa_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rName"));
-        ilosc_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rNum"));
-        dostawca_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rSupp"));
-        data_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rDate"));
-        tabela.setItems(data);
+            ZamowienieDataModel zdm = new ZamowienieDataModel(towar_zam, ilosc_tow, dostawca, ""+data_zam);
+            data.add(zdm); 
+            tabela.setItems(data);
     }
 
     public void dostBlockUnblock(ActionEvent e) {
@@ -206,7 +208,6 @@ public class FormularzZamowienieController implements Initializable {
         ilosc_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rNum"));
         dostawca_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rSupp"));
         data_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rDate"));
-        tabela.setItems(data);
     }
 }
 

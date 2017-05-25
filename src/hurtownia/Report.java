@@ -22,7 +22,7 @@ public class Report {
     private StringProperty reportType;
     private SimpleObjectProperty<Date> reportDate;
     private StringProperty reportAuthor;
-    private StringProperty reportComment;
+    private StringProperty reportPath;
     
     //Constructor
     public Report(){
@@ -30,7 +30,7 @@ public class Report {
         this.reportType = new SimpleStringProperty();
         this.reportDate = new SimpleObjectProperty<>();
         this.reportAuthor = new SimpleStringProperty();
-        this.reportComment =  new SimpleStringProperty();     
+        this.reportPath =  new SimpleStringProperty();     
     }
         //Contractor Id
         public int getReportId(){
@@ -85,16 +85,16 @@ public class Report {
         }
         
         //Contractor Adress
-        public String getReportComment(){
-            return reportComment.get();
+        public String getReportPath(){
+            return reportPath.get();
         }
         
-        public void setReportComment(String ReportComment){
-            this.reportComment.set(ReportComment);            
+        public void setReportPath(String ReportComment){
+            this.reportPath.set(ReportComment);            
         }
         
-        public StringProperty reportCommentProperty(){
-            return reportComment;
+        public StringProperty reportPathProperty(){
+            return reportPath;
         }       
         
 }

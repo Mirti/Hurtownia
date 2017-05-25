@@ -35,7 +35,7 @@ public class ExpDateCreate {
     static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     static Date date = new Date();
     static String currentDate = dateFormat.format(date);
-    private static final String FILE = "reports/" + "Raport Waznosci " + currentDate + ".pdf";
+    private static final String FILE = "reports\\" + "RaportWaznosci" + currentDate + ".pdf";
     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,

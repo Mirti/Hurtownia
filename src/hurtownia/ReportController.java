@@ -5,6 +5,8 @@
  */
 package hurtownia;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -12,14 +14,21 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import raports.ExpDateCreate;
 import raports.InCreate;
 import raports.SellCreate;
@@ -45,6 +54,12 @@ public class ReportController implements Initializable {
     private DatePicker dateFrom, dateTo;
     @FXML
     private ComboBox reportSelect;
+    @FXML
+    private static int selectedReportId;
+    
+        public static int getSelectedReportId(){
+        return selectedReportId;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,6 +67,30 @@ public class ReportController implements Initializable {
         rptDateColumn.setCellValueFactory(cellData -> cellData.getValue().reportDateProperty());
         rptAuthorColumn.setCellValueFactory(cellData -> cellData.getValue().reportAuthorProperty());
         rptPathColumn.setCellValueFactory(cellData -> cellData.getValue().reportPathProperty());
+        
+         reportTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Report>() {
+            public void onChanged(ListChangeListener.Change<? extends Report> c) {
+
+                for (Report r : c.getList()) {
+                    selectedReportId = r.getReportId();                 
+                }
+            
+            }
+        });
+        reportTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+    @Override
+    public void handle(MouseEvent click) {
+
+        if (click.getClickCount() == 2) {
+        try {
+            openReport(ReportDAO.getReportPath(selectedReportId));              
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+        }
+    }
+    });
     }
 
     @FXML
@@ -90,7 +129,7 @@ public class ReportController implements Initializable {
         if (reportSelect.getValue().equals("Raport dat ważności")) {
             ExpDateCreate.create(dates[0], dates[1]);
             ReportDAO.addReportToDB("Daty waznosci", dates[2], Polaczenie.getCurrentUser()[0],
-                    "reports/" + "Raport Waznosci " + dates[2] + ".pdf");
+                    "reports\\\\" + "RaportWaznosci" + dates[2] + ".pdf");
 
         }
         if (reportSelect.getValue().equals("Raport sprzedaży")) {
@@ -102,9 +141,10 @@ public class ReportController implements Initializable {
     }
     @FXML
     private void openReport(String path) throws IOException{
-        String reportPath = System.getProperty("user.dir")+"/"+path;
-        Runtime rt = Runtime.getRuntime();
-        rt.exec(reportPath);
+        String reportPath = System.getProperty("user.dir")+"\\"+path;
+        System.out.print(reportPath);
+        File reportFile = new File(path);
+        Desktop.getDesktop().open(reportFile);
     }
 
 }

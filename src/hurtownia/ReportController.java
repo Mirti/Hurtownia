@@ -5,9 +5,11 @@
  */
 package hurtownia;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -36,7 +38,7 @@ public class ReportController implements Initializable {
     @FXML
     private TableColumn<Report, String> rptAuthorColumn;
     @FXML
-    private TableColumn<Report, String> rptCommentColumn;
+    private TableColumn<Report, String> rptPathColumn;
     @FXML
     private TableView reportTable;
     @FXML
@@ -49,7 +51,7 @@ public class ReportController implements Initializable {
         rptTypeColumn.setCellValueFactory(cellData -> cellData.getValue().reportTypeProperty());
         rptDateColumn.setCellValueFactory(cellData -> cellData.getValue().reportDateProperty());
         rptAuthorColumn.setCellValueFactory(cellData -> cellData.getValue().reportAuthorProperty());
-        rptCommentColumn.setCellValueFactory(cellData -> cellData.getValue().reportCommentProperty());
+        rptPathColumn.setCellValueFactory(cellData -> cellData.getValue().reportPathProperty());
     }
 
     @FXML
@@ -74,25 +76,35 @@ public class ReportController implements Initializable {
     @FXML
     private String[] getDates() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime date = LocalDateTime.now();
+        String currentDate = formatter.format(date);
         String date1 = formatter.format(dateFrom.getValue());
         String date2 = formatter.format(dateTo.getValue());
-        String[] dates = {date1, date2};
+        String[] dates = {date1, date2, currentDate};
         return dates;
     }
 
     @FXML
-    private void createReport() {
+    private void createReport() throws SQLException, IOException {
         String[] dates = getDates();
-        if(reportSelect.getValue().equals("Raport dat ważności")){
-            ExpDateCreate.create(dates[0], dates[1]);          
+        if (reportSelect.getValue().equals("Raport dat ważności")) {
+            ExpDateCreate.create(dates[0], dates[1]);
+            ReportDAO.addReportToDB("Daty waznosci", dates[2], Polaczenie.getCurrentUser()[0],
+                    "reports/" + "Raport Waznosci " + dates[2] + ".pdf");
+
         }
-        if(reportSelect.getValue().equals("Raport sprzedaży")){
-            SellCreate.create(dates[0],dates[1]);
+        if (reportSelect.getValue().equals("Raport sprzedaży")) {
+            SellCreate.create(dates[0], dates[1]);
         }
-        if(reportSelect.getValue().equals("Raport przyjęcia")){
-            InCreate.create(dates[0],dates[1]);
+        if (reportSelect.getValue().equals("Raport przyjęcia")) {
+            InCreate.create(dates[0], dates[1]);
         }
-        
+    }
+    @FXML
+    private void openReport(String path) throws IOException{
+        String reportPath = System.getProperty("user.dir")+"/"+path;
+        Runtime rt = Runtime.getRuntime();
+        rt.exec(reportPath);
     }
 
 }

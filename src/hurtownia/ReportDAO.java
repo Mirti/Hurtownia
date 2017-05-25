@@ -21,7 +21,7 @@ public class ReportDAO {
     //*******************************
     public static ObservableList<Report> searchReport () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT r.raport_id,r.typ,r.data_wygenerowania,u.nazwisko,r.uwagi FROM raport r,uzytkownik u WHERE r.uzytkownik_id=u.uzytkownik_id";
+        String selectStmt = "SELECT r.raport_id,r.typ,r.data_wygenerowania,u.nazwisko,r.sciezka FROM raport r,uzytkownik u WHERE r.uzytkownik_id=u.uzytkownik_id";
  
         //Execute SELECT statement
         try {
@@ -51,12 +51,17 @@ public class ReportDAO {
             rpt.setReportType(rs.getString("typ"));
             rpt.setReportDate(rs.getDate("data_wygenerowania"));
             rpt.setReportAuthor(rs.getString("nazwisko"));
-            rpt.setReportComment(rs.getString("uwagi"));
+            rpt.setReportPath(rs.getString("sciezka"));
             //Add Cargo to the ObservableList
             rptList.add(rpt);
         }
         //return crgList (ObservableList of Contractors)
         return rptList;
-    }         
+    }     
+    public static void addReportToDB(String type, String date, String user_id, String path) throws SQLException{
+        String sqlStatement = "INSERT INTO raport (typ,data_wygenerowania,uzytkownik_id,sciezka)"
+                + "VALUES ('"+type+"', '"+date+"', '"+user_id+"', '"+path+"')";
+        Polaczenie.update(sqlStatement);
+    }
     
 }

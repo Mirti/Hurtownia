@@ -17,7 +17,7 @@
                         <TableColumn fx:id="rptTypeColumn" prefWidth="127.0" text="Typ raportu" />
                         <TableColumn fx:id="rptDateColumn" prefWidth="146.0" text="Data wygenerowania" />
                         <TableColumn fx:id="rptAuthorColumn" minWidth="0.0" prefWidth="145.0" text="Wygenerowany przez" />
-                        <TableColumn fx:id="rptCommentColumn" prefWidth="136.0" text="Uwagi" />
+                        <TableColumn fx:id="rptPathColumn" prefWidth="136.0" text="Sciezka" />
                     </columns>
                 </TableView>
             </content>

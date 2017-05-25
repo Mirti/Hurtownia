@@ -60,6 +60,11 @@ public class LoginWindowController implements Initializable {
                 Stage stage = (Stage) btnLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
+                String[] currentUser = new String[2];
+                currentUser[0]=rs.getString("imie");
+                currentUser[1]=rs.getString("nazwisko");
+                Polaczenie.setCurrentUser(currentUser);
+       
             } else {
                 txtWrong.setText("Nieprawidłowy login lub hasło");
             }

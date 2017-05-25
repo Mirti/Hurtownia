@@ -17,6 +17,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import raports.ExpDateCreate;
 
 public class CargoController implements Initializable {
 
@@ -77,6 +78,8 @@ public class CargoController implements Initializable {
             ObservableList<Cargo> crgData = CargoDAO.showCargo(limit);
             //Populate Employees on TableView
             populateCargo(crgData);
+            
+            
         } catch (SQLException e) {
             System.out.println("Error occurred while getting cargos information from DB.\n" + e);
             throw e;

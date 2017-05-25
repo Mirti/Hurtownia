@@ -24,7 +24,7 @@
         </ScrollPane>
         <Label layoutX="583.0" layoutY="34.0" text="Szukaj:" />
         <TextField layoutX="636.0" layoutY="30.0" />
-        <ComboBox layoutX="43.0" layoutY="94.0" prefWidth="150.0" promptText="Wybierz typ ">
+        <ComboBox layoutX="43.0" layoutY="94.0" prefWidth="150.0" promptText="Wybierz typ " fx:id="reportSelect">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Raport dat ważności" />
@@ -34,10 +34,10 @@
             </items>
         </ComboBox>
 <Label layoutX="43.0" layoutY="164.0" text="Data od:" />
-<DatePicker layoutX="43.0" layoutY="193.0" prefHeight="25.0" prefWidth="147.0" promptText="Od:" />
-<DatePicker layoutX="43.0" layoutY="295.0" prefHeight="25.0" prefWidth="149.0" promptText="Do:" />
+<DatePicker layoutX="43.0" layoutY="193.0" prefHeight="25.0" prefWidth="147.0" promptText="Od:" fx:id="dateFrom"/>
+<DatePicker layoutX="43.0" layoutY="295.0" prefHeight="25.0" prefWidth="149.0" promptText="Do:" fx:id="dateTo" />
 <Label layoutX="43.0" layoutY="260.0" text="Data do:" />
-<Button layoutX="79.0" layoutY="354.0" mnemonicParsing="false" text="Generuj" />
+<Button layoutX="79.0" layoutY="354.0" mnemonicParsing="false" text="Generuj" onAction="#createReport"/>
 <Label layoutX="43.0" layoutY="66.0" text="Typ raportu:" />
       <Button layoutX="225.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchReport" text="Pokaż wszystkie" />
     </children>

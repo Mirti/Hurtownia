@@ -1,10 +1,11 @@
-﻿/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package hurtownia;
 
+import hurtownia.ScriptRunner;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,13 +16,14 @@ import java.sql.*;
  * Class to handling connection with SQL Database
  *
  * @author Kinga, Mirti
- * 
+ *
  */
 public class Polaczenie {
 
     private static Connection con;
     private static Statement st;
     private static ResultSet rs;
+    private static String[] currentUser;
 
     /**
      * Constructor Creates connection with SQL Database when initialize
@@ -79,5 +81,11 @@ public class Polaczenie {
         ScriptRunner runner = new ScriptRunner(con, false, false);
         String file = path;
         runner.runScript(new BufferedReader(new FileReader(file)));
+    }
+    public static void setCurrentUser(String[] user){
+        currentUser = user;
+    }
+    public static String[] getCurrentUser(){
+        return currentUser;
     }
 }

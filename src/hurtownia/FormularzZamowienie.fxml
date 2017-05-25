@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.FormularzZamowienieController">
    <children>
-      <Button fx:id="utworz_zam" layoutX="552.0" layoutY="292.0" mnemonicParsing="false" onAction="#zatwierdzanie" prefHeight="130.0" prefWidth="102.0" text="Utwórz">
+      <Button fx:id="utworz_zam" layoutX="552.0" layoutY="292.0" mnemonicParsing="false" onAction="#sprawdzanieRezerwacja" prefHeight="130.0" prefWidth="102.0" text="Utwórz">
          <font>
             <Font size="17.0" />
          </font>

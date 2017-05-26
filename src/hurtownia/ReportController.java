@@ -29,9 +29,8 @@ import raports.ExpDateCreate;
 import raports.InCreate;
 
 /**
- * FXML Controller class
+ * FXML Controller class. It controls method for Reports Tab
  *
- * @author Jon
  */
 public class ReportController implements Initializable {
 
@@ -52,10 +51,22 @@ public class ReportController implements Initializable {
     @FXML
     private static int selectedReportId;
 
+    /**
+     * Returns report id for double click
+     *
+     * @return report id
+     */
     public static int getSelectedReportId() {
         return selectedReportId;
     }
 
+    /**
+     * Assigns names to table header and handle double click on row by assign ID
+     * for every row.
+     *
+     * @param url - Unused
+     * @param rb - Unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         rptTypeColumn.setCellValueFactory(cellData -> cellData.getValue().reportTypeProperty());
@@ -74,6 +85,11 @@ public class ReportController implements Initializable {
         });
         reportTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
+            /**
+             * Handle what program should do after double click
+             *
+             * @param click - click of the mouse
+             */
             @Override
             public void handle(MouseEvent click) {
 
@@ -88,8 +104,17 @@ public class ReportController implements Initializable {
         });
     }
 
+    /**
+     * Show report from database in table using ReportDAO class.
+     *
+     * @see ReportDAO
+     * @param actionEvent
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws where program can't find
+     * RaportDAO class
+     */
     @FXML
-    private void searchReport(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchReport() throws SQLException, ClassNotFoundException {
         try {
             //Get all Contractorsinformation
             ObservableList<Report> ReportData = ReportDAO.searchReport();
@@ -101,12 +126,22 @@ public class ReportController implements Initializable {
         }
     }
 
+    /**
+     * Adds rows to table
+     *
+     * @param rptData - List of reports object
+     */
     @FXML
-    private void populateReport(ObservableList<Report> rptData) throws ClassNotFoundException {
-        //Set items to the ContractorTable
+    private void populateReport(ObservableList<Report> rptData) {
         reportTable.setItems(rptData);
     }
 
+    /**
+     * Returns String array with current date on index 0, start date on index 1
+     * and finish date on index 2
+     * 
+     * @return Array with dates
+     */
     @FXML
     private String[] getDates() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -118,6 +153,14 @@ public class ReportController implements Initializable {
         return dates;
     }
 
+    /**
+     * Method to create reports according to value on comboBox
+     * 
+     * @see ExpDateCreate
+     * @see InCreate
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws IOException - Throws when can't create new file with report
+     */
     @FXML
     private void createReport() throws SQLException, IOException {
         String[] dates = getDates();
@@ -135,6 +178,12 @@ public class ReportController implements Initializable {
         }
     }
 
+    /**
+     * Open file with report in PDF
+     * 
+     * @param path - Path to file with report
+     * @throws IOException - Throws when it is problem with file
+     */
     @FXML
     private void openReport(String path) throws IOException {
         String reportPath = System.getProperty("user.dir") + "\\" + path;

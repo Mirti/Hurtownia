@@ -13,8 +13,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
- * @author Jon
+ * Class to handle Reports object
+ * 
  */
 public class Report {
    //Declare Contractor Table Columns
@@ -24,7 +24,9 @@ public class Report {
     private StringProperty reportAuthor;
     private StringProperty reportPath;
     
-    //Constructor
+    /**
+     * Constructor. Creates fields.
+     */
     public Report(){
         this.reportId = new SimpleIntegerProperty();
         this.reportType = new SimpleStringProperty();
@@ -32,67 +34,122 @@ public class Report {
         this.reportAuthor = new SimpleStringProperty();
         this.reportPath =  new SimpleStringProperty();     
     }
-        //Contractor Id
+        /**
+         * Get report ID
+         * @return report ID
+         */
         public int getReportId(){
             return reportId.get();
         }
         
+        /**
+         * Set report ID
+         * @param ReportId 
+         */
         public void setReportId(int ReportId){
             this.reportId.set(ReportId);            
         }
         
+        /**
+         * Return report ID for table
+         * @return report ID
+         */
         public IntegerProperty reportIdProperty(){
             return reportId;
         }
         
-        //Contractor Name
+        /**
+         * Get report type
+         * @return report type
+         */
         public String getReportType(){
             return reportType.get();
         }
         
+        /**
+         * Set report type
+         * @param ReportType 
+         */
         public void setReportType(String ReportType){
             this.reportType.set(ReportType);            
         }
         
+        /**
+         * Get report type for talbe
+         * @return report type
+         */
         public StringProperty reportTypeProperty(){
             return reportType;
         } 
         
-        //Contractor Type
+        /**
+         * Get report date
+         * @return report date
+         */
         public Date getReportDate(){
             return reportDate.get();
         }
         
+        /**
+         * Set report date
+         * @param ReportDate 
+         */
         public void setReportDate(Date ReportDate){
             this.reportDate.set(ReportDate);            
         }
         
+        /**
+         * Get report date for table
+         * @return report date
+         */
         public SimpleObjectProperty<Date> reportDateProperty(){
             return reportDate;
         }
         
-        //Contractor Owner
+        /**
+         * Get report author
+         * @return report author
+         */
         public String getReportAuthor(){
             return reportAuthor.get();
         }
         
+        /**
+         * Set report author
+         * @param ReportAuthor 
+         */
         public void setReportAuthor(String ReportAuthor){
             this.reportAuthor.set(ReportAuthor);            
         }
         
+        /**
+         * Get report author for table
+         * @return report author
+         */
         public StringProperty reportAuthorProperty(){
             return reportAuthor;
         }
         
-        //Contractor Adress
+        /**
+         * Get report path
+         * @return report path
+         */
         public String getReportPath(){
             return reportPath.get();
         }
         
+        /**
+         * Set report path
+         * @param ReportComment 
+         */
         public void setReportPath(String ReportComment){
             this.reportPath.set(ReportComment);            
         }
         
+        /**
+         * Get report path for table
+         * @return report path
+         */
         public StringProperty reportPathProperty(){
             return reportPath;
         }       

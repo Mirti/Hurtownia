@@ -12,11 +12,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Main class of the program. Is is response for starting program
  *
  * @author Mirti
  */
 public class Hurtownia extends Application {
     
+    /**
+     * Starts program with LoginWindow class
+     * 
+     * @param stage - Current stage(window) of the program
+     * @throws Exception - Throw exception in case of can't open LoginWindow.fxml
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("LoginWindow.fxml"));
@@ -29,7 +36,7 @@ public class Hurtownia extends Application {
     }
 
     /**
-     * @param args the command line arguments
+     *Main method of this application
      */
     public static void main(String[] args) {
         launch(args);

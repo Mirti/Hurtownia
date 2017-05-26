@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Jon
+ * 
  */
 public class UserUpdateController implements Initializable {
 

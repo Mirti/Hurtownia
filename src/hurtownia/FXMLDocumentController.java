@@ -21,45 +21,8 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Mirti
- */
+
 public class FXMLDocumentController implements Initializable {
-
-    @FXML
-    private Label label;
-
-    @FXML
-    public void createDB() throws MalformedURLException, IOException {
-        String url = "http://localhost/DBInstaller/install.php";
-        try {
-            URL myURL = new URL(url);
-            URLConnection myURLConnection = myURL.openConnection();
-            myURLConnection.connect();
-            BufferedInputStream in = new BufferedInputStream(myURLConnection.getInputStream());
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Tworzenie bazy danych");
-            alert.setHeaderText(null);
-            alert.setContentText("Baza danych utworzona pomyślnie \n Zrestartuj program");
-
-            alert.showAndWait();
-
-        } catch (MalformedURLException e) {
-            // new URL() failed
-            e.printStackTrace();
-        } catch (IOException e1) {
-            // openConnection() failed
-            e1.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void importDB() throws IOException, FileNotFoundException, SQLException {
-        Polaczenie.importDB();
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

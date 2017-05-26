@@ -24,11 +24,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class, response for login by users.
  *
  * @author Mirti
  */
 public class LoginWindowController implements Initializable {
+
 
     @FXML
     private TextField tfLogin;
@@ -39,8 +40,16 @@ public class LoginWindowController implements Initializable {
     @FXML
     private Button btnLogin;
 
+    /**
+     * Method response for user login. When user write login:CreateDB and password:CreateDB
+     * he has possibility to create new database from file. 
+     * When user give correct login and password he will be diverted to main window of the program
+     * 
+     * @throws IOException - Throws when can't find file with new database
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
     @FXML
-    protected void login(ActionEvent event) throws IOException, SQLException {
+    protected void login() throws IOException, SQLException {
         String login = tfLogin.getText();
         String pass = pfPassword.getText();
         if (login.equals("createDB") && pass.equals("createDB")) {
@@ -70,6 +79,12 @@ public class LoginWindowController implements Initializable {
         }
     }
 
+    /**
+     * Method which starts automatically with this class. At current moment it unused
+     * 
+     * @param location - Unused
+     * @param resources - Unused
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

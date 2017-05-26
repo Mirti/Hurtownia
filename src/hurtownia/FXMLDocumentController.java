@@ -57,12 +57,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void importDB() throws IOException, FileNotFoundException, SQLException {
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        String path = fileChooser.showOpenDialog(stage).getAbsolutePath();
-        System.out.print(path);
-        Polaczenie.runScript(path);
+        Polaczenie.importDB();
 
     }
 

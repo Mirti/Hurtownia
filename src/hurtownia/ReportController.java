@@ -134,9 +134,15 @@ public class ReportController implements Initializable {
         }
         if (reportSelect.getValue().equals("Raport sprzedaży")) {
             SellCreate.create(dates[0], dates[1]);
+            SellCreate.create(dates[0], dates[1]);
+            ReportDAO.addReportToDB("Raport sprzedazy", dates[2], Polaczenie.getCurrentUser()[0],
+                    "reports\\\\" + "RaportSprzedazy" + dates[2] + ".pdf");
         }
-        if (reportSelect.getValue().equals("Raport przyjęcia")) {
+        if (reportSelect.getValue().equals("Raport przyjęć")) {
             InCreate.create(dates[0], dates[1]);
+            InCreate.create(dates[0], dates[1]);
+            ReportDAO.addReportToDB("Raport Przyjecia", dates[2], Polaczenie.getCurrentUser()[0],
+                    "reports\\\\" + "RaportPrzyjecia" + dates[2] + ".pdf");
         }
     }
     @FXML

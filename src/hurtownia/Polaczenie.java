@@ -5,12 +5,15 @@
  */
 package hurtownia;
 
-import hurtownia.ScriptRunner;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.sql.*;
+import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * Class to handling connection with SQL Database
@@ -69,6 +72,26 @@ public class Polaczenie {
         st.executeUpdate(query);
     }
 
+    public static void importDB() throws IOException, FileNotFoundException, SQLException {
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=");
+        Statement s = con.createStatement();
+        s.executeUpdate("CREATE DATABASE hurtowniaspozywcza");
+        s.close();
+
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        String path = fileChooser.showOpenDialog(stage).getAbsolutePath();
+        System.out.print(path);
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
+        Polaczenie.runScript(path, con);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Potwierdzenie utworzenia bazy");
+        alert.setHeaderText(null);
+        alert.setContentText("Baza utworzona pomyślnie");
+        alert.showAndWait();
+    }
+
     /**
      * Runs MySQL script form file
      *
@@ -76,16 +99,31 @@ public class Polaczenie {
      * @throws FileNotFoundException - if file isn't exist
      * @throws IOException - When e.x file has invalid file format
      * @throws SQLException - When statement is incorrect
+     *
      */
-    public static void runScript(String path) throws FileNotFoundException, IOException, SQLException {
-        ScriptRunner runner = new ScriptRunner(con, false, false);
-        String file = path;
-        runner.runScript(new BufferedReader(new FileReader(file)));
+    public static void runScript(String path, Connection con) throws FileNotFoundException, IOException, SQLException {
+        try {
+            // Initialize object for ScripRunner
+            ScriptRunner sr = new ScriptRunner(con);
+
+            // Give the input file to Reader
+            Reader reader = new BufferedReader(
+                    new FileReader(path));
+
+            // Exctute script
+            sr.runScript(reader);
+
+        } catch (Exception e) {
+            System.err.println("Failed to Execute" + path
+                    + " The error is " + e.getMessage());
+        }
     }
-    public static void setCurrentUser(String[] user){
+
+    public static void setCurrentUser(String[] user) {
         currentUser = user;
     }
-    public static String[] getCurrentUser(){
+
+    public static String[] getCurrentUser() {
         return currentUser;
     }
 }

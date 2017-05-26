@@ -65,7 +65,7 @@ public class UserDAO {
         //Declare a UPDATE statement
         String updateStmt
                 = "   UPDATE uzytkownik\n"
-                + "      SET imie = '" + userFirstName + "',nazwisko = '" + userLastName + "',uprawnienia = '" + userPermission + "',login = '" + userLogin + "',haslo = '" + userPassword + "',uwagi = '" + userComment + "'\n"
+                + "      SET imie = '" + userFirstName + "',nazwisko = '" + userLastName + "',uprawnienia = '" + userPermission + "',login = '" + userLogin + "',haslo = SHA('" + userPassword + "'),uwagi = '" + userComment + "'\n"
                 + "    WHERE uzytkownik_ID = " + userId + ";\n";
 
         //Execute UPDATE operation

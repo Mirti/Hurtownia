@@ -43,12 +43,10 @@ public class LoginWindowController implements Initializable {
     protected void login(ActionEvent event) throws IOException, SQLException {
         String login = tfLogin.getText();
         String pass = pfPassword.getText();
-        if (login.equals("set") && pass.equals("set")) {
-            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) btnLogin.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+        if (login.equals("createDB") && pass.equals("createDB")) {
+            Polaczenie.importDB();
+            tfLogin.clear();
+            pfPassword.clear();
         } else {
             String query = "SELECT * FROM UZYTKOWNIK WHERE login= \"" + login + "\" AND haslo = \"" + pass + "\"";
             Polaczenie con = new Polaczenie();

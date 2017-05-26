@@ -31,7 +31,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import raports.ExpDateCreate;
 import raports.InCreate;
-import raports.SellCreate;
 
 /**
  * FXML Controller class
@@ -56,8 +55,8 @@ public class ReportController implements Initializable {
     private ComboBox reportSelect;
     @FXML
     private static int selectedReportId;
-    
-        public static int getSelectedReportId(){
+
+    public static int getSelectedReportId() {
         return selectedReportId;
     }
 
@@ -67,30 +66,30 @@ public class ReportController implements Initializable {
         rptDateColumn.setCellValueFactory(cellData -> cellData.getValue().reportDateProperty());
         rptAuthorColumn.setCellValueFactory(cellData -> cellData.getValue().reportAuthorProperty());
         rptPathColumn.setCellValueFactory(cellData -> cellData.getValue().reportPathProperty());
-        
-         reportTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Report>() {
+
+        reportTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Report>() {
             public void onChanged(ListChangeListener.Change<? extends Report> c) {
 
                 for (Report r : c.getList()) {
-                    selectedReportId = r.getReportId();                 
+                    selectedReportId = r.getReportId();
                 }
-            
+
             }
         });
         reportTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-    @Override
-    public void handle(MouseEvent click) {
+            @Override
+            public void handle(MouseEvent click) {
 
-        if (click.getClickCount() == 2) {
-        try {
-            openReport(ReportDAO.getReportPath(selectedReportId));              
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-        }
-    }
-    });
+                if (click.getClickCount() == 2) {
+                    try {
+                        openReport(ReportDAO.getReportPath(selectedReportId));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @FXML
@@ -132,12 +131,6 @@ public class ReportController implements Initializable {
                     "reports\\\\" + "RaportWaznosci" + dates[2] + ".pdf");
 
         }
-        if (reportSelect.getValue().equals("Raport sprzedaży")) {
-            SellCreate.create(dates[0], dates[1]);
-            SellCreate.create(dates[0], dates[1]);
-            ReportDAO.addReportToDB("Raport sprzedazy", dates[2], Polaczenie.getCurrentUser()[0],
-                    "reports\\\\" + "RaportSprzedazy" + dates[2] + ".pdf");
-        }
         if (reportSelect.getValue().equals("Raport przyjęć")) {
             InCreate.create(dates[0], dates[1]);
             InCreate.create(dates[0], dates[1]);
@@ -145,9 +138,10 @@ public class ReportController implements Initializable {
                     "reports\\\\" + "RaportPrzyjecia" + dates[2] + ".pdf");
         }
     }
+
     @FXML
-    private void openReport(String path) throws IOException{
-        String reportPath = System.getProperty("user.dir")+"\\"+path;
+    private void openReport(String path) throws IOException {
+        String reportPath = System.getProperty("user.dir") + "\\" + path;
         System.out.print(reportPath);
         File reportFile = new File(path);
         Desktop.getDesktop().open(reportFile);

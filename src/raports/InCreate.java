@@ -84,7 +84,7 @@ public class InCreate {
         preface.add(new Paragraph(
                 "Raport wygenerowany przez: " + Polaczenie.getCurrentUser()[1]+" "+Polaczenie.getCurrentUser()[2]));
         addEmptyLine(preface, 3);
-        preface.add(new Paragraph("Wykaz produktow przyjętych do hurtowni", smallBold));
+        preface.add(new Paragraph("Wykaz produktow przyjetych do hurtowni w okrsie "+date1+" - "+date2, smallBold));
         addEmptyLine(preface,2);
 
         document.add(preface);
@@ -92,10 +92,11 @@ public class InCreate {
 
     private static void addContent(Document document) throws DocumentException, BadElementException, SQLException {
         // add a table
-        String sql="SELECT p.*,pt.nazwa,pt.data_waznosci,pt.ilosc,pt.dostawcaFROM"
-                + " produkt p, dostawca_importer di WHERE "
-                + "p.dostawca_importer_id = di.dostawca_importer_id AND "
-                + "data_waznosci BETWEEN '" + date1 + "' AND '" + date2 + "' ORDER BY data_waznosci ASC";
+        String sql="SELECT * FROM produkt_temp pt, przyjecie p, dostawca_importer di WHERE  "
+                + "pt.data_waznosci BETWEEN '" + date1 + "' AND '" + date2 + "'"
+                + "AND di.dostawca_importer_id = pt.dostawca_importer_id "
+                + "AND pt.przyjecie_id=p.przyjecie_id"
+                + " ORDER BY p.data_przyjecia ASC";
         createTable(date1, date2,sql);
 
     }
@@ -112,11 +113,7 @@ public class InCreate {
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
-        c1 = new PdfPCell(new Phrase("Data waznosci"));
-        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.addCell(c1);
-
-        c1 = new PdfPCell(new Phrase("Dostawca"));
+        c1 = new PdfPCell(new Phrase("Data przyjecia"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
@@ -124,13 +121,17 @@ public class InCreate {
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
         table.addCell(c1);
 
+        c1 = new PdfPCell(new Phrase("Dostawca"));
+        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(c1);
+
         table.setHeaderRows(1);
 
         while (rs.next()) {
-            table.addCell(rs.getString("nazwa"));
-            table.addCell(rs.getDate("data_waznosci").toString());
-            table.addCell(rs.getString("di.nazwa"));
-            table.addCell(String.valueOf(rs.getInt("ilosc")));
+            table.addCell(rs.getString("pt.nazwa"));
+            table.addCell(rs.getDate("p.data_przyjecia").toString());
+            table.addCell(rs.getString("pt.ilosc"));
+            table.addCell(String.valueOf(rs.getString("di.nazwa")));
         }
 
         document.add(table);

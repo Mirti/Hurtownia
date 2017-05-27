@@ -24,9 +24,9 @@
       <ComboBox fx:id="UPos" layoutX="19.0" layoutY="151.0" prefHeight="25.0" prefWidth="149.0">
           <items>
         <FXCollections fx:factory="observableArrayList">
-          <String fx:value="1" />
-          <String fx:value="2" />
-          <String fx:value="3" />
+          <String fx:value="Pracownik" />
+          <String fx:value="Ksiegowy" />
+          <String fx:value="Kierownik" />
         </FXCollections>
       </items>
       <value>
@@ -44,7 +44,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="22.0" layoutY="131.0" text="Stopień uprawnień">
+      <Label layoutX="22.0" layoutY="131.0" text="Stanowisko">
          <font>
             <Font size="14.0" />
          </font>

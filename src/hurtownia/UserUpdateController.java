@@ -55,7 +55,7 @@ public class UserUpdateController implements Initializable {
         String userSurname;
         String userPermission;
         String userLogin;
-        String userPassword;
+
         String userComments;
         
         int userID = UserController.getSelectedUserId();
@@ -65,14 +65,14 @@ public class UserUpdateController implements Initializable {
             userSurname = rs.getString("nazwisko");
             userPermission = rs.getString("uprawnienia");
             userLogin = rs.getString("login");
-            userPassword = rs.getString("haslo");
+
             userComments = rs.getString("uwagi");
             
             userFirstNameText.setText(userName);
             userLastNameText.setText(userSurname);
             userPermissionText.setValue(userPermission);
             userLoginText.setText(userLogin);
-            userPasswordText.setText(userPassword);
+
             userCommentText.setText(userComments);
             
         } catch (SQLException ex) {

@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -39,6 +40,7 @@ public class LoginWindowController implements Initializable {
     private Text txtWrong;
     @FXML
     private Button btnLogin;
+    
 
     /**
      * Method response for user login. When user write login:CreateDB and password:CreateDB
@@ -62,16 +64,21 @@ public class LoginWindowController implements Initializable {
             ResultSet rs = con.getData(query);
             //Funkcja logowania
             if (rs.next()) {
+                
+                 String[] currentUser = new String[4];
+                currentUser[0]=rs.getString("uzytkownik_id");
+                currentUser[1]=rs.getString("imie");
+                currentUser[2]=rs.getString("nazwisko");
+                currentUser[3]=rs.getString("uprawnienia");
+                Polaczenie.setCurrentUser(currentUser); 
+                
                 Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) btnLogin.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
-                String[] currentUser = new String[3];
-                currentUser[0]=rs.getString("uzytkownik_id");
-                currentUser[1]=rs.getString("imie");
-                currentUser[2]=rs.getString("nazwisko");
-                Polaczenie.setCurrentUser(currentUser);
+                
+
        
             } else {
                 txtWrong.setText("Nieprawidłowy login lub hasło");

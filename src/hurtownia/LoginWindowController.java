@@ -57,7 +57,7 @@ public class LoginWindowController implements Initializable {
             tfLogin.clear();
             pfPassword.clear();
         } else {
-            String query = "SELECT * FROM UZYTKOWNIK WHERE login= \"" + login + "\" AND haslo =\"" + pass + "\"";
+            String query = "SELECT * FROM UZYTKOWNIK WHERE login= \"" + login + "\" AND haslo =SHA(\"" + pass + "\")";
             Polaczenie con = new Polaczenie();
             ResultSet rs = con.getData(query);
             //Funkcja logowania

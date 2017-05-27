@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Maj 2017, 11:39
+-- Czas generowania: 27 Maj 2017, 14:04
 -- Wersja serwera: 10.1.19-MariaDB
 -- Wersja PHP: 5.6.28
 
@@ -111,20 +111,20 @@ CREATE TABLE `produkt_temp` (
   `data_waznosci` date NOT NULL,
   `ilosc` int(11) NOT NULL,
   `polozenie` varchar(30) NOT NULL,
-  `dostawca_importer_id` int(11) NOT NULL,
   `kraj_pochodzenia` varchar(255) NOT NULL,
-  `przyjecie_id` int(11) DEFAULT NULL
+  `przyjecie_id` int(11) DEFAULT NULL,
+  `dostawca_importer_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `produkt_temp`
 --
 
-INSERT INTO `produkt_temp` (`produkt_temp_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `dostawca_importer_id`, `kraj_pochodzenia`, `przyjecie_id`) VALUES
-(1, 'ogorek szklarniowy', 5, '2017-03-30', 7000, '', 0, 'Polska', NULL),
-(2, 'Cebula', 1, '2017-05-16', 9000, '', 0, 'Polska', NULL),
-(3, 'Dynia', 2, '2017-05-10', 50, '4h', 0, 'Chile', NULL),
-(4, '12', 12, '2017-05-22', 12, '12', 0, '123', NULL);
+INSERT INTO `produkt_temp` (`produkt_temp_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `kraj_pochodzenia`, `przyjecie_id`, `dostawca_importer_id`) VALUES
+(1, 'ogorek szklarniowy', 5, '2017-03-30', 7000, '', 'Polska', 1, 1),
+(2, 'Cebula', 1, '2017-05-16', 9000, '', 'Polska', 1, 2),
+(3, 'Dynia', 2, '2017-05-10', 50, '4h', 'Chile', 1, 3),
+(4, '12', 12, '2017-05-22', 12, '12', '123', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,14 @@ INSERT INTO `raport` (`raport_id`, `typ`, `data_wygenerowania`, `uzytkownik_id`,
 (11, 'Daty waznosci', '2017-05-25', 99, 'reports\\RaportWaznosci2017-05-25.pdf'),
 (12, 'Raport sprzedazy', '2017-05-25', 99, 'reports\\RaportSprzedazy2017-05-25.pdf'),
 (13, 'Raport sprzedazy', '2017-05-25', 99, 'reports\\RaportSprzedazy2017-05-25.pdf'),
-(14, 'Raport Przyjecia', '2017-05-25', 99, 'reports\\RaportPrzyjecia2017-05-25.pdf');
+(14, 'Raport Przyjecia', '2017-05-25', 99, 'reports\\RaportPrzyjecia2017-05-25.pdf'),
+(15, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(16, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(17, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(18, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(19, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(20, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
+(21, 'Daty waznosci', '2017-05-26', 99, 'reports\\RaportWaznosci2017-05-26.pdf');
 
 -- --------------------------------------------------------
 
@@ -214,8 +221,9 @@ CREATE TABLE `uzytkownik` (
 
 INSERT INTO `uzytkownik` (`uzytkownik_id`, `imie`, `nazwisko`, `uprawnienia`, `login`, `haslo`, `uwagi`) VALUES
 (1, 'Magdalena', 'Mag', 'Kierownik', 'user9', 'heheheh23', ''),
-(99, 'admin', 'admin', 'admin', 'admin', 'admin', ''),
-(100, 'Gregory', 'Greg', 'Pracownik', 'pracownik1', 'pracownik', '');
+(99, 'admin', 'admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', ''),
+(100, 'Gregory', 'Greg', 'Pracownik', 'pracownik1', 'pracownik', ''),
+(101, 'Krzysztof', 'Krawczyk', '1', 'krawczyk', '6822907adfc451f601f2f5a40982b74e98537dab', '');
 
 -- --------------------------------------------------------
 
@@ -252,7 +260,8 @@ INSERT INTO `zamowienie` (`zamowienie_id`, `klient_id`, `uzytkownik_id`, `uwagi`
 --
 ALTER TABLE `dostawca_importer`
   ADD PRIMARY KEY (`dostawca_importer_id`),
-  ADD KEY `dostawca_importer_id` (`dostawca_importer_id`);
+  ADD KEY `dostawca_importer_id` (`dostawca_importer_id`),
+  ADD KEY `dostawca_importer_id_2` (`dostawca_importer_id`);
 
 --
 -- Indexes for table `klient`
@@ -349,7 +358,7 @@ ALTER TABLE `przyjecie`
 -- AUTO_INCREMENT dla tabeli `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownik`
 --
@@ -368,13 +377,14 @@ ALTER TABLE `zamowienie`
 -- Ograniczenia dla tabeli `produkt`
 --
 ALTER TABLE `produkt`
-  ADD CONSTRAINT `produkt_ibfk_1` FOREIGN KEY (`dostawca_importer_id`) REFERENCES `dostawca_importer` (`dostawca_importer_id`) ON DELETE CASCADE ON UPDATE SET NULL;
+  ADD CONSTRAINT `produkt_ibfk_1` FOREIGN KEY (`dostawca_importer_id`) REFERENCES `dostawca_importer` (`dostawca_importer_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `produkt_temp`
 --
 ALTER TABLE `produkt_temp`
-  ADD CONSTRAINT `produkt_temp_ibfk_1` FOREIGN KEY (`przyjecie_id`) REFERENCES `przyjecie` (`przyjecie_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `produkt_temp_ibfk_1` FOREIGN KEY (`przyjecie_id`) REFERENCES `przyjecie` (`przyjecie_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `produkt_temp_ibfk_2` FOREIGN KEY (`dostawca_importer_id`) REFERENCES `dostawca_importer` (`dostawca_importer_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `produkt_zamowienie`

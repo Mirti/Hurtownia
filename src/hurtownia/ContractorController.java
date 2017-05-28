@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +33,13 @@ public class ContractorController implements Initializable {
     private TableColumn<Contractor, String> cntrEmailColumn;   
     @FXML
     private TableView ContractorTable;   
-
+    @FXML
+    private static int selectedContractorId;
+    
+    public static int getSelectedContractorId(){
+        return selectedContractorId;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cntrNameColumn.setCellValueFactory(cellData -> cellData.getValue().ContractorNameProperty());
@@ -41,6 +48,18 @@ public class ContractorController implements Initializable {
         cntrAdressColumn.setCellValueFactory(cellData -> cellData.getValue().ContractorAdressProperty());
         cntrPhoneColumn.setCellValueFactory(cellData -> cellData.getValue().ContractorPhoneProperty().asObject());
         cntrEmailColumn.setCellValueFactory(cellData -> cellData.getValue().ContractorEmailProperty());
+        
+        ContractorTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Contractor>() {
+            public void onChanged(ListChangeListener.Change<? extends Contractor> c) {
+
+                for (Contractor u : c.getList()) {
+                    selectedContractorId = u.getContractorId();
+                }
+
+            }
+        });
+        
+        
     } 
     
     @FXML
@@ -65,6 +84,35 @@ public class ContractorController implements Initializable {
     public void openSupplierForm(ActionEvent event) throws Exception {               
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SupplierForm.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.showAndWait();
+                
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+    }   
+    
+    
+    public void openPotwierdzenieUsuwaniaKontrahenta(ActionEvent event) throws Exception {               
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PotwierdzenieUsuwaniaKontrahenta.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.showAndWait();
+                
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+    }   
+    
+    
+    @FXML  
+    public void openSupplierForm2(ActionEvent event) throws Exception {               
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SupplierForm2.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root1));  

@@ -59,5 +59,44 @@ public class ContractorDAO {
         }
         //return crgList (ObservableList of Contractors)
         return cntrList;
-    }     
+    }  
+    public static void deleteContractorWithId(int userId) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt
+                = "   DELETE FROM dostawca_importer\n"
+                + "         WHERE dostawca_importer_id =" + userId + ";\n";
+
+        //Execute UPDATE operation
+        try {
+            Polaczenie.update(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+
+    }
+    
+    public static ResultSet getContractorData(int contractorID) throws SQLException{
+              String query = "SELECT * FROM dostawca_importer WHERE dostawca_importer_id=" + contractorID+"" ;
+              ResultSet rs = Polaczenie.getData(query);
+              System.out.print(rs.next()); //do sprawdzenia
+              return rs;
+          }
+    
+    public static void updateContractor(int contractorId, String contractorName, String contractorType, String contractorOwner, String contractorAdress, String contractorPhone, String contractorEmail) throws SQLException, ClassNotFoundException {
+        //Declare a UPDATE statement
+        String updateStmt
+                = "   UPDATE dostawca_importer\n"
+                + "      SET nazwa = '" + contractorName + "',typ = '" + contractorType + "',wlasciciel = '" + contractorOwner + "',adres = '" + contractorAdress + "',telefon= '" + contractorPhone + "' ,email = '" + contractorEmail + "'\n"
+                + "    WHERE dostawca_importer_ID = " + contractorId + ";\n";
+
+        //Execute UPDATE operation
+        try {
+            Polaczenie.update(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while UPDATE Operation: " + e);
+            throw e;
+        }
+    }
+    
 }

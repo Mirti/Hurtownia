@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.ReportController">
+        <children>
+        <ScrollPane layoutX="225.0" layoutY="66.0" prefHeight="372.0" prefWidth="570.0">
+            <content>
+                <TableView fx:id="reportTable" prefHeight="446.0" prefWidth="555.0">
+                    <columns>
+                        <TableColumn fx:id="rptTypeColumn" prefWidth="127.0" text="Typ raportu" />
+                        <TableColumn fx:id="rptDateColumn" prefWidth="146.0" text="Data wygenerowania" />
+                        <TableColumn fx:id="rptAuthorColumn" minWidth="0.0" prefWidth="145.0" text="Wygenerowany przez" />
+                        <TableColumn fx:id="rptPathColumn" prefWidth="136.0" text="Sciezka" />
+                    </columns>
+                </TableView>
+            </content>
+        </ScrollPane>
+        <Label layoutX="583.0" layoutY="34.0" text="Szukaj:" />
+        <TextField layoutX="636.0" layoutY="30.0" />
+        <ComboBox layoutX="43.0" layoutY="94.0" prefWidth="150.0" promptText="Wybierz typ " fx:id="reportSelect">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Raport dat ważności" />
+                    <String fx:value="Raport przyjęć" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+<Label layoutX="43.0" layoutY="164.0" text="Data od:" />
+<DatePicker layoutX="43.0" layoutY="193.0" prefHeight="25.0" prefWidth="147.0" promptText="Od:" fx:id="dateFrom"/>
+<DatePicker layoutX="43.0" layoutY="295.0" prefHeight="25.0" prefWidth="149.0" promptText="Do:" fx:id="dateTo" />
+<Label layoutX="43.0" layoutY="260.0" text="Data do:" />
+<Button layoutX="79.0" layoutY="354.0" mnemonicParsing="false" text="Generuj" onAction="#createReport"/>
+<Label layoutX="43.0" layoutY="66.0" text="Typ raportu:" />
+      <Button layoutX="225.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchReport" text="Pokaż wszystkie" />
+    </children>
+</AnchorPane>

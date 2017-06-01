@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.InController">
+    <children>
+        <AnchorPane layoutX="23.0" layoutY="22.0" prefHeight="135.0" prefWidth="770.0" style="-fx-background-color: white;">
+            <children>
+                <TextField fx:id="TName" alignment="CENTER" layoutX="13.0" layoutY="2.0" prefHeight="25.0" prefWidth="152.0" promptText="Nazwa towaru" />
+                <TextField fx:id="Number" alignment="CENTER" layoutX="190.0" layoutY="2.0" prefHeight="25.0" prefWidth="107.0" promptText="Ilość" />
+      <ComboBox fx:id="Provider" layoutX="14.0" layoutY="55.0" prefWidth="150.0" promptText="Dostawca" />
+      <TextField fx:id="Price" layoutX="316.0" layoutY="2.0" prefHeight="25.0" prefWidth="128.0" promptText="Cena/jednostka" />
+      <TextField fx:id="Position" layoutX="454.0" layoutY="2.0" promptText="Położenie" />
+      <TextField fx:id="Country" layoutX="180.0" layoutY="55.0" promptText="Kraj pochodzenia" />
+      <Button fx:id="Add" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#dodawanie" prefHeight="25.0" prefWidth="103.0" text="Dodaj towar" />
+      <Button disable="true" layoutX="628.0" layoutY="55.0" mnemonicParsing="false" text="Zaakceptuj zaznaczone" />
+            <Button layoutX="14.0" layoutY="96.0" mnemonicParsing="false" onAction="#searchIn" prefHeight="25.0" prefWidth="103.0" text="pokaż towar" />
+            <Text fx:id="Txt" fill="#ff0505" layoutX="475.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.0" />
+            <DatePicker fx:id="Data" layoutX="618.0" layoutY="2.0" prefHeight="25.0" prefWidth="152.0" />
+            <Button layoutX="628.0" layoutY="96.0" mnemonicParsing="false" onAction="#openInDelete" prefHeight="25.0" prefWidth="138.0" text="Usuń zaznaczone" />
+            </children>
+        </AnchorPane>
+<ScrollPane layoutX="14.0" layoutY="176.0" prefHeight="252.0" prefWidth="788.0">
+   <content>
+              <TableView fx:id="inTable" editable="true" prefHeight="256.0" prefWidth="789.0">
+                  <columns>
+                      <TableColumn fx:id="inNameColumn" prefWidth="130.0" text="Nazwa" />
+                      <TableColumn fx:id="inPriceColumn" prefWidth="122.0" text="Cena/jendnostka" />
+                      <TableColumn fx:id="inDateColumn" prefWidth="95.0" text="Data waznosci" />
+                      <TableColumn fx:id="inQuantityColumn" prefWidth="86.0" text="Ilość" />
+                      <TableColumn fx:id="inPositionColumn" prefWidth="92.0" text="Połozenie" />
+                      <TableColumn fx:id="inProviderColumn" prefWidth="112.0" text="Dostawca" />
+                      <TableColumn fx:id="inOriginColumn" prefWidth="137.0" text="Kraj pochodzenia" />
+                  </columns>
+              </TableView>
+   </content>
+</ScrollPane>
+    </children>
+  
+</AnchorPane>

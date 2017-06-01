@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.FormularzZamowienieController">
+   <children>
+      <Button fx:id="utworz_zam" layoutX="552.0" layoutY="292.0" mnemonicParsing="false" onAction="#sprawdzanieRezerwacja" prefHeight="130.0" prefWidth="102.0" text="Utwórz">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="dostawcy" layoutX="6.0" layoutY="15.0" prefHeight="25.0" prefWidth="305.0" promptText="Wbierz" /> 
+      <Label layoutX="384.0" layoutY="2.0" prefHeight="25.0" prefWidth="73.0" text="Uwagi">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="uwagi" layoutX="384.0" layoutY="25.0" prefHeight="117.0" prefWidth="270.0" />
+      <Button fx:id="dodaj_towar" layoutX="7.0" layoutY="241.0" mnemonicParsing="false" onAction="#dodawanie" prefHeight="38.0" prefWidth="349.0" text="Dodaj">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <TextField fx:id="ilosc_towaru" editable="true" layoutX="6.0" layoutY="65.0" prefHeight="25.0" prefWidth="338.0" />
+      <Label layoutX="7.0" layoutY="40.0" prefHeight="25.0" prefWidth="73.0" text="Ilość" />
+      <DatePicker fx:id="max_data" layoutX="6.0" layoutY="115.0" prefHeight="25.0" prefWidth="338.0" />
+      <Label layoutX="7.0" layoutY="90.0" prefHeight="25.0" prefWidth="152.0" text="Maksymalna data ważności" />
+      <TextField fx:id="cena" layoutX="6.0" layoutY="152.0" prefHeight="25.0" prefWidth="305.0" promptText="Cena" />
+      <ComboBox fx:id="towar" layoutX="7.0" layoutY="185.0" prefHeight="25.0" prefWidth="337.0" promptText="Wbierz" />
+          
+      <ScrollPane layoutX="7.0" layoutY="292.0" prefHeight="130.0" prefWidth="545.0">
+         <content>
+            <TableView fx:id="tabela" prefHeight="131.0" prefWidth="547.0">
+               <columns>
+                  <TableColumn fx:id="nazwa_col" prefWidth="158.0" text="Nazwa">
+                     <cellValueFactory>
+                       <PropertyValueFactory property="colName" />
+                     </cellValueFactory>
+                </TableColumn>
+                  <TableColumn fx:id="ilosc_col" text="Ilość" />
+                  <TableColumn fx:id="dostawca_col" prefWidth="116.0" text="Dostawca" />
+                  <TableColumn fx:id="data_col" prefWidth="167.0" text="Max data ważności" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <CheckBox fx:id="cena_blok" layoutX="312.0" layoutY="156.0" mnemonicParsing="false" onAction="#priceBlockUnblock" text="Pobieraj" />
+      <CheckBox fx:id="dost_blok" layoutX="321.0" layoutY="19.0" mnemonicParsing="false" onAction="#dostBlockUnblock" text="Stały" />
+      <ComboBox fx:id="klient" layoutX="389.0" layoutY="185.0" prefHeight="25.0" prefWidth="260.0" promptText="Wybierz" />
+      <Label layoutX="389.0" layoutY="156.0" text="Klient" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hurtownia.OutController">
+        <children>
+    <ScrollPane layoutX="14.0" layoutY="41.0" prefHeight="393.0" prefWidth="780.0">
+       <content>
+                  <TableView fx:id="outTable" editable="true" prefHeight="393.0" prefWidth="780.0">
+                      <columns>
+                          <TableColumn fx:id="outCustomerColumn" prefWidth="192.0" text="Klient" />
+                          <TableColumn prefWidth="130.0" text="Wartość zamówienia" />
+                          <TableColumn fx:id="outUserColumn" minWidth="0.0" prefWidth="103.0" text="Przyjmujący" />
+                <TableColumn fx:id="outCommentColumn" prefWidth="176.0" text="Uwagi" />
+                      </columns>
+                  </TableView>
+       </content>
+    </ScrollPane>
+    <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="155.0" text="Lista zamówień" textFill="#ebebeb">
+       <font>
+          <Font size="18.0" />
+       </font>
+    </Label>
+      <Button fx:id="btnOrderWindow1" layoutX="535.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchOut" text="Pokaż wszystkie" />
+        </children>  
+</AnchorPane>

@@ -16,10 +16,14 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,11 +31,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Jon
+ * @author Jon, Kinga
  */
 public class InController implements Initializable {
 
@@ -50,8 +55,57 @@ public class InController implements Initializable {
     @FXML
     private TableColumn<In, String> inOriginColumn;   
     @FXML
-    private TableView inTable;   
+    private TableView inTable;  
+    
+    @FXML
+    private static int selectedInId;
+    
+    public static int getSelectedInId(){
+        return selectedInId;
+    }
+    
+    @Override
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        
+        inNameColumn.setCellValueFactory(cellData -> cellData.getValue().inNameProperty());
+        inPriceColumn.setCellValueFactory(cellData -> cellData.getValue().inPriceProperty());
+        inDateColumn.setCellValueFactory(cellData -> cellData.getValue().inDateProperty());
+        inQuantityColumn.setCellValueFactory(cellData -> cellData.getValue().inQuantityProperty().asObject());
+        inPositionColumn.setCellValueFactory(cellData -> cellData.getValue().inPositionProperty());
+        inProviderColumn.setCellValueFactory(cellData -> cellData.getValue().inProviderProperty());
+        inOriginColumn.setCellValueFactory(cellData -> cellData.getValue().inOriginProperty());
+        
+        inTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<In>() {
+            public void onChanged(ListChangeListener.Change<? extends In> c) {
 
+                for (In u : c.getList()) {
+                    selectedInId = u.getInId();
+                }
+
+            }
+        });
+        
+        try {
+            Polaczenie con = new Polaczenie();
+            String query = "Select distinct nazwa from dostawca_importer";
+            String query2 = "SELECT COUNT(distinct nazwa) FROM dostawca_importer";
+            ResultSet pomrs = con.getData(query2);
+            int rozm = 0;
+            while (pomrs.next()) {
+                rozm = pomrs.getInt(1);
+            }
+            String[] pom = new String[rozm];
+            int temp = 0;
+            ResultSet rsa = con.getData(query);
+            while (rsa.next()) {
+                pom[temp] = rsa.getString(1);
+                temp++;
+            }
+            Provider.getItems().setAll(pom);
+        } catch (SQLException ex) {
+            Logger.getLogger(InController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+    
     
     
     @FXML
@@ -110,43 +164,26 @@ public class InController implements Initializable {
         {txt.setText("Wypełnij wymagane pola!");}
         else
         {
-            String query = "insert into produkt_temp(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,dostawca,kraj_pochodzenia) "
+            String query = "insert into produkt_temp() "
                     + "VALUES(\"" + nazwaTowaru + "\", \"" + cena + "\",\"" + data + "\",\"" + ilosc + "\",\"" + pozycja + "\",\"" + dostawca + "\",\"" + kraj + "\")";
             con.update(query);
             
         }
     }    
-    @Override
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-        
-        inNameColumn.setCellValueFactory(cellData -> cellData.getValue().inNameProperty());
-        inPriceColumn.setCellValueFactory(cellData -> cellData.getValue().inPriceProperty());
-        inDateColumn.setCellValueFactory(cellData -> cellData.getValue().inDateProperty());
-        inQuantityColumn.setCellValueFactory(cellData -> cellData.getValue().inQuantityProperty().asObject());
-        inPositionColumn.setCellValueFactory(cellData -> cellData.getValue().inPositionProperty());
-        inProviderColumn.setCellValueFactory(cellData -> cellData.getValue().inProviderProperty());
-        inOriginColumn.setCellValueFactory(cellData -> cellData.getValue().inOriginProperty());
-        
+    
+    
+    public void openInDelete(ActionEvent event) throws Exception {               
         try {
-            Polaczenie con = new Polaczenie();
-            String query = "Select distinct nazwa from dostawca_importer";
-            String query2 = "SELECT COUNT(distinct nazwa) FROM dostawca_importer";
-            ResultSet pomrs = con.getData(query2);
-            int rozm = 0;
-            while (pomrs.next()) {
-                rozm = pomrs.getInt(1);
-            }
-            String[] pom = new String[rozm];
-            int temp = 0;
-            ResultSet rsa = con.getData(query);
-            while (rsa.next()) {
-                pom[temp] = rsa.getString(1);
-                temp++;
-            }
-            Provider.getItems().setAll(pom);
-        } catch (SQLException ex) {
-            Logger.getLogger(InController.class.getName()).log(Level.SEVERE, null, ex);
-        }}
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InDelete.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.showAndWait();
+                
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+    }   
     
     
 }

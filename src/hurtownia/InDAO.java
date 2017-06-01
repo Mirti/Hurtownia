@@ -20,7 +20,7 @@ public class InDAO {
     //*******************************
     public static ObservableList<In> searchIn () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT nazwa, cena_jednostkowa, data_waznosci, ilosc, polozenie, dostawca, kraj_pochodzenia FROM `produkt_temp`";
+        String selectStmt = "SELECT p.nazwa, p.cena_jednostkowa, p.data_waznosci, p.ilosc, p.polozenie, d.nazwa as dostawca, p.kraj_pochodzenia FROM produkt_temp p,dostawca_importer d";
  
         //Execute SELECT statement
         try {
@@ -59,4 +59,27 @@ public class InDAO {
         //return crgList (ObservableList of Cargos)
         return inList;
     }     
+    
+    public static void deleteInWithId(int inId) throws SQLException, ClassNotFoundException {
+        
+        String updateStmt
+                = "   DELETE FROM produkt_temp\n"
+                + "         WHERE produkt_temp_id =" + inId + ";\n";
+
+        
+        try {
+            Polaczenie.update(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+
+    }
+    
+    public static ResultSet getInData(int inID) throws SQLException{
+              String query = "SELECT * FROM produkt_temp WHERE produkt_temp_id=" + inID+"" ;
+              ResultSet rs = Polaczenie.getData(query);
+              System.out.print(rs.next()); 
+              return rs;
+          }
 }

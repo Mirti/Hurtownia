@@ -16,6 +16,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ *
+ * @author Jon, Kinga
+ */
 
 public class ContractorController implements Initializable {
     
@@ -31,8 +36,10 @@ public class ContractorController implements Initializable {
     private TableColumn<Contractor, Integer> cntrPhoneColumn;
     @FXML
     private TableColumn<Contractor, String> cntrEmailColumn;   
+    
     @FXML
     private TableView ContractorTable;   
+    
     @FXML
     private static int selectedContractorId;
     

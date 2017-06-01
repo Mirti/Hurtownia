@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,8 +26,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
-import raports.ExpDateCreate;
-import raports.InCreate;
+import com.wlasnyjar.reports.*;
 
 /**
  * FXML Controller class. It controls method for Reports Tab
@@ -139,7 +139,7 @@ public class ReportController implements Initializable {
     /**
      * Returns String array with current date on index 0, start date on index 1
      * and finish date on index 2
-     * 
+     *
      * @return Array with dates
      */
     @FXML
@@ -155,7 +155,7 @@ public class ReportController implements Initializable {
 
     /**
      * Method to create reports according to value on comboBox
-     * 
+     *
      * @see ExpDateCreate
      * @see InCreate
      * @throws SQLException - Throws when occurs problem with SQL query
@@ -165,14 +165,25 @@ public class ReportController implements Initializable {
     private void createReport() throws SQLException, IOException {
         String[] dates = getDates();
         if (reportSelect.getValue().equals("Raport dat ważności")) {
-            ExpDateCreate.create(dates[0], dates[1]);
+            ResultSet rs = Polaczenie.getData("SELECT p.nazwa,p.data_waznosci,p.ilosc,di.nazwa FROM"
+                    + " produkt p, dostawca_importer di WHERE "
+                    + "p.dostawca_importer_id = di.dostawca_importer_id AND "
+                    + "data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "' ORDER BY data_waznosci ASC");
+
+            ExpDateCreate edc = new ExpDateCreate(Polaczenie.getCurrentUser(),rs);
+            edc.create();      
             ReportDAO.addReportToDB("Daty waznosci", dates[2], Polaczenie.getCurrentUser()[0],
                     "reports\\\\" + "RaportWaznosci" + dates[2] + ".pdf");
 
         }
         if (reportSelect.getValue().equals("Raport przyjęć")) {
-            InCreate.create(dates[0], dates[1]);
-            InCreate.create(dates[0], dates[1]);
+            ResultSet rs =Polaczenie.getData("SELECT * FROM produkt_temp pt, przyjecie p, dostawca_importer di WHERE  "
+                    + "pt.data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "'"
+                    + "AND di.dostawca_importer_id = pt.dostawca_importer_id "
+                    + "AND pt.przyjecie_id=p.przyjecie_id"
+                    + " ORDER BY p.data_przyjecia ASC");
+            InCreate ic = new InCreate(dates,Polaczenie.getCurrentUser(),rs);
+            ic.create();
             ReportDAO.addReportToDB("Raport Przyjecia", dates[2], Polaczenie.getCurrentUser()[0],
                     "reports\\\\" + "RaportPrzyjecia" + dates[2] + ".pdf");
         }
@@ -180,7 +191,7 @@ public class ReportController implements Initializable {
 
     /**
      * Open file with report in PDF
-     * 
+     *
      * @param path - Path to file with report
      * @throws IOException - Throws when it is problem with file
      */

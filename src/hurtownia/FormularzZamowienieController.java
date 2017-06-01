@@ -212,7 +212,7 @@ public class FormularzZamowienieController implements Initializable {
     protected void dodawanie(ActionEvent event) throws IOException, SQLException {
 // odczyt danych z formularza
 
-        if((String) ilosc_towaru.getText() == null || max_data.getValue() == null || dostawcy.getSelectionModel().getSelectedItem().toString() == null || towar.getSelectionModel().getSelectedItem().toString() == null || klient.getSelectionModel().getSelectedItem().toString() == null || cena.getText() == null)
+        if((String) ilosc_towaru.getText() == null || max_data.getValue() == null || dostawcy.getSelectionModel().getSelectedItem().toString() == null || towar.getSelectionModel().getSelectedItem().toString() == null || klient.getSelectionModel().getSelectedItem().toString() == null || ((cena.getText() == null)&&(cena_blok.isSelected())))
         {
            try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NieWybranoTowarow.fxml"));

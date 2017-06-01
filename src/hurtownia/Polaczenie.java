@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hurtownia;
 
 import java.io.BufferedReader;
@@ -39,7 +35,7 @@ public class Polaczenie {
         } catch (ClassNotFoundException a) {
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtownia", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/hurtowniaspozywcza", "root", "");
             st = con.createStatement();
             System.out.print("ok");
 
@@ -73,7 +69,7 @@ public class Polaczenie {
     }
 
     public static void importDB() throws IOException, FileNotFoundException, SQLException {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/?user=root&password=");
         Statement s = con.createStatement();
         s.executeUpdate("CREATE DATABASE hurtowniaspozywcza");
         s.close();
@@ -83,7 +79,7 @@ public class Polaczenie {
         fileChooser.setTitle("Open Resource File");
         String path = fileChooser.showOpenDialog(stage).getAbsolutePath();
         System.out.print(path);
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3307/hurtowniaspozywcza", "root", "");
         Polaczenie.runScript(path, con);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Potwierdzenie utworzenia bazy");

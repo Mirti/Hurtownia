@@ -63,7 +63,7 @@ public class UserAddController {
                     } //Funkcja dodawania Usera
                     else {
                         txt.setText(" ");
-                        System.out.print("2");
+                       
                         try {
                             con.update(query);
                             txt.setText("Użytkownik dodany!");

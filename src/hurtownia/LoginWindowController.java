@@ -53,7 +53,15 @@ public class LoginWindowController implements Initializable {
     @FXML
     protected void login() throws IOException, SQLException {
         
-         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String login = tfLogin.getText();
+        String pass = pfPassword.getText();
+        if (login.equals("createDB") && pass.equals("createDB")) {
+            Polaczenie.importDB();
+            tfLogin.clear();
+            pfPassword.clear();
+        } else {
+            
+             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
          
         
@@ -80,16 +88,6 @@ public class LoginWindowController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        String login = tfLogin.getText();
-        String pass = pfPassword.getText();
-        if (login.equals("createDB") && pass.equals("createDB")) {
-            Polaczenie.importDB();
-            tfLogin.clear();
-            pfPassword.clear();
-        } else {
             String query = "SELECT * FROM UZYTKOWNIK WHERE login= \"" + login + "\" AND haslo =SHA(\"" + pass + "\")";
             
             ResultSet rs = con.getData(query);

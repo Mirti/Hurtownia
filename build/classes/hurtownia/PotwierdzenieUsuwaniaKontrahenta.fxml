@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="110.0" prefWidth="453.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="hurtownia.ContrahentDeleteController">
+   <children>
+      <Label layoutX="58.0" layoutY="22.0" prefHeight="17.0" prefWidth="285.0" text="Czy na pewno chcesz usunąć ?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="updateButton" layoutX="58.0" layoutY="65.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="88.0" text="Tak" />
+      <Button fx:id="closeButton" layoutX="275.0" layoutY="65.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="25.0" prefWidth="102.0" text="Nie" />
+   </children>
+</AnchorPane>

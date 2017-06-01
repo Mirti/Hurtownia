@@ -39,7 +39,7 @@ public class Polaczenie {
         } catch (ClassNotFoundException a) {
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtownia", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
             st = con.createStatement();
             System.out.print("ok");
 

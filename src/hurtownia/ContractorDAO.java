@@ -11,14 +11,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
- * @author Jon
+ * Class for connect Contractor controller with database
+ * 
  */
 public class ContractorDAO {
     
-    //*******************************
-    //SELECT Contractor
-    //*******************************
+    /**
+     * Method for taking data from database
+     * 
+     * @return List with Contractor objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException Throws when method can't use other class
+     */
     public static ObservableList<Contractor> searchContractor () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM dostawca_importer,klient";
@@ -40,7 +44,14 @@ public class ContractorDAO {
         }
     }
  
-    //Select * from Contractor operation
+     /**
+     * Return list of Contractor objects from the raw ResultSet
+     * 
+     * @param rs ResultSet with data from database
+     * @return list of Contractor objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when method can't use other class
+     */
     private static ObservableList<Contractor> getContractorList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Contractor objects
         ObservableList<Contractor> cntrList = FXCollections.observableArrayList();
@@ -60,6 +71,14 @@ public class ContractorDAO {
         //return crgList (ObservableList of Contractors)
         return cntrList;
     }  
+    
+    /**
+     * Method for delete user with given ID from database
+     * 
+     * @param userId - ID of user to delete
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with other class
+     */
     public static void deleteContractorWithId(int userId) throws SQLException, ClassNotFoundException {
         //Declare a DELETE statement
         String updateStmt
@@ -76,6 +95,13 @@ public class ContractorDAO {
 
     }
     
+    /**
+     * Method for getting information about contractor with ID given as parameter
+     * 
+     * @param contractorID - ID of contractor in database
+     * @return ResultSet with data about contractor with selected ID
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
     public static ResultSet getContractorData(int contractorID) throws SQLException{
               String query = "SELECT * FROM dostawca_importer WHERE dostawca_importer_id=" + contractorID+"" ;
               ResultSet rs = Polaczenie.getData(query);
@@ -83,6 +109,19 @@ public class ContractorDAO {
               return rs;
           }
     
+    /**
+     * Update row with ID given as parameter with data given as other parametres
+     * 
+     * @param contractorId
+     * @param contractorName
+     * @param contractorType
+     * @param contractorOwner
+     * @param contractorAdress
+     * @param contractorPhone
+     * @param contractorEmail
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException  - Throws when can't 
+     */
     public static void updateContractor(int contractorId, String contractorName, String contractorType, String contractorOwner, String contractorAdress, String contractorPhone, String contractorEmail) throws SQLException, ClassNotFoundException {
         //Declare a UPDATE statement
         String updateStmt

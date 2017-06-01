@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 /**
  * Main class of the program. Is is response for starting program
  *
- * @author Mirti
  */
 public class Hurtownia extends Application {
     

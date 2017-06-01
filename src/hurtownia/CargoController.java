@@ -18,6 +18,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 
+/**
+ * Class for handle methods in Cargo tab
+ */
 public class CargoController implements Initializable {
 
     @FXML
@@ -41,6 +44,12 @@ public class CargoController implements Initializable {
     @FXML
     private ComboBox cbLimit;
 
+    /**
+     * Set values in table header
+     * 
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         crgNameColumn.setCellValueFactory(cellData -> cellData.getValue().cargoNameProperty());
@@ -53,6 +62,13 @@ public class CargoController implements Initializable {
         //Limit default first value
         cbLimit.getSelectionModel().selectFirst();
         cbLimit.valueProperty().addListener(new ChangeListener<String>() {
+            
+            /**
+             * Method to show alert when user change all values
+             * @param ov - changed field
+             * @param t - previous value on combo box
+             * @param t1 - value on combo box
+             */
             @Override
             public void changed(ObservableValue<? extends String> ov, String t, String t1) {
                 if (t1.equals("Wszystko")) {
@@ -68,8 +84,14 @@ public class CargoController implements Initializable {
         });
     }
 
+    /**
+     * Method to show date from database in table
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when application can't find class CargoDAO
+     */
     @FXML
-    private void showCargo(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void showCargo() throws SQLException, ClassNotFoundException {
         try {
             String limit = cbLimit.getValue().toString();
             if (limit.equals("Wszystko")) limit = "9999";
@@ -85,8 +107,14 @@ public class CargoController implements Initializable {
         }
     }
 
+    /**
+     * Method to show data in table after search
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when can't find class CargoDAO
+     */
     @FXML
-    private void searchCargo(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchCargo() throws SQLException, ClassNotFoundException {
         try {
             String pharse = tfSearch.getText();
             String limit = cbLimit.getValue().toString();
@@ -100,9 +128,14 @@ public class CargoController implements Initializable {
         }
     }
 
+    /**
+     * Set items to cargoTable table
+     * 
+     * @param crgData - List with Cargo objects
+     * @throws ClassNotFoundException - Throws when can't use other class
+     */
     @FXML
     private void populateCargo(ObservableList<Cargo> crgData) throws ClassNotFoundException {
-        //Set items to the employeeTable
         cargoTable.setItems(crgData);
     }
 

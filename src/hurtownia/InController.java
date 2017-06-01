@@ -29,9 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
- * FXML Controller class
- *
- * @author Jon
+ * FXML Controller class to provide method from InTab.fxml
  */
 public class InController implements Initializable {
 
@@ -53,7 +51,11 @@ public class InController implements Initializable {
     private TableView inTable;   
 
     
-    
+    /**
+     * Method to take data about delivered products from database
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when can't find method InDAO
+     */
     @FXML
     private void searchIn(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
@@ -66,9 +68,14 @@ public class InController implements Initializable {
             throw e;
         }
     }
-        
+    
+    /**
+     * Method to fill table with data
+     * 
+     * @param inData - List with In type objects
+     */
     @FXML
-    private void populateIn (ObservableList<In> inData) throws ClassNotFoundException {
+    private void populateIn (ObservableList<In> inData) {
         //Set items to the employeeTable
         inTable.setItems(inData);
     }  
@@ -93,8 +100,13 @@ public class InController implements Initializable {
     private Text txt;
     
     
+    /**
+     * Method to add product to database
+     * 
+     * @throws SQLException - throws when occurs problem with SQL query
+     */
     @FXML
-    protected void dodawanie(ActionEvent event) throws IOException, SQLException {
+    protected void dodawanie()throws SQLException {
         
         String nazwaTowaru = TName.getText();
         String dostawca = Provider.getSelectionModel().getSelectedItem().toString();
@@ -116,6 +128,13 @@ public class InController implements Initializable {
             
         }
     }    
+    
+    /**
+     * Method to set table headers and fill table with data
+     * 
+     * @param fxmlFileLocation - unused
+     * @param resources - unused
+     */
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         

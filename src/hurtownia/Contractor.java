@@ -12,12 +12,12 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author Jon
- */
+
 public class Contractor {
-    //Declare Contractor Table Columns
+    
+    /**
+     * Declare Contractor Table Columns
+     */
     private IntegerProperty contractorId;
     private StringProperty contractorName;
     private StringProperty contractorType;
@@ -26,7 +26,9 @@ public class Contractor {
     private IntegerProperty contractorPhone;
     private StringProperty contractorEmail;
     
-    //Constructor
+    /**
+     * Constructor
+     */
     public Contractor(){
         this.contractorId = new SimpleIntegerProperty();
         this.contractorName = new SimpleStringProperty();

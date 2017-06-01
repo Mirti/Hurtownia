@@ -7,9 +7,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
+/**
+ * Declare Cargo Table Columns
+ */
 public class In {
-    //Declare Cargo Table Columns
     private IntegerProperty inId;
     private StringProperty inName;
     private StringProperty inPrice;
@@ -19,7 +20,9 @@ public class In {
     private StringProperty inProvider;
     private StringProperty inOrigin;
     
-    //Constructor
+    /**
+     * Constructor
+     */
     public In(){
         this.inId = new SimpleIntegerProperty();
         this.inName = new SimpleStringProperty();

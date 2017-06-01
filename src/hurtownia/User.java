@@ -6,8 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
+/**
+ * Declare Contractor Table Columns
+ */
 public class User {
-   //Declare Contractor Table Columns
     private IntegerProperty userId;
     private StringProperty userFirstName;
     private StringProperty userLastName;
@@ -16,7 +18,9 @@ public class User {
     private StringProperty userPassword;    
     private StringProperty userComment;  
     
-    //Constructor
+    /**
+     * Constructor
+     */
     public User(){
         this.userId = new SimpleIntegerProperty();
         this.userFirstName = new SimpleStringProperty();

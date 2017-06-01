@@ -13,17 +13,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
- * @author Jon
+ * Declare Contractor Table Columns
  */
 public class Out {
-   //Declare Contractor Table Columns
     private IntegerProperty outId;
     private StringProperty outCustomer;
     private StringProperty outUser;
     private StringProperty outComment;
     
-    //Constructor
+    /**
+     * Constructor
+     */
     public Out(){
         this.outId = new SimpleIntegerProperty();
         this.outCustomer = new SimpleStringProperty();

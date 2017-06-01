@@ -23,7 +23,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
+/**
+ * 
+ * Class to provide permission to users group
+ */
 public class FXMLDocumentController implements Initializable {
     
     @FXML private Tab tabWyszukiwarka;
@@ -36,6 +39,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML private Label permissionStatusField;
     @FXML private Label userNameField;    
 
+    /**
+     * After login this method set disable on tabs adequate to user permission
+     * 
+     * @param url - unused
+     * @param rb  - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         switch (Polaczenie.getCurrentUser()[3]) {

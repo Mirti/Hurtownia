@@ -29,8 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
- *
- * @author nykie_000
+ * Class to provide method to handle mehtods in DateAlert.fxml
  */
 public class DateAlert implements Initializable {
     public DateAlert() {
@@ -50,8 +49,13 @@ public class DateAlert implements Initializable {
     private TableColumn<DateAlertDataModel, String> position;
     
     
+    /**
+     * Method to show products with short expiration date in table at the start of the program
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
     @FXML
-    public void wyswietl () throws IOException, SQLException 
+    public void wyswietl ()throws SQLException 
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
@@ -84,6 +88,12 @@ public class DateAlert implements Initializable {
         
     }
     
+    /**
+     * Method to set values to table headers
+     * 
+     * @param fxmlFileLocation - unused
+     * @param resources - unused
+     */
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         name.setCellValueFactory(new PropertyValueFactory<DateAlertDataModel, String>("rName"));

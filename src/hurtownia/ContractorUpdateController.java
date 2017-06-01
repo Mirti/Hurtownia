@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
+ * Class for provide method to update contractors
  *
  * @author Kinga
  */
@@ -37,6 +38,12 @@ public class ContractorUpdateController implements Initializable {
     @FXML
     private Button Ok;
     
+    /**
+     * Set variables with data from ResultSet
+     * 
+     * @param url -unused
+     * @param rb -unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
@@ -64,14 +71,19 @@ public class ContractorUpdateController implements Initializable {
             CTel.setText(contractorPhone);
             CEmail.setText(contractorEmail);
         }  catch (SQLException ex) {
-            System.out.print("na ten błąd nie patrzcie, on jest do dodawania do formualrza");
            
         }
         
     }
     
+    /**
+     * Validate datas given by user. If datas are correct update information about contractor
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     @FXML    
-    private void updateContractor(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void updateContractor() throws SQLException, ClassNotFoundException {
         try {
             if (CName.equals("") || CCargo.equals("") || COwner.equals("") || CAdress.equals("") || CTel.equals("") || CEmail.equals("")) {
                 txt.setText("Wypełnij wymagane pola!");

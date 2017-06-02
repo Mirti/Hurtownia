@@ -178,10 +178,9 @@ public class ReportController implements Initializable {
             }
 
             if (reportSelect.getValue().equals("Raport przyjęć")) {
-                ResultSet rs = Connect.getData("SELECT * FROM produkt_temp pt, przyjecie p, dostawca_importer di WHERE  "
-                        + "pt.data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "'"
-                        + "AND di.dostawca_importer_id = pt.dostawca_importer_id "
-                        + "AND pt.przyjecie_id=p.przyjecie_id"
+                ResultSet rs = Connect.getData("SELECT * FROM produkt p, dostawca_importer di WHERE  "
+                        + "p.data_przyjecia BETWEEN '" + dates[0] + "' AND '" + dates[1] + "'"
+                        + "AND di.dostawca_importer_id = p.dostawca_importer_id " 
                         + " ORDER BY p.data_przyjecia ASC");
                 InCreate ic = new InCreate(dates, Connect.getCurrentUser(), rs);
                 ic.create();

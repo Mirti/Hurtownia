@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Maj 2017, 14:04
+-- Czas generowania: 02 Cze 2017, 23:11
 -- Wersja serwera: 10.1.19-MariaDB
 -- Wersja PHP: 5.6.28
 
@@ -84,19 +84,21 @@ CREATE TABLE `produkt` (
   `ilosc` int(11) NOT NULL,
   `polozenie` varchar(30) NOT NULL,
   `dostawca_importer_id` int(11) DEFAULT NULL,
-  `kraj_pochodzenia` varchar(255) NOT NULL
+  `kraj_pochodzenia` varchar(255) NOT NULL,
+  `data_przyjecia` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `produkt`
 --
 
-INSERT INTO `produkt` (`produkt_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `dostawca_importer_id`, `kraj_pochodzenia`) VALUES
-(1, 'Pomidory', 4, '2017-03-31', 4000, '1a', 1, 'Mongolia'),
-(2, 'Morele', 7, '2017-04-19', 8000, '4b', 1, 'Wlochy'),
-(3, 'Marchewki', 1, '2017-05-21', 10000, '2a', 3, 'Watykan'),
-(4, 'Zielony groszek', 3, '2017-05-12', 25000, '1', 3, 'Albania'),
-(5, 'Szparagi', 8, '2017-08-10', 8000, '2', 1, 'Andora');
+INSERT INTO `produkt` (`produkt_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `dostawca_importer_id`, `kraj_pochodzenia`, `data_przyjecia`) VALUES
+(1, 'Pomidory', 4, '2017-03-31', 3978, '1a', 1, 'Mongolia', '0000-00-00'),
+(2, 'Morele', 7, '2017-04-19', 7968, '4b', 1, 'Wlochy', '0000-00-00'),
+(3, 'Marchewki', 1, '2017-05-21', 9988, '2a', 3, 'Watykan', '0000-00-00'),
+(4, 'Zielony groszek', 3, '2017-05-12', 25000, '1', 3, 'Albania', '0000-00-00'),
+(5, 'Szparagi', 8, '2017-08-10', 7998, '2', 1, 'Andora', '0000-00-00'),
+(6, '2', 2, '2017-06-06', 2, '2', 2, '2', '2017-06-02');
 
 -- --------------------------------------------------------
 
@@ -113,18 +115,19 @@ CREATE TABLE `produkt_temp` (
   `polozenie` varchar(30) NOT NULL,
   `kraj_pochodzenia` varchar(255) NOT NULL,
   `przyjecie_id` int(11) DEFAULT NULL,
-  `dostawca_importer_id` int(11) DEFAULT NULL
+  `dostawca_importer_id` int(11) DEFAULT NULL,
+  `data_przyjecia` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Zrzut danych tabeli `produkt_temp`
 --
 
-INSERT INTO `produkt_temp` (`produkt_temp_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `kraj_pochodzenia`, `przyjecie_id`, `dostawca_importer_id`) VALUES
-(1, 'ogorek szklarniowy', 5, '2017-03-30', 7000, '', 'Polska', 1, 1),
-(2, 'Cebula', 1, '2017-05-16', 9000, '', 'Polska', 1, 2),
-(3, 'Dynia', 2, '2017-05-10', 50, '4h', 'Chile', 1, 3),
-(4, '12', 12, '2017-05-22', 12, '12', '123', 1, 2);
+INSERT INTO `produkt_temp` (`produkt_temp_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `kraj_pochodzenia`, `przyjecie_id`, `dostawca_importer_id`, `data_przyjecia`) VALUES
+(1, 'ogorek szklarniowy', 5, '2017-03-30', 7000, '', 'Polska', 1, 1, '0000-00-00'),
+(2, 'Cebula', 1, '2017-05-16', 9000, '', 'Polska', 1, 2, '0000-00-00'),
+(3, 'Dynia', 2, '2017-05-10', 50, '4h', 'Chile', 1, 3, '0000-00-00'),
+(4, '12', 12, '2017-05-22', 12, '12', '123', 1, 2, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -145,7 +148,11 @@ CREATE TABLE `produkt_zamowienie` (
 --
 
 INSERT INTO `produkt_zamowienie` (`produkt_zamowienie_id`, `produkt_id`, `zamowienie_id`, `ilosc`, `cena_jednostkowa`) VALUES
-(40, 2, 49, 20, 11);
+(40, 2, 49, 20, 11),
+(49, 2, 55, 10, 12),
+(50, 1, 55, 1, 12),
+(51, 2, 56, 12, 7),
+(52, 3, 56, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -185,19 +192,25 @@ CREATE TABLE `raport` (
 --
 
 INSERT INTO `raport` (`raport_id`, `typ`, `data_wygenerowania`, `uzytkownik_id`, `sciezka`) VALUES
-(9, 'Daty waznosci', '2017-05-25', 99, 'reports\\RaportWaznosci2017-05-25.pdf'),
-(10, 'Daty waznosci', '2017-05-25', 99, 'reports\\RaportWaznosci2017-05-25.pdf'),
-(11, 'Daty waznosci', '2017-05-25', 99, 'reports\\RaportWaznosci2017-05-25.pdf'),
-(12, 'Raport sprzedazy', '2017-05-25', 99, 'reports\\RaportSprzedazy2017-05-25.pdf'),
-(13, 'Raport sprzedazy', '2017-05-25', 99, 'reports\\RaportSprzedazy2017-05-25.pdf'),
-(14, 'Raport Przyjecia', '2017-05-25', 99, 'reports\\RaportPrzyjecia2017-05-25.pdf'),
-(15, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(16, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(17, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(18, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(19, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(20, 'Raport Przyjecia', '2017-05-26', 99, 'reports\\RaportPrzyjecia2017-05-26.pdf'),
-(21, 'Daty waznosci', '2017-05-26', 99, 'reports\\RaportWaznosci2017-05-26.pdf');
+(24, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(25, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(26, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(27, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(28, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(29, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(30, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(31, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(32, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(33, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(34, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(35, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(36, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(37, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(38, 'Daty waznosci', '2017-06-01', 99, 'reports\\RaportWaznosci2017-06-01.pdf'),
+(39, 'Raport Przyjecia', '2017-06-01', 99, 'reports\\RaportPrzyjecia2017-06-01.pdf'),
+(40, 'Daty waznosci', '2017-06-02', 99, 'reports\\RaportWaznosci2017-06-02.pdf'),
+(41, 'Raport Przyjecia', '2017-06-02', 99, 'reports\\RaportPrzyjecia2017-06-02.pdf'),
+(42, 'Raport Przyjecia', '2017-06-02', 99, 'reports\\RaportPrzyjecia2017-06-02.pdf');
 
 -- --------------------------------------------------------
 
@@ -223,7 +236,9 @@ INSERT INTO `uzytkownik` (`uzytkownik_id`, `imie`, `nazwisko`, `uprawnienia`, `l
 (1, 'Magdalena', 'Mag', 'Kierownik', 'user9', 'heheheh23', ''),
 (99, 'admin', 'admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', ''),
 (100, 'Gregory', 'Greg', 'Pracownik', 'pracownik1', 'pracownik', ''),
-(101, 'Krzysztof', 'Krawczyk', '1', 'krawczyk', '6822907adfc451f601f2f5a40982b74e98537dab', '');
+(101, 'Krzysztof', 'Krawczyk', '1', 'krawczyk', 'ac4f352566d26649578fb9202213e9e6cf800c73', ''),
+(103, 'Kiero', 'kier', 'Kierownik', 'kier', 'a96d48f7e005db9efd4ae09d398efaf27c013c57', ''),
+(104, 'prac', 'prac', 'Pracownik', 'prac', '7804974ec946455cc5787d9bc8d80415018fcf83', '');
 
 -- --------------------------------------------------------
 
@@ -249,7 +264,12 @@ INSERT INTO `zamowienie` (`zamowienie_id`, `klient_id`, `uzytkownik_id`, `uwagi`
 (2, 2, 1, 'brak\r\n', 0, ''),
 (49, 2, 1, 'Brak towaru nr.1', 23, 'Uwagi'),
 (50, 1, 1, '', 2, 'nowe'),
-(51, 1, 1, '', 432, 'Wykonane');
+(51, 1, 1, '', 432, 'Wykonane'),
+(52, 3, 1, '', 30, 'Nowe'),
+(53, 3, 1, '', 30, 'Nowe'),
+(54, 2, 99, '', 240, 'Nowe'),
+(55, 2, 99, 'uwaga', 240, 'Nowe'),
+(56, 2, 99, 'Tomek Chuj', 8, 'Uwagi');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -328,7 +348,7 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `dostawca_importer`
 --
 ALTER TABLE `dostawca_importer`
-  MODIFY `dostawca_importer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `dostawca_importer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `klient`
 --
@@ -338,17 +358,17 @@ ALTER TABLE `klient`
 -- AUTO_INCREMENT dla tabeli `produkt`
 --
 ALTER TABLE `produkt`
-  MODIFY `produkt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `produkt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT dla tabeli `produkt_temp`
 --
 ALTER TABLE `produkt_temp`
-  MODIFY `produkt_temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `produkt_temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT dla tabeli `produkt_zamowienie`
 --
 ALTER TABLE `produkt_zamowienie`
-  MODIFY `produkt_zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `produkt_zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT dla tabeli `przyjecie`
 --
@@ -358,17 +378,17 @@ ALTER TABLE `przyjecie`
 -- AUTO_INCREMENT dla tabeli `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownik`
 --
 ALTER TABLE `uzytkownik`
-  MODIFY `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -390,8 +410,8 @@ ALTER TABLE `produkt_temp`
 -- Ograniczenia dla tabeli `produkt_zamowienie`
 --
 ALTER TABLE `produkt_zamowienie`
-  ADD CONSTRAINT `produkt_zamowienie_ibfk_1` FOREIGN KEY (`produkt_id`) REFERENCES `produkt` (`produkt_id`) ON DELETE CASCADE ON UPDATE SET NULL,
-  ADD CONSTRAINT `produkt_zamowienie_ibfk_2` FOREIGN KEY (`zamowienie_id`) REFERENCES `zamowienie` (`zamowienie_id`) ON DELETE CASCADE ON UPDATE SET NULL;
+  ADD CONSTRAINT `produkt_zamowienie_ibfk_1` FOREIGN KEY (`produkt_id`) REFERENCES `produkt` (`produkt_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  ADD CONSTRAINT `produkt_zamowienie_ibfk_2` FOREIGN KEY (`zamowienie_id`) REFERENCES `zamowienie` (`zamowienie_id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Ograniczenia dla tabeli `przyjecie`

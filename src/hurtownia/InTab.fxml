@@ -18,8 +18,8 @@
       <TextField fx:id="Position" layoutX="454.0" layoutY="2.0" promptText="Położenie" />
       <TextField fx:id="Country" layoutX="180.0" layoutY="55.0" promptText="Kraj pochodzenia" />
       <Button fx:id="Add" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#dodawanie" prefHeight="25.0" prefWidth="103.0" text="Dodaj towar" />
-      <Button disable="true" layoutX="628.0" layoutY="55.0" mnemonicParsing="false" text="Zaakceptuj zaznaczone" />
-      <Button disable="true" layoutX="628.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" text="Usuń zaznaczone" />
+      <Button fx:id="BtnAccept" disable="true" layoutX="628.0" layoutY="55.0" mnemonicParsing="false" onAction="#acceptProduct" text="Zaakceptuj zaznaczone" />
+      <Button fx:id="BtnDelete" disable="true" layoutX="628.0" layoutY="90.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" onAction="#deleteProduct" text="Usuń zaznaczone" />
             <Button layoutX="14.0" layoutY="96.0" mnemonicParsing="false" onAction="#searchIn" prefHeight="25.0" prefWidth="103.0" text="pokaż towar" />
             <Text fx:id="Txt" fill="#ff0505" layoutX="475.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="128.0" />
             <DatePicker fx:id="Data" layoutX="618.0" layoutY="2.0" prefHeight="25.0" prefWidth="152.0" />

@@ -9,8 +9,10 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -34,7 +37,14 @@ public class OrderController implements Initializable {
     @FXML
     private TableColumn<Out, String> orderCommentColumn;      
     @FXML
-    private TableView orderTable;   
+    private TableView orderTable;  
+    @FXML
+    private static int selectedOrderId;
+    
+    public static int getselectedOrderId() {
+        return selectedOrderId;
+    }
+    
 
     /**
      * Method to set values to table headers
@@ -47,6 +57,41 @@ public class OrderController implements Initializable {
         orderCustomerColumn.setCellValueFactory(cellData -> cellData.getValue().outCustomerProperty());
         orderUserColumn.setCellValueFactory(cellData -> cellData.getValue().outUserProperty());
         orderCommentColumn.setCellValueFactory(cellData -> cellData.getValue().outCommentProperty());
+        
+        orderTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Out>() {
+            public void onChanged(ListChangeListener.Change<? extends Out> c) {
+
+                for (Out o : c.getList()) {
+                    selectedOrderId = o.getOutId();
+                }
+            
+            }
+        });
+        orderTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+    /**
+     * Handle double click on row and open window with details of order
+     * 
+     * @param click - Click with mouse
+     */
+    @Override
+    public void handle(MouseEvent click) {
+
+        if (click.getClickCount() == 2) {
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderWindow.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));  
+                stage.showAndWait();
+                
+        } catch(Exception e) {
+           e.printStackTrace();
+          }
+        }
+    }
+    });
+       
     } 
     
     /**

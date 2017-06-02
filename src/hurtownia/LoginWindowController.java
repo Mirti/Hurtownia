@@ -62,36 +62,11 @@ public class LoginWindowController implements Initializable {
     @FXML
     protected void login() throws IOException, SQLException {
         
-         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+         
          
         
         
         Connect con= new Connect();
-        String query1 = "select nazwa, ilosc, data_waznosci, polozenie from produkt where data_waznosci < \""+localDate+"\"";
-        
-        ResultSet rsa = null;
-        try {
-            rsa = con.getData(query1);
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if(rsa.next())
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DateAlert.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.show();
-                    
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
         String login = tfLogin.getText();
         String pass = pfPassword.getText();
         if (login.equals("createDB") && pass.equals("createDB")) {
@@ -118,11 +93,38 @@ public class LoginWindowController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
                 
-
+datyWaznosci();
        
             } else {
                 txtWrong.setText("Nieprawidłowy login lub hasło");
             }
+        }
+    }
+    
+    public void datyWaznosci() throws IOException{
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.now();
+        Connect con= new Connect();
+        String query1 = "select nazwa, ilosc, data_waznosci, polozenie from produkt where data_waznosci < \""+localDate+"\"";
+        
+        ResultSet rsa = null;
+        try {
+            rsa = con.getData(query1);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if(rsa.next())
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DateAlert.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                    
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -35,7 +35,9 @@ public class OutController implements Initializable {
     @FXML
     private TableColumn<Out, String> outUserColumn;
     @FXML
-    private TableColumn<Out, String> outCommentColumn;      
+    private TableColumn<Out, String> outCommentColumn; 
+    @FXML
+    private TableColumn<Out,String> outValueColumn;
     @FXML
     private TableView outTable;   
     @FXML
@@ -60,6 +62,7 @@ public class OutController implements Initializable {
         outCustomerColumn.setCellValueFactory(cellData -> cellData.getValue().outCustomerProperty());
         outUserColumn.setCellValueFactory(cellData -> cellData.getValue().outUserProperty());
         outCommentColumn.setCellValueFactory(cellData -> cellData.getValue().outCommentProperty());
+        outValueColumn.setCellValueFactory(cellData -> cellData.getValue().outValueProperty());
         
         outTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Out>() {
             public void onChanged(ListChangeListener.Change<? extends Out> c) {

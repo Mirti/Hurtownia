@@ -25,7 +25,7 @@ public class ContractorDAO {
      */
     public static ObservableList<Contractor> searchContractor () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT * FROM dostawca_importer,klient";
+        String selectStmt = "SELECT * FROM dostawca_importer";
  
         //Execute SELECT statement
         try {

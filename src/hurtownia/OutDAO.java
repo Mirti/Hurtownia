@@ -26,7 +26,7 @@ public class OutDAO {
      */
     public static ObservableList<Out> searchOut () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
+        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi, z.wartosc"
                 + " from zamowienie z,klient k,uzytkownik u "
                 + "where z.uzytkownik_id=u.uzytkownik_id AND z.klient_id=k.klient_id ";
  
@@ -56,7 +56,7 @@ public class OutDAO {
      */
      public static ObservableList<Out> searchNewOut () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
+        String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi, z.wartosc"
                 + " from zamowienie z,klient k,uzytkownik u "
                 + "where z.uzytkownik_id=u.uzytkownik_id AND z.klient_id=k.klient_id "
                 + "AND z.stan='nowe'";
@@ -98,6 +98,7 @@ public class OutDAO {
             out.setOutCustomer(rs.getString("nazwa"));
             out.setOutUser(rs.getString("nazwisko"));
             out.setOutComment(rs.getString("uwagi"));
+            out.setOutValue(rs.getString("wartosc"));
             //Add Cargo to the ObservableList
             ourList.add(out);
         }

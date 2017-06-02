@@ -20,6 +20,7 @@ public class Out {
     private StringProperty outCustomer;
     private StringProperty outUser;
     private StringProperty outComment;
+    private StringProperty outValue;
     
     /**
      * Constructor
@@ -28,7 +29,8 @@ public class Out {
         this.outId = new SimpleIntegerProperty();
         this.outCustomer = new SimpleStringProperty();
         this.outUser = new SimpleStringProperty();
-        this.outComment =  new SimpleStringProperty();     
+        this.outComment =  new SimpleStringProperty();
+        this.outValue = new SimpleStringProperty();
     }
         /**
          * 
@@ -124,5 +126,29 @@ public class Out {
          */
         public StringProperty outCommentProperty(){
             return outComment;
-        }        
+        }  
+        
+        /**
+         * 
+         * @return Out products value
+         */
+        public String getOutValue(){
+            return outValue.get();
+        }
+        
+        /**
+         * Set Out products value
+         * @param OutValue 
+         */
+        public void setOutValue(String OutValue){
+            this.outValue.set(OutValue);
+        }
+        
+        /**
+         * 
+         * @return Out products value for table
+         */
+        public StringProperty outValueProperty(){
+            return outValue;
+        }
 }

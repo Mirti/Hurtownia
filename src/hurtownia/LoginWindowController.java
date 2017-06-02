@@ -41,6 +41,15 @@ public class LoginWindowController implements Initializable {
     @FXML
     private Button btnLogin;
     
+    /**
+     * Clear fields with login and password
+     */
+    @FXML
+    protected void clear(){
+        tfLogin.clear();
+        pfPassword.clear();
+    }
+    
 
     /**
      * Method response for user login. When user write login:CreateDB and password:CreateDB

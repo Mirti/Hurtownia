@@ -186,7 +186,6 @@ public class FormularzZamowienieController implements Initializable {
 
             String uwagi_zam = uwagi.getText();
             String nowe = "Nowe";
-            System.out.print(klientid);
             String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\"" + klientid + "\","+Connect.getCurrentUser()[0]+",\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe + "\")";
             Connect con = new Connect();
             con.update(tworzZam);
@@ -212,7 +211,7 @@ public class FormularzZamowienieController implements Initializable {
     protected void dodawanie(ActionEvent event) throws IOException, SQLException {
 // odczyt danych z formularza
 
-        if((String) ilosc_towaru.getText() == null || max_data.getValue() == null || dostawcy.getSelectionModel().getSelectedItem().toString() == null || towar.getSelectionModel().getSelectedItem().toString() == null || klient.getSelectionModel().getSelectedItem().toString() == null || cena.getText() == null)
+        if((String) ilosc_towaru.getText() == null || max_data.getValue() == null || dostawcy.getSelectionModel().getSelectedItem().toString() == null || towar.getSelectionModel().getSelectedItem().toString() == null || klient.getSelectionModel().getSelectedItem().toString() == null || ((cena.getText() == null)&&(cena_blok.isSelected())))
         {
            try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NieWybranoTowarow.fxml"));
@@ -258,6 +257,22 @@ public class FormularzZamowienieController implements Initializable {
         while (rs2.next()) {
             prod_id = rs2.getInt(1);
         }
+        
+        if(prod_id == 0){
+           try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TakiTowarNieIstinieje.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.showAndWait();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }    
+        }else{
+            
+        
+        
 //ustalanie id zamowienie
         String zamowienie_id = "SELECT zamowienie_id FROM zamowienie order by zamowienie_id DESC limit 1";
         int zam_id = 0;
@@ -293,6 +308,7 @@ public class FormularzZamowienieController implements Initializable {
         tabela.setItems(data);
 
         System.out.println(zapytanie);
+        }
         }
     }
 //wyszarzanie Comboboxa Dostawcy

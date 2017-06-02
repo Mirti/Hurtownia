@@ -42,7 +42,7 @@ public class OrderWindowController implements Initializable {
     @FXML
     private TextArea taComments;
 
-    private int orderDetailId = OutController.getSelectedOutId();
+    private int orderDetailId = OrderController.getselectedOrderId();
 
     /**
      * Method to set value on table headers

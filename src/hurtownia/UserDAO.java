@@ -32,7 +32,7 @@ public class UserDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsUsr = Polaczenie.getData(selectStmt);
+            ResultSet rsUsr = Connect.getData(selectStmt);
 
             //Send ResultSet to the getContractorList method and get Contractor object
             ObservableList<User> UsrList = getUserList(rsUsr);
@@ -98,7 +98,7 @@ public class UserDAO {
 
         //Execute UPDATE operation
         try {
-            Polaczenie.update(updateStmt);
+            Connect.update(updateStmt);
         } catch (SQLException e) {
             System.out.print("Error occurred while UPDATE Operation: " + e);
             throw e;
@@ -119,7 +119,7 @@ public class UserDAO {
 
         //Execute UPDATE operation
         try {
-            Polaczenie.update(updateStmt);
+            Connect.update(updateStmt);
         } catch (SQLException e) {
             System.out.print("Error occurred while DELETE Operation: " + e);
             throw e;
@@ -136,7 +136,7 @@ public class UserDAO {
      */
     public static ResultSet getUserData(int userID) throws SQLException {
         String query = "SELECT * FROM uzytkownik WHERE uzytkownik_id=" + userID + "";
-        ResultSet rs = Polaczenie.getData(query);
+        ResultSet rs = Connect.getData(query);
         System.out.print(rs.next()); 
         return rs;
     }

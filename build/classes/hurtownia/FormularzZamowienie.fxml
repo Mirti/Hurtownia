@@ -21,7 +21,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <ComboBox fx:id="dostawcy" layoutX="6.0" layoutY="15.0" prefHeight="25.0" prefWidth="305.0" promptText="Wbierz" /> 
+      <ComboBox fx:id="dostawcy" layoutX="6.0" layoutY="15.0" prefHeight="25.0" prefWidth="305.0" promptText="Dostawca" /> 
       <Label layoutX="384.0" layoutY="2.0" prefHeight="25.0" prefWidth="73.0" text="Uwagi">
          <font>
             <Font size="14.0" />
@@ -38,7 +38,7 @@
       <DatePicker fx:id="max_data" layoutX="6.0" layoutY="115.0" prefHeight="25.0" prefWidth="338.0" />
       <Label layoutX="7.0" layoutY="90.0" prefHeight="25.0" prefWidth="152.0" text="Maksymalna data ważności" />
       <TextField fx:id="cena" layoutX="6.0" layoutY="152.0" prefHeight="25.0" prefWidth="305.0" promptText="Cena" />
-      <ComboBox fx:id="towar" layoutX="7.0" layoutY="185.0" prefHeight="25.0" prefWidth="337.0" promptText="Wbierz" />
+      <ComboBox fx:id="towar" layoutX="7.0" layoutY="185.0" prefHeight="25.0" prefWidth="337.0" promptText="Wybierz" />
           
       <ScrollPane layoutX="7.0" layoutY="292.0" prefHeight="130.0" prefWidth="545.0">
          <content>

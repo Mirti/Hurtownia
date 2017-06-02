@@ -30,7 +30,7 @@ public class ContractorDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsCntr = Polaczenie.getData(selectStmt);
+            ResultSet rsCntr = Connect.getData(selectStmt);
  
             //Send ResultSet to the getContractorList method and get Contractor object
             ObservableList<Contractor> CntrList = getContractorList(rsCntr);
@@ -87,7 +87,7 @@ public class ContractorDAO {
 
         //Execute UPDATE operation
         try {
-            Polaczenie.update(updateStmt);
+            Connect.update(updateStmt);
         } catch (SQLException e) {
             System.out.print("Error occurred while DELETE Operation: " + e);
             throw e;
@@ -104,7 +104,7 @@ public class ContractorDAO {
      */
     public static ResultSet getContractorData(int contractorID) throws SQLException{
               String query = "SELECT * FROM dostawca_importer WHERE dostawca_importer_id=" + contractorID+"" ;
-              ResultSet rs = Polaczenie.getData(query);
+              ResultSet rs = Connect.getData(query);
               System.out.print(rs.next()); //do sprawdzenia
               return rs;
           }
@@ -131,7 +131,7 @@ public class ContractorDAO {
 
         //Execute UPDATE operation
         try {
-            Polaczenie.update(updateStmt);
+            Connect.update(updateStmt);
         } catch (SQLException e) {
             System.out.print("Error occurred while UPDATE Operation: " + e);
             throw e;

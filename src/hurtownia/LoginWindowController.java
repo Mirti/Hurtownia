@@ -67,7 +67,7 @@ public class LoginWindowController implements Initializable {
          
         
         
-        Polaczenie con= new Polaczenie();
+        Connect con= new Connect();
         String query1 = "select nazwa, ilosc, data_waznosci, polozenie from produkt where data_waznosci < \""+localDate+"\"";
         
         ResultSet rsa = null;
@@ -95,7 +95,7 @@ public class LoginWindowController implements Initializable {
         String login = tfLogin.getText();
         String pass = pfPassword.getText();
         if (login.equals("createDB") && pass.equals("createDB")) {
-            Polaczenie.importDB();
+            Connect.importDB();
             tfLogin.clear();
             pfPassword.clear();
         } else {
@@ -110,7 +110,7 @@ public class LoginWindowController implements Initializable {
                 currentUser[1]=rs.getString("imie");
                 currentUser[2]=rs.getString("nazwisko");
                 currentUser[3]=rs.getString("uprawnienia");
-                Polaczenie.setCurrentUser(currentUser); 
+                Connect.setCurrentUser(currentUser); 
                 
                 Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
                 Scene scene = new Scene(root);

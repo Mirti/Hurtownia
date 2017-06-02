@@ -31,7 +31,7 @@ public class ReportDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsRpt = Polaczenie.getData(selectStmt);
+            ResultSet rsRpt = Connect.getData(selectStmt);
 
             //Send ResultSet to the getContractorList method and get Contractor object
             ObservableList<Report> RptList = getReportList(rsRpt);
@@ -83,7 +83,7 @@ public class ReportDAO {
     public static void addReportToDB(String type, String date, String user_id, String path) throws SQLException {
         String sqlStatement = "INSERT INTO raport (typ,data_wygenerowania,uzytkownik_id,sciezka)"
                 + "VALUES ('" + type + "','" + date + "','" + user_id + "','" + path + "')";
-        Polaczenie.update(sqlStatement);
+        Connect.update(sqlStatement);
     }
 
     /**
@@ -96,7 +96,7 @@ public class ReportDAO {
     public static String getReportPath(int id) throws SQLException {
         String sqlStatement = "SELECT sciezka FROM raport WHERE raport_id=" + id;
         System.out.print(sqlStatement);
-        ResultSet rs = Polaczenie.getData(sqlStatement);
+        ResultSet rs = Connect.getData(sqlStatement);
         rs.next();
         return (rs.getString("sciezka"));
 

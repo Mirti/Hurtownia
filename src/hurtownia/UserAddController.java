@@ -60,7 +60,7 @@ public class UserAddController {
                 else{
                 String test = "SELECT * FROM UZYTKOWNIK WHERE login = \"" + login + "\"";
                 String query = "insert into uzytkownik(imie,nazwisko,login,haslo,uprawnienia,uwagi) VALUES(\"" + name + "\", \"" + sname + "\",\"" + login + "\",SHA(\"" + pass + "\"),\"" + position + "\",\"" + note + "\")";
-                Polaczenie con = new Polaczenie();
+                Connect con = new Connect();
                 try {
                     //Sprawdzam czy user istnieje/nie powtarza sie login
                     if (con.getData(test).next()) {

@@ -47,25 +47,25 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        switch (Polaczenie.getCurrentUser()[3]) {
+        switch (Connect.getCurrentUser()[3]) {
             case "Pracownik":
                 tabKontrahenci.setDisable(true);
                 tabRaporty.setDisable(true);
                 tabZarzadzanie1.setDisable(true);
                 tabZarzadzanie.setDisable(true);  
-                permissionStatusField.setText(Polaczenie.getCurrentUser()[3]);
-                userNameField.setText(Polaczenie.getCurrentUser()[1]+" "+Polaczenie.getCurrentUser()[2]);
+                permissionStatusField.setText(Connect.getCurrentUser()[3]);
+                userNameField.setText(Connect.getCurrentUser()[1]+" "+Connect.getCurrentUser()[2]);
                 break;
             case "Ksiegowy":
                 tabWydanie.setDisable(true);
                 tabPrzyjecie.setDisable(true);
                 tabZarzadzanie.setDisable(true);
-                permissionStatusField.setText(Polaczenie.getCurrentUser()[3]);
-                userNameField.setText(Polaczenie.getCurrentUser()[1]+" "+Polaczenie.getCurrentUser()[2]);
+                permissionStatusField.setText(Connect.getCurrentUser()[3]);
+                userNameField.setText(Connect.getCurrentUser()[1]+" "+Connect.getCurrentUser()[2]);
                 break;
             default:
-                permissionStatusField.setText(Polaczenie.getCurrentUser()[3]);
-                userNameField.setText(Polaczenie.getCurrentUser()[1]+" "+Polaczenie.getCurrentUser()[2]);
+                permissionStatusField.setText(Connect.getCurrentUser()[3]);
+                userNameField.setText(Connect.getCurrentUser()[1]+" "+Connect.getCurrentUser()[2]);
                 break;
         }
         

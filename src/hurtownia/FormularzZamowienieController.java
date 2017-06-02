@@ -48,7 +48,7 @@ public class FormularzZamowienieController implements Initializable {
 
     private String zapytanie = "insert into produkt_zamowienie(produkt_id,zamowienie_id,ilosc,cena_jednostkowa) VALUES";
     private int cenaZamowienia = 0;
-    private ObservableList<ZamowienieDataModel> data;
+    private ObservableList<OrderDataModel> data;
     private int klientid;
     private boolean allowed;
     Map<String, Integer> Towary = new HashMap<String, Integer>();
@@ -75,15 +75,15 @@ public class FormularzZamowienieController implements Initializable {
     @FXML
     private CheckBox cena_blok;
     @FXML
-    private TableView<ZamowienieDataModel> tabela;
+    private TableView<OrderDataModel> tabela;
     @FXML
-    private TableColumn<ZamowienieDataModel, String> nazwa_col;
+    private TableColumn<OrderDataModel, String> nazwa_col;
     @FXML
-    private TableColumn<ZamowienieDataModel, String> ilosc_col;
+    private TableColumn<OrderDataModel, String> ilosc_col;
     @FXML
-    private TableColumn<ZamowienieDataModel, String> dostawca_col;
+    private TableColumn<OrderDataModel, String> dostawca_col;
     @FXML
-    private TableColumn<ZamowienieDataModel, String> data_col;
+    private TableColumn<OrderDataModel, String> data_col;
 
     /**
      *
@@ -107,7 +107,7 @@ public class FormularzZamowienieController implements Initializable {
             int ilosc_tow = Towary.get(listaKluczy.get(i));
             String ile = "select ilosc from produkt where nazwa = \"" + listaKluczy.get(i) + "\"";
 
-            ResultSet ileNaStanie = Polaczenie.getData(ile);
+            ResultSet ileNaStanie = Connect.getData(ile);
             int stan = 0;
             while (ileNaStanie.next()) {
                 stan = ileNaStanie.getInt(1);
@@ -174,21 +174,21 @@ public class FormularzZamowienieController implements Initializable {
                 int ilosc_tow = Towary.get(listaKluczy.get(i));
                 String ile = "select ilosc from produkt where nazwa = \"" + listaKluczy.get(i) + "\"";
 
-                ResultSet ileNaStanie = Polaczenie.getData(ile);
+                ResultSet ileNaStanie = Connect.getData(ile);
                 int stan = 0;
                 while (ileNaStanie.next()) {
                     stan = ileNaStanie.getInt(1);
                 }
                 int poRezerwacji = stan - ilosc_tow;
                 String rezerwacjaTowaru1 = "UPDATE produkt SET ilosc = \"" + poRezerwacji + "\" WHERE nazwa = \"" + listaKluczy.get(i) + "\"";
-                Polaczenie.update(rezerwacjaTowaru1);
+                Connect.update(rezerwacjaTowaru1);
             }
 
             String uwagi_zam = uwagi.getText();
             String nowe = "Nowe";
             System.out.print(klientid);
-            String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\"" + klientid + "\","+Polaczenie.getCurrentUser()[0]+",\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe + "\")";
-            Polaczenie con = new Polaczenie();
+            String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\"" + klientid + "\","+Connect.getCurrentUser()[0]+",\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe + "\")";
+            Connect con = new Connect();
             con.update(tworzZam);
 //wykonanie dodawania do bazy
             zapytanie = zapytanie.substring(0, zapytanie.length() - 1);
@@ -234,7 +234,7 @@ public class FormularzZamowienieController implements Initializable {
         String klientcb = klient.getSelectionModel().getSelectedItem().toString();
 
         
-        Polaczenie con = new Polaczenie();
+        Connect con = new Connect();
 
 //ustalanie id klienta
         String querynaid = "SELECT klient_id FROM klient where nazwa = \"" + klientcb + "\" order by klient_id DESC limit 1";
@@ -288,7 +288,7 @@ public class FormularzZamowienieController implements Initializable {
         }
 
         // wypełnianie tabeli
-        ZamowienieDataModel zdm = new ZamowienieDataModel(towar_zam, ilosc_tow, dostawca, "" + data_zam);
+        OrderDataModel zdm = new OrderDataModel(towar_zam, ilosc_tow, dostawca, "" + data_zam);
         data.add(zdm);
         tabela.setItems(data);
 
@@ -315,7 +315,7 @@ public class FormularzZamowienieController implements Initializable {
 
         //wypełnianie Comboboxów
         try {
-            Polaczenie con = new Polaczenie();
+            Connect con = new Connect();
             String query = "Select distinct nazwa from dostawca_importer";
             String query2 = "SELECT COUNT(distinct nazwa) FROM dostawca_importer";
             ResultSet pomrs = con.getData(query2);
@@ -336,7 +336,7 @@ public class FormularzZamowienieController implements Initializable {
         }
 
         try {
-            Polaczenie con = new Polaczenie();
+            Connect con = new Connect();
             String query = "Select distinct nazwa from klient";
             String query2 = "SELECT COUNT(distinct nazwa) FROM klient";
             ResultSet pomrs = con.getData(query2);
@@ -357,7 +357,7 @@ public class FormularzZamowienieController implements Initializable {
         }
 
         try {
-            Polaczenie con = new Polaczenie();
+            Connect con = new Connect();
             String query = "Select distinct nazwa from produkt";
             String query2 = "SELECT COUNT(distinct nazwa) FROM produkt";
             ResultSet pomrs = con.getData(query2);
@@ -378,9 +378,9 @@ public class FormularzZamowienieController implements Initializable {
         }
 
         // wypełnianie TableView
-        nazwa_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rName"));
-        ilosc_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rNum"));
-        dostawca_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rSupp"));
-        data_col.setCellValueFactory(new PropertyValueFactory<ZamowienieDataModel, String>("rDate"));
+        nazwa_col.setCellValueFactory(new PropertyValueFactory<OrderDataModel, String>("rName"));
+        ilosc_col.setCellValueFactory(new PropertyValueFactory<OrderDataModel, String>("rNum"));
+        dostawca_col.setCellValueFactory(new PropertyValueFactory<OrderDataModel, String>("rSupp"));
+        data_col.setCellValueFactory(new PropertyValueFactory<OrderDataModel, String>("rDate"));
     }
 }

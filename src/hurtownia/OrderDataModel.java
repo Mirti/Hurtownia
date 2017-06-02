@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
  * and to get these values from the form in the same file.
  * @author nykie_000
  */
-public class ZamowienieDataModel {
+public class OrderDataModel {
 
     SimpleStringProperty rName;
     SimpleStringProperty rNum;
@@ -25,7 +25,7 @@ public class ZamowienieDataModel {
  * @param rSupp variable used to set value of cell "Dostawca" of TableView in file FormularzZamowienie.fxml
  * @param rDate variable used to set value of cell "Data Waznosci" of TableView in file FormularzZamowienie.fxml
  */
-     public ZamowienieDataModel(String rName, String rNum, String rSupp, String rDate) {
+     public OrderDataModel(String rName, String rNum, String rSupp, String rDate) {
         this.rName = new SimpleStringProperty(rName);
         this.rNum = new SimpleStringProperty(rNum);
         this.rSupp = new SimpleStringProperty(rSupp);

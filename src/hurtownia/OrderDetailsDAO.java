@@ -34,7 +34,7 @@ public class OrderDetailsDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsOrd = Polaczenie.getData(selectStmt);
+            ResultSet rsOrd = Connect.getData(selectStmt);
 
             //Send ResultSet to the getCargoList method and get Cargo object
             ObservableList<OrderDetails> ordList = getOrderDetailsList(rsOrd);
@@ -82,7 +82,7 @@ public class OrderDetailsDAO {
     public static void confirmRelease(int orderId) {
         String statement = "UPDATE zamowienie SET stan = 'Wykonane' WHERE zamowienie_id=" + orderId;
         try {
-            Polaczenie.update(statement);
+            Connect.update(statement);
         } catch (SQLException ex) {
             System.out.print("SQL Update operation has been failed" + ex);
         }
@@ -98,7 +98,7 @@ public class OrderDetailsDAO {
         String statement = "UPDATE zamowienie SET stan = 'Uwagi', uwagi='" + comments + "' "
                 + "WHERE zamowienie_id=" + orderId;
         try {
-            Polaczenie.update(statement);
+            Connect.update(statement);
         } catch (SQLException ex) {
             System.out.print("SQL Update operation has been failed" + ex);
         }

@@ -32,7 +32,7 @@ public class InDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsIn = Polaczenie.getData(selectStmt);
+            ResultSet rsIn = Connect.getData(selectStmt);
  
             //Send ResultSet to the getCargoList method and get Cargo object
             ObservableList<In> inList = getInList(rsIn);

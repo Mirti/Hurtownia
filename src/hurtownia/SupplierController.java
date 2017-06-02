@@ -61,7 +61,7 @@ public class SupplierController implements Initializable {
         String tel = CTel.getText();
         String eMail = CEmail.getText();
         String towar = CCargo.getText();
-        Polaczenie con = new Polaczenie();
+        Connect con = new Connect();
                 
         if(nazwa.equals("")||(adres.equals(""))||(wlasciciel.equals(""))||(tel.equals(""))||(eMail.equals(""))||(towar.equals("")))
         {txt.setText("Wypełnij wymagane pola!");}

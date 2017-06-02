@@ -59,7 +59,7 @@ public class DateAlert implements Initializable {
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
-        Polaczenie con= new Polaczenie();
+        Connect con= new Connect();
         localDate = localDate.plusMonths(1);
         System.out.println(localDate);
         String query1 = "select nazwa, ilosc, data_waznosci, polozenie from produkt where data_waznosci < \""+localDate+"\"";

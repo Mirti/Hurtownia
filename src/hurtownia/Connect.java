@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  * @author Kinga, Mirti
  *
  */
-public class Polaczenie {
+public class Connect {
 
     private static Connection con;
     private static Statement st;
@@ -32,7 +32,7 @@ public class Polaczenie {
      * Constructor Creates connection with SQL Database when initialize
      *
      */
-    public Polaczenie() {
+    public Connect() {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -84,7 +84,7 @@ public class Polaczenie {
         String path = fileChooser.showOpenDialog(stage).getAbsolutePath();
         System.out.print(path);
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
-        Polaczenie.runScript(path, con);
+        Connect.runScript(path, con);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Potwierdzenie utworzenia bazy");
         alert.setHeaderText(null);

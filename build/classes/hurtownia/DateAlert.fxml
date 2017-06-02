@@ -30,7 +30,7 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Label layoutX="28.0" layoutY="25.0" prefHeight="27.0" prefWidth="707.0" text="Produkty przeterminowane oraz ze zbliżjącym się końcem daty przydatności do sporzycia">
+      <Label layoutX="28.0" layoutY="25.0" prefHeight="27.0" prefWidth="707.0" text="Produkty przeterminowane oraz ze zbliżjącym się końcem daty przydatności do spożycia">
          <font>
             <Font size="18.0" />
          </font>

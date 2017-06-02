@@ -25,7 +25,7 @@ public class CargoDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsCrgs = Polaczenie.getData(selectStmt);
+            ResultSet rsCrgs = Connect.getData(selectStmt);
  
             //Send ResultSet to the getCargoList method and get Cargo object
             ObservableList<Cargo> crgList = getCargoList(rsCrgs);
@@ -66,7 +66,7 @@ public class CargoDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsCrgs = Polaczenie.getData(selectStmt);
+            ResultSet rsCrgs = Connect.getData(selectStmt);
  
             //Send ResultSet to the getCargoList method and get Cargo object
             ObservableList<Cargo> crgList = getCargoList(rsCrgs);

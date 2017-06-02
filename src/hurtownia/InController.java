@@ -123,12 +123,12 @@ public class InController implements Initializable {
         {
             String supplierIdQuery = "SELECT dostawca_importer_id FROM dostawca_importer "
                     + "WHERE NAZWA = '"+dostawca+"'";
-            ResultSet rs = Polaczenie.getData(supplierIdQuery);
+            ResultSet rs = Connect.getData(supplierIdQuery);
             rs.next();
             String supplierID = rs.getString("dostawca_importer_id");
             String query = "insert into produkt_temp(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,dostawca_importer_id,kraj_pochodzenia) "
                     + "VALUES(\"" + nazwaTowaru + "\", \"" + cena + "\",\"" + data + "\",\"" + ilosc + "\",\"" + pozycja + "\",\"" + supplierID + "\",\"" + kraj + "\")";
-            Polaczenie.update(query);
+            Connect.update(query);
             
         }
     }    
@@ -151,7 +151,7 @@ public class InController implements Initializable {
         inOriginColumn.setCellValueFactory(cellData -> cellData.getValue().inOriginProperty());
         
         try {
-            Polaczenie con = new Polaczenie();
+            Connect con = new Connect();
             String query = "Select distinct nazwa from dostawca_importer";
             String query2 = "SELECT COUNT(distinct nazwa) FROM dostawca_importer";
             ResultSet pomrs = con.getData(query2);

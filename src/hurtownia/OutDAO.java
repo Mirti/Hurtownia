@@ -33,7 +33,7 @@ public class OutDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsOut = Polaczenie.getData(selectStmt);
+            ResultSet rsOut = Connect.getData(selectStmt);
  
             //Send ResultSet to the getContractorList method and get Contractor object
             ObservableList<Out> OutList = getOutList(rsOut);
@@ -64,7 +64,7 @@ public class OutDAO {
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsOut = Polaczenie.getData(selectStmt);
+            ResultSet rsOut = Connect.getData(selectStmt);
  
             //Send ResultSet to the getContractorList method and get Contractor object
             ObservableList<Out> OutList = getOutList(rsOut);

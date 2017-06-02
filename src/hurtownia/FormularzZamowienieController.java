@@ -187,7 +187,7 @@ public class FormularzZamowienieController implements Initializable {
             String uwagi_zam = uwagi.getText();
             String nowe = "Nowe";
             System.out.print(klientid);
-            String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\"" + klientid + "\",1,\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe + "\")";
+            String tworzZam = "insert into zamowienie(klient_id,uzytkownik_id,uwagi,wartosc,stan) VALUES(\"" + klientid + "\","+Polaczenie.getCurrentUser()[0]+",\"" + uwagi_zam + "\", \"" + cenaZamowienia + "\",\"" + nowe + "\")";
             Polaczenie con = new Polaczenie();
             con.update(tworzZam);
 //wykonanie dodawania do bazy

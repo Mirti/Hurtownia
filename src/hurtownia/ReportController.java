@@ -163,30 +163,35 @@ public class ReportController implements Initializable {
      */
     @FXML
     private void createReport() throws SQLException, IOException {
-        String[] dates = getDates();
-        if (reportSelect.getValue().equals("Raport dat ważności")) {
-            ResultSet rs = Polaczenie.getData("SELECT p.nazwa,p.data_waznosci,p.ilosc,di.nazwa FROM"
-                    + " produkt p, dostawca_importer di WHERE "
-                    + "p.dostawca_importer_id = di.dostawca_importer_id AND "
-                    + "data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "' ORDER BY data_waznosci ASC");
+        try {
+            String[] dates = getDates();
+            if (reportSelect.getValue().equals("Raport dat ważności")) {
+                ResultSet rs = Polaczenie.getData("SELECT p.nazwa,p.data_waznosci,p.ilosc,di.nazwa FROM"
+                        + " produkt p, dostawca_importer di WHERE "
+                        + "p.dostawca_importer_id = di.dostawca_importer_id AND "
+                        + "data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "' ORDER BY data_waznosci ASC");
 
-            ExpDateCreate edc = new ExpDateCreate(Polaczenie.getCurrentUser(),rs);
-            edc.create();      
-            ReportDAO.addReportToDB("Daty waznosci", dates[2], Polaczenie.getCurrentUser()[0],
-                    "reports\\\\" + "RaportWaznosci" + dates[2] + ".pdf");
+                ExpDateCreate edc = new ExpDateCreate(Polaczenie.getCurrentUser(), rs);
+                edc.create();
+                ReportDAO.addReportToDB("Daty waznosci", dates[2], Polaczenie.getCurrentUser()[0],
+                        "reports\\\\" + "RaportWaznosci" + dates[2] + ".pdf");
+            }
 
+            if (reportSelect.getValue().equals("Raport przyjęć")) {
+                ResultSet rs = Polaczenie.getData("SELECT * FROM produkt_temp pt, przyjecie p, dostawca_importer di WHERE  "
+                        + "pt.data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "'"
+                        + "AND di.dostawca_importer_id = pt.dostawca_importer_id "
+                        + "AND pt.przyjecie_id=p.przyjecie_id"
+                        + " ORDER BY p.data_przyjecia ASC");
+                InCreate ic = new InCreate(dates, Polaczenie.getCurrentUser(), rs);
+                ic.create();
+                ReportDAO.addReportToDB("Raport Przyjecia", dates[2], Polaczenie.getCurrentUser()[0],
+                        "reports\\\\" + "RaportPrzyjecia" + dates[2] + ".pdf");
+            }
+        } catch(Exception e){
+            
         }
-        if (reportSelect.getValue().equals("Raport przyjęć")) {
-            ResultSet rs =Polaczenie.getData("SELECT * FROM produkt_temp pt, przyjecie p, dostawca_importer di WHERE  "
-                    + "pt.data_waznosci BETWEEN '" + dates[0] + "' AND '" + dates[1] + "'"
-                    + "AND di.dostawca_importer_id = pt.dostawca_importer_id "
-                    + "AND pt.przyjecie_id=p.przyjecie_id"
-                    + " ORDER BY p.data_przyjecia ASC");
-            InCreate ic = new InCreate(dates,Polaczenie.getCurrentUser(),rs);
-            ic.create();
-            ReportDAO.addReportToDB("Raport Przyjecia", dates[2], Polaczenie.getCurrentUser()[0],
-                    "reports\\\\" + "RaportPrzyjecia" + dates[2] + ".pdf");
-        }
+
     }
 
     /**

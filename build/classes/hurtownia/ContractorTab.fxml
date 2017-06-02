@@ -20,7 +20,7 @@
       </TableView>
       <Button layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#openSupplierForm" prefHeight="40.0" prefWidth="83.0" text="Dodaj" />
       <Button layoutX="106.0" layoutY="22.0" mnemonicParsing="false" onAction="#openSupplierForm2" prefHeight="40.0" prefWidth="83.0" text="Edytuj" />
-      <Button layoutX="199.0" layoutY="22.0" mnemonicParsing="false" onAction="#openPotwierdzenieUsuwaniaKontrahenta" prefHeight="40.0" prefWidth="83.0" text="Usuń" />
+      <Button layoutX="199.0" layoutY="22.0" mnemonicParsing="false" onAction="#openSupplierDeleteConfirm" prefHeight="40.0" prefWidth="83.0" text="Usuń" />
       <Button layoutX="668.0" layoutY="22.0" mnemonicParsing="false" onAction="#searchContractor" prefHeight="40.0" prefWidth="112.0" text="Pokaż wszystkie" />
    </children>   
 </AnchorPane>

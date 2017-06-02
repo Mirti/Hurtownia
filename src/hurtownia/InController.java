@@ -128,7 +128,6 @@ public class InController implements Initializable {
             String supplierID = rs.getString("dostawca_importer_id");
             String query = "insert into produkt_temp(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,dostawca_importer_id,kraj_pochodzenia) "
                     + "VALUES(\"" + nazwaTowaru + "\", \"" + cena + "\",\"" + data + "\",\"" + ilosc + "\",\"" + pozycja + "\",\"" + supplierID + "\",\"" + kraj + "\")";
-            System.out.print(query);
             Polaczenie.update(query);
             
         }

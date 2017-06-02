@@ -11,17 +11,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ * Class for provide connection between controller and database
  *
  * @author Jon
  */
 public class InDAO {
-   //*******************************
-    //SELECT Cargos
-    //*******************************
+    
+    /**
+     * Method for returning list of In objects from database
+     * 
+     * @return List with In object from database
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problems with other class
+     */
     public static ObservableList<In> searchIn () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT nazwa, cena_jednostkowa, data_waznosci, ilosc, polozenie, dostawca, kraj_pochodzenia FROM `produkt_temp`";
- 
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
@@ -39,7 +44,14 @@ public class InDAO {
         }
     }
  
-    //Select * from Cargos operation
+    /**
+     * Method for returning list of In object from raw ResultSet
+     * 
+     * @param rs - ResultSet from database
+     * @return - List of In objects
+     * @throws SQLException - When occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using another class
+     */
     private static ObservableList<In> getInList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Cargo objects
         ObservableList<In> inList = FXCollections.observableArrayList();

@@ -24,13 +24,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class to provide method to OutTab
  *
  * @author Jon
  */
 public class OutController implements Initializable {
 
-   @FXML
+    @FXML
     private TableColumn<Out, String> outCustomerColumn;
     @FXML
     private TableColumn<Out, String> outUserColumn;
@@ -41,9 +41,20 @@ public class OutController implements Initializable {
     @FXML
     private static int selectedOutId;
     
+    /**
+     * 
+     * @return ID of order selected in table
+     */
     public static int getSelectedOutId(){
         return selectedOutId;
     }
+    
+    /**
+     * Method to set values to table headers and set ID's to all row in table
+     * 
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         outCustomerColumn.setCellValueFactory(cellData -> cellData.getValue().outCustomerProperty());
@@ -62,6 +73,11 @@ public class OutController implements Initializable {
         });
         outTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
+    /**
+     * Handle double click on row and open window with details of order
+     * 
+     * @param click - Click with mouse
+     */
     @Override
     public void handle(MouseEvent click) {
 
@@ -81,8 +97,14 @@ public class OutController implements Initializable {
     });
     } 
     
+    /**
+     * Method to getting data form database and show it in table
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with OutDAO class
+     */
     @FXML
-    private void searchOut(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchOut() throws SQLException, ClassNotFoundException {
         try {
             //Get all Contractorsinformation
             ObservableList<Out> OutData = OutDAO.searchNewOut();
@@ -94,14 +116,24 @@ public class OutController implements Initializable {
         }
     }
         
+    /**
+     * Method to show values in table
+     * 
+     * @param rptData - List of objects to show in table
+     */
     @FXML
-    private void populateOut (ObservableList<Out> rptData) throws ClassNotFoundException {
+    private void populateOut (ObservableList<Out> rptData) {
         //Set items to the ContractorTable
         outTable.setItems(rptData);
     }  
     
-         @FXML  
-    public void openOrderWindow(ActionEvent event) throws Exception {               
+    /**
+     * Method to open OrderWindow.fxml
+     * 
+     * @throws Exception - To show information about unexpected error
+     */
+    @FXML  
+    public void openOrderWindow() throws Exception {               
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();

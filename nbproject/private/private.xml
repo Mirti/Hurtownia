@@ -3,11 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/ContractorTab.fxml</file>
-            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/InController.java</file>
-            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/ContractorController.java</file>
-            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/SupplierController.java</file>
-            <file>file:/C:/Users/cmptr/Documents/NetBeansProjects/Hurtownia/src/hurtownia/SupplierForm.fxml</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/Out.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/UserAddController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/UserController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OutController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/In.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OrderDetails.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/ReportController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OrderWindowController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/SupplierController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/LoginWindowController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OrderController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/ZamowienieDataModel.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/UserDAO.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/User.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OrderDetailsDAO.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/OutDAO.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/FormularzZamowienieController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/Report.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/UserDeleteController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/UserUpdateController.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/ScriptRunner.java</file>
+            <file>file:/C:/Hurtownia/src/hurtownia/ReportDAO.java</file>
         </group>
     </open-files>
 </project-private>

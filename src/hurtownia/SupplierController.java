@@ -17,14 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
- * FXML Controller class
+ * FXML Controller class to provide method to SupplierForm
  *
  * @author Jon
  */
 public class SupplierController implements Initializable {
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -47,7 +47,13 @@ public class SupplierController implements Initializable {
     @FXML
     private Button Ok;
     
-    @FXML private void dodawanie(ActionEvent event) throws IOException, SQLException {
+    /**
+     * Method to add supplier to database
+     * 
+     * @throws IOException
+     * @throws SQLException 
+     */
+    @FXML private void dodawanie() throws IOException, SQLException {
         
         String nazwa = CName.getText();
         String adres = CAdress.getText();

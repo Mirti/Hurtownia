@@ -25,40 +25,48 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class to provide method to delete user
  *
  * @author Jon
  */
 public class UserDeleteController implements Initializable {
 
-    @FXML private Button closeButton;
-    @FXML private Button updateButton;
-    @FXML private Text alertText;
-    
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button updateButton;
+    @FXML
+    private Text alertText;
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {      
-            
-    } 
-        @FXML
-    private void deleteUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
+    /**
+     * Method to delete user from database
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using another class
+     */
+    @FXML
+    private void deleteUser() throws SQLException, ClassNotFoundException {
         try {
             UserDAO.deleteUserWithId(UserController.getSelectedUserId());
             Stage stage = (Stage) updateButton.getScene().getWindow();
-            stage.close();           
-            //resultArea.setText("");
+            stage.close();
         } catch (SQLException e) {
-            //resultArea.setText(" " + e);
             throw e;
         }
     }
 
-
+    /**
+     * Method to close window after clicking button
+     */
     @FXML
-    private void closeButtonAction(){
+    private void closeButtonAction() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-  
-    }
-    
 
+}

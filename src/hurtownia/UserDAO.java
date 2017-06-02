@@ -11,14 +11,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ * Method to provide connection between controller and database
  *
  * @author Jon
  */
 public class UserDAO {
 
-    //*******************************
-    //SELECT Contractor
-    //*******************************
+    /**
+     * Method to get records about users from database
+     *
+     * @return - List with user objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using
+     * another class
+     */
     public static ObservableList<User> searchUser() throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM uzytkownik";
@@ -40,7 +46,15 @@ public class UserDAO {
         }
     }
 
-    //Select * from Contractor operation
+    /**
+     * Method to returning list of object from raw ResultSet
+     *
+     * @param rs - ResultSet from database
+     * @return - List of user objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using
+     * another class
+     */
     private static ObservableList<User> getUserList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Contractor objects
         ObservableList<User> usrList = FXCollections.observableArrayList();
@@ -61,6 +75,20 @@ public class UserDAO {
         return usrList;
     }
 
+    /**
+     * Method to update user information in database
+     *
+     * @param userId - ID of user
+     * @param userFirstName - First name of user
+     * @param userLastName - Last name of user
+     * @param userPermission - Permission of user
+     * @param userLogin - Login of user
+     * @param userPassword - Password of user
+     * @param userComment - Comment to user
+     * @throws SQLException - Throw when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using
+     * another class
+     */
     public static void updateUser(int userId, String userFirstName, String userLastName, String userPermission, String userLogin, String userPassword, String userComment) throws SQLException, ClassNotFoundException {
         //Declare a UPDATE statement
         String updateStmt
@@ -77,10 +105,13 @@ public class UserDAO {
         }
     }
 
-    //*************************************
-    //DELETE an user
-    //*************************************
-    public static void deleteUserWithId(int userId) throws SQLException, ClassNotFoundException {
+    /**
+     * Method to delete user from database
+     *
+     * @param userId - ID of user to delete
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
+    public static void deleteUserWithId(int userId) throws SQLException {
         //Declare a DELETE statement
         String updateStmt
                 = "   DELETE FROM uzytkownik\n"
@@ -95,10 +126,18 @@ public class UserDAO {
         }
 
     }
-          public static ResultSet getUserData(int userID) throws SQLException{
-              String query = "SELECT * FROM uzytkownik WHERE uzytkownik_id=" + userID+"" ;
-              ResultSet rs = Polaczenie.getData(query);
-              System.out.print(rs.next()); //do sprawdzenia
-              return rs;
-          }
+
+    /**
+     * Method to getting data about concrete user
+     * 
+     * @param userID - ID of user to getting data
+     * @return - ResultSet with information about user
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
+    public static ResultSet getUserData(int userID) throws SQLException {
+        String query = "SELECT * FROM uzytkownik WHERE uzytkownik_id=" + userID + "";
+        ResultSet rs = Polaczenie.getData(query);
+        System.out.print(rs.next()); 
+        return rs;
+    }
 }

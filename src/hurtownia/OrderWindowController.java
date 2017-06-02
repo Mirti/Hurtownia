@@ -21,9 +21,9 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
- * @author Mirti
+ * 
+ * 
+ * FXML Controller class to provide method for OrderWindow
  */
 public class OrderWindowController implements Initializable {
 
@@ -44,6 +44,12 @@ public class OrderWindowController implements Initializable {
 
     private int orderDetailId = OutController.getSelectedOutId();
 
+    /**
+     * Method to set value on table headers
+     * 
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         orderDetailsNameColumn.setCellValueFactory(cellData -> cellData.getValue().orderDetailsNameProperty());
@@ -53,8 +59,14 @@ public class OrderWindowController implements Initializable {
         lblOrderId.setText("Zamówienie: #" + orderDetailId);
     }
 
+    /**
+     * Method to get data about Order Details from database
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with OrderDetailsDAO class
+     */
     @FXML
-    private void searchOrderDetails(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchOrderDetails() throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
             ObservableList<OrderDetails> ordData = OrderDetailsDAO.searchOrderDetails(orderDetailId);
@@ -66,12 +78,22 @@ public class OrderWindowController implements Initializable {
         }
     }
 
+    /**
+     * Method to show data in table
+     * @param ordData - List of data to show in talbe
+     */
     @FXML
-    private void populateOrderDetails(ObservableList<OrderDetails> ordData) throws ClassNotFoundException {
+    private void populateOrderDetails(ObservableList<OrderDetails> ordData) {
         //Set items to the employeeTable
         orderDetailsTable.setItems(ordData);
     }
 
+    /**
+     * Method to invoke method to confirm release of product in database
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using OrderDetailsDAO
+     */
     @FXML
     private void confirmRelease() throws SQLException, ClassNotFoundException {
         OrderDetailsDAO.confirmRelease(orderDetailId);
@@ -79,6 +101,9 @@ public class OrderWindowController implements Initializable {
         stage.close();
     }
     
+    /**
+     * Method to invoke method to report problem with order
+     */
     @FXML
     private void reportProblem() {
         String comments = taComments.getText();

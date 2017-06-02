@@ -11,14 +11,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
+ * Class to provide connection between controller and database
+ * 
  * @author Jon
  */
 public class OutDAO {
      
-    //*******************************
-    //SELECT Contractor
-    //*******************************
+    /**
+     * Method to get records about orders from database
+     * 
+     * @return List of objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throw when occurs problem with using another class
+     */
     public static ObservableList<Out> searchOut () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
@@ -42,6 +47,13 @@ public class OutDAO {
         }
     }
     
+    /**
+     * Method to get data about order with "New" state
+     * 
+     * @return List of objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with another class
+     */
      public static ObservableList<Out> searchNewOut () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT z.zamowienie_id,k.nazwa,u.nazwisko,z.uwagi"
@@ -67,6 +79,14 @@ public class OutDAO {
     }
     
  
+     /**
+      * Method to return list of object from raw ResultSet
+      * 
+      * @param rs - ResultSet from database
+      * @return - List of objects
+      * @throws SQLException - Throws when occurs problem with SQL query
+      * @throws ClassNotFoundException - Throws when occurs problem with using another class
+      */
     //Select * from Contractor operation
     private static ObservableList<Out> getOutList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Contractor objects

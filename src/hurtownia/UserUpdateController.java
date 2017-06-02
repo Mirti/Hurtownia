@@ -28,9 +28,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class to provide method to update user
  *
- * 
  */
 public class UserUpdateController implements Initializable {
 
@@ -49,6 +48,11 @@ public class UserUpdateController implements Initializable {
     @FXML    
     private Text alertText;
     
+    /**
+     * Method to show previous user details in window
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String userName;
@@ -76,13 +80,18 @@ public class UserUpdateController implements Initializable {
             userCommentText.setText(userComments);
             
         } catch (SQLException ex) {
-            System.out.print("na ten błąd nie patrzcie, on jest do dodawania do formualrza");
            // Logger.getLogger(UserUpdateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
     
+    /**
+     * Method to update information about user in database
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using another class
+     */
     @FXML    
-    private void updateUser(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void updateUser() throws SQLException, ClassNotFoundException {
         try {
             if (userFirstNameText.equals("") || userLastNameText.equals("") || userLoginText.equals("") || userPasswordText.equals("") || userPasswordText.equals("")) {
                 alertText.setText("Wypełnij wymagane pola!");

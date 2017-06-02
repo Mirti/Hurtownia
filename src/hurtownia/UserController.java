@@ -23,11 +23,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class to provide methods for user management
  *
  * @author Jon, Kinga
  */
 public class UserController implements Initializable {
+
     @FXML
     private TextField userFirstNameText;
     @FXML
@@ -43,27 +44,43 @@ public class UserController implements Initializable {
     @FXML
     private TableColumn<User, String> usrPermissionsColumn;
     @FXML
-    private TableColumn<User, String> usrLoginColumn;   
+    private TableColumn<User, String> usrLoginColumn;
     @FXML
-    private TableColumn<User, String> usrCommentColumn;          
+    private TableColumn<User, String> usrCommentColumn;
     @FXML
     private TableView userTable;
     @FXML
     private static int selectedUserId;
-    
-    public static int getSelectedUserId(){
+
+    /**
+     *
+     * @return ID of selected in table user
+     */
+    public static int getSelectedUserId() {
         return selectedUserId;
     }
 
+    /**
+     * Method to set values to table headers
+     *
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usrFirstNameColumn.setCellValueFactory(cellData -> cellData.getValue().UserFirstNameProperty());
         usrLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().UserLastNameProperty());
         usrPermissionsColumn.setCellValueFactory(cellData -> cellData.getValue().UserPermissionsProperty());
         usrLoginColumn.setCellValueFactory(cellData -> cellData.getValue().UserLoginProperty());
-        usrCommentColumn.setCellValueFactory(cellData -> cellData.getValue().UserCommentProperty());        
-        
-                userTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<User>() {
+        usrCommentColumn.setCellValueFactory(cellData -> cellData.getValue().UserCommentProperty());
+
+        userTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<User>() {
+
+            /**
+             * Add ID to every row and get it on click
+             *
+             * @param c - Listener
+             */
             public void onChanged(ListChangeListener.Change<? extends User> c) {
 
                 for (User u : c.getList()) {
@@ -72,68 +89,95 @@ public class UserController implements Initializable {
 
             }
         });
-    } 
-    
+    }
+
+    /**
+     * Get data about users and show it on table
+     *
+     * @throws SQLException - Throws when occurs error with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using
+     * another class
+     */
     @FXML
-    private void searchUser(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchUser() throws SQLException, ClassNotFoundException {
         try {
             //Get all Contractorsinformation
             ObservableList<User> UserData = UserDAO.searchUser();
             //Populate Contractors on TableView
             populateUser(UserData);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error occurred while getting Contractors information from DB.\n" + e);
             throw e;
         }
     }
-        
+
+    /**
+     * Method to show items in table
+     * 
+     * @param usrData - List of objects to show in table
+     * @throws ClassNotFoundException 
+     */
     @FXML
-    private void populateUser (ObservableList<User> usrData) throws ClassNotFoundException {
+    private void populateUser(ObservableList<User> usrData) {
         //Set items to the ContractorTable
         userTable.setItems(usrData);
     }
-    
-    @FXML  
-    public void openEdycjaDodawanieUsera(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaDodawanieUsera.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }
-    @FXML  
-    public void openUserUpdate(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserUpdateForm.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }    
-    @FXML   
-   public void openPotwierdzenieUsuwaniaUsera(ActionEvent event) throws Exception {               
-        try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PotwierdzenieUsuwaniaUsera.fxml"));
-                Parent root2 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root2));  
-                stage.showAndWait();
-                
-        } catch(Exception e) {
-           e.printStackTrace();
-          }
-    }
-   
-  
-    }
-    
 
+    /**
+     * Method to show window with adding user possibility
+     * 
+     * @throws Exception - Throws when occurs unexpected error
+     */
+    @FXML
+    public void openEdycjaDodawanieUsera() throws Exception {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EdycjaDodawanieUsera.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method to show window with editing user possibility
+     * 
+     * @throws Exception - Throws when occurs unexpected error
+     */
+    @FXML
+    public void openUserUpdate() throws Exception {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserUpdateForm.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method to show window with user delete confirmation
+     * 
+     * @throws Exception 
+     */
+    @FXML
+    public void openPotwierdzenieUsuwaniaUsera() throws Exception {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PotwierdzenieUsuwaniaUsera.fxml"));
+            Parent root2 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root2));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}

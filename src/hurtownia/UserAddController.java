@@ -17,7 +17,8 @@ import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
-/**
+/*
+ * Class to provide mehtod to add user
  *
  * @author nykie_000
  */
@@ -40,8 +41,13 @@ public class UserAddController {
     @FXML
     private Text txt;
 
+    /**
+     * Method to add new user to database
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     */
     @FXML
-    protected void dodawanie(ActionEvent event) throws IOException, SQLException {
+    protected void dodawanie() throws SQLException {
 
                 String login = ULog.getText();
                 String pass = UPass.getText();

@@ -13,14 +13,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
+ * Class for provide connection between controller and database
  *
  * @author Jon
  */
 public class OrderDetailsDAO {
-    //*******************************
-    //SELECT Cargos
-    //*******************************
-
+    
+    /**
+     * Method for select data about Order Details from database
+     * 
+     * @param id - ID of Order Details to select data
+     * @return - List of products from select statement
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using other class
+     */
     public static ObservableList<OrderDetails> searchOrderDetails(int id) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT pz.produkt_zamowienie_id,p.nazwa,pz.ilosc,p.data_waznosci,z.uwagi from produkt p,produkt_zamowienie pz,zamowienie z where pz.produkt_id = p.produkt_id and pz.zamowienie_id = z.zamowienie_id and z.zamowienie_id =" + id;
@@ -42,7 +48,14 @@ public class OrderDetailsDAO {
         }
     }
 
-    //Select * from Cargos operation
+    /**
+     * Method to return List of objects from row ResultSet
+     * 
+     * @param rs - ResultSet to get data from
+     * @return - List of Order objects
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using another class
+     */
     private static ObservableList<OrderDetails> getOrderDetailsList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Cargo objects
         ObservableList<OrderDetails> ordList = FXCollections.observableArrayList();
@@ -61,6 +74,11 @@ public class OrderDetailsDAO {
         return ordList;
     }
 
+    /**
+     * Method to confirm release orders
+     * 
+     * @param orderId - ID of order to release
+     */
     public static void confirmRelease(int orderId) {
         String statement = "UPDATE zamowienie SET stan = 'Wykonane' WHERE zamowienie_id=" + orderId;
         try {
@@ -70,6 +88,12 @@ public class OrderDetailsDAO {
         }
     }
 
+    /**
+     * Method to report problem with order
+     * 
+     * @param orderId - ID of order to report
+     * @param comments - comments to order
+     */
     public static void reportProblem(int orderId, String comments) {
         String statement = "UPDATE zamowienie SET stan = 'Uwagi', uwagi='" + comments + "' "
                 + "WHERE zamowienie_id=" + orderId;

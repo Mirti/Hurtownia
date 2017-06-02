@@ -21,7 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class for OrderWindow.fxml
  *
  * @author Jon
  */
@@ -36,6 +36,12 @@ public class OrderController implements Initializable {
     @FXML
     private TableView orderTable;   
 
+    /**
+     * Method to set values to table headers
+     * 
+     * @param url - unused
+     * @param rb - unused
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         orderCustomerColumn.setCellValueFactory(cellData -> cellData.getValue().outCustomerProperty());
@@ -43,8 +49,14 @@ public class OrderController implements Initializable {
         orderCommentColumn.setCellValueFactory(cellData -> cellData.getValue().outCommentProperty());
     } 
     
+    /**
+     * Method to take data from database and show it's values in table
+     * 
+     * @throws SQLException - Throws when occurs problem with SQL query
+     * @throws ClassNotFoundException - Throws when occurs problem with using OutDAO class
+     */
     @FXML
-    private void searchOrder(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void searchOrder() throws SQLException, ClassNotFoundException {
         try {
             //Get all Contractorsinformation
             ObservableList<Out> OutData = OutDAO.searchOut();
@@ -55,15 +67,25 @@ public class OrderController implements Initializable {
             throw e;
         }
     }
-        
+    
+    /**
+     * Method to set values from list in parametres into table
+     * 
+     * @param rptData - List of objects to show into table
+     */
     @FXML
-    private void populateOrder (ObservableList<Out> rptData) throws ClassNotFoundException {
+    private void populateOrder (ObservableList<Out> rptData) {
         //Set items to the ContractorTable
         orderTable.setItems(rptData);
     }  
     
+    /**
+     * Method to open FXML file with order formular
+     * 
+     * @throws Exception - Throws when occurs unexpected problem
+     */
      @FXML  
-    public void openFormularzZamowien(ActionEvent event) throws Exception {               
+    public void openFormularzZamowien() throws Exception {               
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FormularzZamowienie.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();

@@ -30,91 +30,170 @@ public class User {
         this.userPassword =  new SimpleStringProperty();   
         this.userComment =  new SimpleStringProperty();           
     }
-        //Contractor Id
+        /**
+         * 
+         * @return User ID
+         */
         public int getUserId(){
             return userId.get();
         }
         
+        /**
+         * Set user ID
+         * @param UserId 
+         */
         public void setUserId(int UserId){
             this.userId.set(UserId);            
         }
         
+        /**
+         * 
+         * @return User ID for table
+         */
         public IntegerProperty UserIdProperty(){
             return userId;
         }
         
-        //Contractor Name
+        /**
+         * 
+         * @return User first name
+         */
         public String getUserFirstName(){
             return userFirstName.get();
         }
         
+        /**
+         * Set user first name
+         * @param UserFirstName 
+         */
         public void setUserFirstName(String UserFirstName){
             this.userFirstName.set(UserFirstName);            
         }
         
+        /**
+         * 
+         * @return User first name for table
+         */
         public StringProperty UserFirstNameProperty(){
             return userFirstName;
         } 
         
-        //Contractor Type
+        /**
+         * 
+         * @return User last name
+         */
         public String getUserLastName(){
             return userLastName.get();
         }
         
+        /**
+         * Set user last name
+         * @param UserLastName 
+         */
         public void setUserLastName(String UserLastName){
             this.userLastName.set(UserLastName);            
         }
         
+        /**
+         * 
+         * @return jser last name for table
+         */
         public StringProperty UserLastNameProperty(){
             return userLastName;
         }
         
-        //Contractor Owner
+        /**
+         * 
+         * @return User permission
+         */
         public String getUserPermissions(){
             return userPermissions.get();
         }
         
+        /**
+         * Set user permission
+         * @param UserPermissions 
+         */
         public void setUserPermissions(String UserPermissions){
             this.userPermissions.set(UserPermissions);            
         }
         
+        /**
+         * 
+         * @return User permission for table
+         */
         public StringProperty UserPermissionsProperty(){
             return userPermissions;
         }
         
-        //Contractor Adress
+        /**
+         * 
+         * @return User login
+         */
         public String getUserLogin(){
             return userLogin.get();
         }
         
+        /**
+         * Set user login
+         * @param UserLogin 
+         */
         public void setUserLogin(String UserLogin){
             this.userLogin.set(UserLogin);            
         }
         
+        /**
+         * 
+         * @return user login for table
+         */
         public StringProperty UserLoginProperty(){
             return userLogin;
         } 
-        //Contractor Adress
+        
+        /**
+         * 
+         * @return User password
+         */
         public String getUserPassword(){
             return userPassword.get();
         }
         
+        /**
+         * Set user password
+         * @param UserPassword 
+         */
         public void setUserPassword(String UserPassword){
             this.userPassword.set(UserPassword);            
         }
         
+        /**
+         * 
+         * @return User password for table
+         */
         public StringProperty UserPasswordProperty(){
             return userPassword;
         } 
-        //Contractor Adress
+        
+        /**
+         * 
+         * @return User comment
+         */
         public String getUserComment(){
             return userComment.get();
         }
         
+        /**
+         * Set user comment
+         * @param UserComment 
+         */
         public void setUserComment(String UserComment){
             this.userComment.set(UserComment);            
         }
         
+        /**
+         * 
+         * @return user comment for table
+         */
         public StringProperty UserCommentProperty(){
             return userComment;
         }         

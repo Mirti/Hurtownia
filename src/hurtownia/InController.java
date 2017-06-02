@@ -116,15 +116,20 @@ public class InController implements Initializable {
         String pozycja = Position.getText();
         String kraj = Country.getText();
         String dodaj = Add.getText();
-        Polaczenie con = new Polaczenie();
                 
         if(nazwaTowaru.equals("")||(dostawca.equals(""))||(ilosc.equals(""))||(cena.equals(""))||(pozycja.equals(""))||(kraj.equals(""))||(data.equals("")))
         {txt.setText("Wypełnij wymagane pola!");}
         else
         {
-            String query = "insert into produkt_temp(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,dostawca,kraj_pochodzenia) "
-                    + "VALUES(\"" + nazwaTowaru + "\", \"" + cena + "\",\"" + data + "\",\"" + ilosc + "\",\"" + pozycja + "\",\"" + dostawca + "\",\"" + kraj + "\")";
-            con.update(query);
+            String supplierIdQuery = "SELECT dostawca_importer_id FROM dostawca_importer "
+                    + "WHERE NAZWA = '"+dostawca+"'";
+            ResultSet rs = Polaczenie.getData(supplierIdQuery);
+            rs.next();
+            String supplierID = rs.getString("dostawca_importer_id");
+            String query = "insert into produkt_temp(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,dostawca_importer_id,kraj_pochodzenia) "
+                    + "VALUES(\"" + nazwaTowaru + "\", \"" + cena + "\",\"" + data + "\",\"" + ilosc + "\",\"" + pozycja + "\",\"" + supplierID + "\",\"" + kraj + "\")";
+            System.out.print(query);
+            Polaczenie.update(query);
             
         }
     }    

@@ -26,7 +26,9 @@ public class InDAO {
      */
     public static ObservableList<In> searchIn () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT nazwa, cena_jednostkowa, data_waznosci, ilosc, polozenie, dostawca, kraj_pochodzenia FROM `produkt_temp`";
+        String selectStmt = "SELECT pt.nazwa, pt.cena_jednostkowa, pt.data_waznosci, pt.ilosc, pt.polozenie, d.nazwa, pt.kraj_pochodzenia"
+                + " FROM produkt_temp pt, dostawca_importer d"
+                + " WHERE pt.dostawca_importer_id=d.dostawca_importer_id";
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
@@ -58,13 +60,13 @@ public class InDAO {
  
         while (rs.next()) {
             In in = new In();
-            in.setInName(rs.getString("nazwa"));
-            in.setInPrice(rs.getString("cena_jednostkowa"));
-            in.setInDate(rs.getDate("data_waznosci"));
-            in.setInQuantity(rs.getInt("ilosc"));
-            in.setInPosition(rs.getString("polozenie"));
-            in.setInProvider(rs.getString("dostawca"));
-            in.setInOrigin(rs.getString("kraj_pochodzenia"));
+            in.setInName(rs.getString("pt.nazwa"));
+            in.setInPrice(rs.getString("pt.cena_jednostkowa"));
+            in.setInDate(rs.getDate("pt.data_waznosci"));
+            in.setInQuantity(rs.getInt("pt.ilosc"));
+            in.setInPosition(rs.getString("pt.polozenie"));
+            in.setInProvider(rs.getString("d.nazwa"));
+            in.setInOrigin(rs.getString("pt.kraj_pochodzenia"));
             //Add Cargo to the ObservableList
             inList.add(in);
         }

@@ -97,9 +97,10 @@ public class InDAO {
         Date data_przyjecia = rs.getDate("data_przyjecia");
         
         String insertQuery = "INSERT INTO produkt(nazwa,cena_jednostkowa,data_waznosci,ilosc,polozenie,"
-                + "dostawca_importer_id,kraj_pochodzenia,data_przyjecia) "
+                + "kraj_pochodzenia,dostawca_importer_id,data_przyjecia) "
                 + "VALUES('"+nazwa+"',"+cena_jednostkowa+",'"+data_waznosci+"',"+ilosc+",'"+polozenie+"',"
                 + "'"+kraj_pochodzenia+"',"+dostawca_importer_id+",'"+data_przyjecia+"')";
+        System.out.print(insertQuery);
         Connect.update(insertQuery);
         
         deleteProduct(id);

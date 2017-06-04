@@ -35,14 +35,23 @@ public class OrderController implements Initializable {
     @FXML
     private TableColumn<Out, String> orderUserColumn;
     @FXML
-    private TableColumn<Out, String> orderCommentColumn;      
+    private TableColumn<Out, String> orderCommentColumn;
+    @FXML
+    private TableColumn<Out,String> orderValueColumn;
     @FXML
     private TableView orderTable;  
     @FXML
     private static int selectedOrderId;
     
-    public static int getselectedOrderId() {
+    public static int getSelectedOrderId() {
         return selectedOrderId;
+    }
+    
+     /**
+     * Method to clear selected value ID
+     */
+    public static void clearID(){
+        selectedOrderId =0;
     }
     
 
@@ -57,7 +66,7 @@ public class OrderController implements Initializable {
         orderCustomerColumn.setCellValueFactory(cellData -> cellData.getValue().outCustomerProperty());
         orderUserColumn.setCellValueFactory(cellData -> cellData.getValue().outUserProperty());
         orderCommentColumn.setCellValueFactory(cellData -> cellData.getValue().outCommentProperty());
-        
+        orderValueColumn.setCellValueFactory(cellData -> cellData.getValue().outValueProperty());        
         orderTable.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<Out>() {
             public void onChanged(ListChangeListener.Change<? extends Out> c) {
 
@@ -79,6 +88,7 @@ public class OrderController implements Initializable {
 
         if (click.getClickCount() == 2) {
         try {
+            OutController.clearID();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();

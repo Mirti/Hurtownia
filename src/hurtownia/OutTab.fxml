@@ -17,7 +17,7 @@
                           <TableColumn fx:id="outCustomerColumn" prefWidth="192.0" text="Klient" />
                           <TableColumn fx:id="outValueColumn" prefWidth="130.0" text="Wartość zamówienia" />
                           <TableColumn fx:id="outUserColumn" minWidth="0.0" prefWidth="103.0" text="Przyjmujący" />
-                          <TableColumn fx:id="outCommentColumn" prefWidth="176.0" text="Uwagi" />
+                          <TableColumn fx:id="outCommentColumn" prefWidth="354.0" text="Uwagi" />
                       </columns>
                   </TableView>
        </content>

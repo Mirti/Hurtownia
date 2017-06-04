@@ -68,8 +68,45 @@ public class FXMLDocumentController implements Initializable {
                 userNameField.setText(Connect.getCurrentUser()[1]+" "+Connect.getCurrentUser()[2]);
                 break;
         }
+       
+            
+        }
+    
+    /**
+     * Application closing method
+     */
+    @FXML
+    protected void closeWindow(){
+        System.exit(0);
         
-
+    }
+    
+    /**
+     * Method to show authors
+     */
+    @FXML
+    protected void authors(){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Autorzy");
+                    alert.setHeaderText("Autorzy:");
+                    alert.setContentText("Kinga Panek \n"
+                            + "Rafał Kałużny \n"
+                            + "Artur Nykiel \n"
+                            + "Marcin Mytych");
+                    alert.showAndWait();
+    }
+    
+    /**
+     * Method to show help
+     */
+    @FXML
+    protected void help(){
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ostrzeżenie");
+                    alert.setHeaderText(null);
+                    alert.setContentText("W przypadku problemów zapoznaj się z podręcznikiem użytkownika \n"
+                            + "W przypadku awarii lub problemów z programem skontaktuj się z administatorem");
+                    alert.showAndWait();
     }
 
 }

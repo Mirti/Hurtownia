@@ -52,6 +52,13 @@ public class OutController implements Initializable {
     }
     
     /**
+     * Method to clear selected value ID
+     */
+    public static void clearID(){
+        selectedOutId =0;
+    }
+    
+    /**
      * Method to set values to table headers and set ID's to all row in table
      * 
      * @param url - unused
@@ -86,6 +93,7 @@ public class OutController implements Initializable {
 
         if (click.getClickCount() == 2) {
         try {
+            OrderController.clearID();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderWindow.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();

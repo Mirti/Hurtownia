@@ -28,7 +28,7 @@
         </FXCollections>
       </items>
       <value>
-        <String fx:value="1" />
+        <String fx:value="Pracownik" />
     </value>
     </ComboBox>
     

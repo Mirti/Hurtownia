@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 04 Cze 2017, 20:42
+-- Czas generowania: 04 Cze 2017, 20:13
 -- Wersja serwera: 10.1.19-MariaDB
 -- Wersja PHP: 5.6.28
 
@@ -36,13 +36,6 @@ CREATE TABLE `dostawca_importer` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Zrzut danych tabeli `dostawca_importer`
---
-
-INSERT INTO `dostawca_importer` (`dostawca_importer_id`, `nazwa`, `typ`, `wlasciciel`, `adres`, `telefon`, `email`) VALUES
-(4, 'DostawcaOwocow', 'Owoce', 'Jan Nowak', 'Rzeszów, Rejtana 3', 1234567, 'dostawcaowocow@o2.pl');
-
 -- --------------------------------------------------------
 
 --
@@ -59,13 +52,6 @@ CREATE TABLE `klient` (
   `rabat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Zrzut danych tabeli `klient`
---
-
-INSERT INTO `klient` (`klient_id`, `nazwa`, `wlasciciel`, `adres`, `telefon`, `email`, `rabat`) VALUES
-(5, 'Przykladowy Klient', 'Adam Kowalski', 'Rzeszów, Okulickiego 7', 865432, 'klient@o2.pl', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -75,7 +61,7 @@ INSERT INTO `klient` (`klient_id`, `nazwa`, `wlasciciel`, `adres`, `telefon`, `e
 CREATE TABLE `produkt` (
   `produkt_id` int(11) NOT NULL,
   `nazwa` varchar(255) NOT NULL,
-  `cena_jednostkowa` float NOT NULL,
+  `cena_jednostkowa` int(11) NOT NULL,
   `data_waznosci` date NOT NULL,
   `ilosc` int(11) NOT NULL,
   `polozenie` varchar(30) NOT NULL,
@@ -83,14 +69,6 @@ CREATE TABLE `produkt` (
   `kraj_pochodzenia` varchar(255) NOT NULL,
   `data_przyjecia` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Zrzut danych tabeli `produkt`
---
-
-INSERT INTO `produkt` (`produkt_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci`, `ilosc`, `polozenie`, `dostawca_importer_id`, `kraj_pochodzenia`, `data_przyjecia`) VALUES
-(7, 'Gruszki', 1, '2017-06-15', 40, '4h', 4, 'Polska', '2017-06-04'),
-(8, 'Kiwi', 1, '2017-06-22', 150, '47o', 4, 'Chile', '2017-06-04');
 
 -- --------------------------------------------------------
 
@@ -101,7 +79,7 @@ INSERT INTO `produkt` (`produkt_id`, `nazwa`, `cena_jednostkowa`, `data_waznosci
 CREATE TABLE `produkt_temp` (
   `produkt_temp_id` int(11) NOT NULL,
   `nazwa` varchar(255) NOT NULL,
-  `cena_jednostkowa` float NOT NULL,
+  `cena_jednostkowa` int(11) NOT NULL,
   `data_waznosci` date NOT NULL,
   `ilosc` int(11) NOT NULL,
   `polozenie` varchar(30) NOT NULL,
@@ -124,14 +102,6 @@ CREATE TABLE `produkt_zamowienie` (
   `ilosc` int(11) NOT NULL,
   `cena_jednostkowa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Zrzut danych tabeli `produkt_zamowienie`
---
-
-INSERT INTO `produkt_zamowienie` (`produkt_zamowienie_id`, `produkt_id`, `zamowienie_id`, `ilosc`, `cena_jednostkowa`) VALUES
-(58, 7, 60, 10, 1),
-(59, 7, 60, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -180,9 +150,9 @@ CREATE TABLE `uzytkownik` (
 --
 
 INSERT INTO `uzytkownik` (`uzytkownik_id`, `imie`, `nazwisko`, `uprawnienia`, `login`, `haslo`, `uwagi`) VALUES
-(9996, 'pracownik', 'pracownik', 'Pracownik', 'pracownik', 'c03b3aa75cdf246f09a542ed8bb4ab64fc23ee92', 'pracownik'),
-(9997, 'ksiegowy', 'ksiegowy', 'Ksiegowy', 'ksiegowy', '2ad663609bc03fa55656195e0ef31c712dfb00d2', 'ksiegowy'),
-(9998, 'kierownik', 'kierownik', 'Kierownik', 'kierownik', 'ff0279b12df077564430fc4f50706c17aafd4544', 'kierownik'),
+(9996, 'pracownik', 'pracownik', 'pracownik', 'pracownik', 'c03b3aa75cdf246f09a542ed8bb4ab64fc23ee92', 'pracownik'),
+(9997, 'ksiegowy', 'ksiegowy', 'ksiegowy', 'ksiegowy', '2ad663609bc03fa55656195e0ef31c712dfb00d2', 'ksiegowy'),
+(9998, 'kierownik', 'kierownik', 'kierownik', 'kierownik', 'ff0279b12df077564430fc4f50706c17aafd4544', 'kierownik'),
 (9999, 'admin', 'admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin');
 
 -- --------------------------------------------------------
@@ -199,14 +169,6 @@ CREATE TABLE `zamowienie` (
   `wartosc` int(11) NOT NULL,
   `stan` varchar(155) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Zrzut danych tabeli `zamowienie`
---
-
-INSERT INTO `zamowienie` (`zamowienie_id`, `klient_id`, `uzytkownik_id`, `uwagi`, `wartosc`, `stan`) VALUES
-(59, 5, 9998, '', 1, 'Nowe'),
-(60, 5, 9998, '', 2, 'Wykonane');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -285,27 +247,27 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `dostawca_importer`
 --
 ALTER TABLE `dostawca_importer`
-  MODIFY `dostawca_importer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `dostawca_importer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT dla tabeli `klient`
 --
 ALTER TABLE `klient`
-  MODIFY `klient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `klient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `produkt`
 --
 ALTER TABLE `produkt`
-  MODIFY `produkt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `produkt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT dla tabeli `produkt_temp`
 --
 ALTER TABLE `produkt_temp`
-  MODIFY `produkt_temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `produkt_temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT dla tabeli `produkt_zamowienie`
 --
 ALTER TABLE `produkt_zamowienie`
-  MODIFY `produkt_zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `produkt_zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT dla tabeli `przyjecie`
 --
@@ -315,7 +277,7 @@ ALTER TABLE `przyjecie`
 -- AUTO_INCREMENT dla tabeli `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `raport_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownik`
 --
@@ -325,7 +287,7 @@ ALTER TABLE `uzytkownik`
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-  MODIFY `zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `zamowienie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- Ograniczenia dla zrzutów tabel
 --

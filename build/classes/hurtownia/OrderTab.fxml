@@ -36,10 +36,9 @@
                         <TableView fx:id="orderTable" editable="true" layoutX="14.0" layoutY="27.0" prefHeight="357.0" prefWidth="748.0">
                            <columns>
                               <TableColumn fx:id="orderCustomerColumn" prefWidth="66.0" text="Klient" />
-                              <TableColumn prefWidth="72.0" text="Wartość zamówienia" />
+                              <TableColumn fx:id="orderValueColumn" prefWidth="72.0" text="Stan" />
                               <TableColumn fx:id="orderUserColumn" prefWidth="113.0" text="Przyjmujący" />
                               <TableColumn fx:id="orderCommentColumn" prefWidth="119.0" text="Uwagi" />
-                              <TableColumn prefWidth="86.0" text="Stan" />
                               <TableColumn prefWidth="65.0" text="Podgląd" />
                            </columns>
                            <columnResizePolicy>

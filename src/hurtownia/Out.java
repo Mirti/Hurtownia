@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Declare Contractor Table Columns
+ * Declare Orders Table Columns
  */
 public class Out {
     private IntegerProperty outId;
@@ -21,6 +21,7 @@ public class Out {
     private StringProperty outUser;
     private StringProperty outComment;
     private StringProperty outValue;
+    private StringProperty outState;
     
     /**
      * Constructor
@@ -31,17 +32,18 @@ public class Out {
         this.outUser = new SimpleStringProperty();
         this.outComment =  new SimpleStringProperty();
         this.outValue = new SimpleStringProperty();
+        this.outState = new SimpleStringProperty();
     }
         /**
          * 
-         * @return Out product ID
+         * @return Orders product ID
          */
         public int getOutId(){
             return outId.get();
         }
         
         /**
-         * Set Out product ID
+         * Set Orders product ID
          * @param Id 
          */
         public void setOutId(int Id){
@@ -50,7 +52,7 @@ public class Out {
         
         /**
          * 
-         * @return Out product ID for table
+         * @return Orders product ID for table
          */
         public IntegerProperty outIdProperty(){
             return outId;
@@ -58,14 +60,14 @@ public class Out {
         
         /**
          * 
-         * @return Out product customer
+         * @return Orders product customer
          */
         public String getOutCustomer(){
             return outCustomer.get();
         }
         
         /**
-         * Set Out product customer
+         * Set Orders customer
          * @param OutCustomer 
          */
         public void setOutCustomer(String OutCustomer){
@@ -74,7 +76,7 @@ public class Out {
         
         /**
          * 
-         * @return Out product customer for table
+         * @return Orders customer for table
          */
         public StringProperty outCustomerProperty(){
             return outCustomer;
@@ -82,14 +84,14 @@ public class Out {
         
         /**
          * 
-         * @return Out product creator
+         * @return Orders creator
          */
         public String getOutUser(){
             return outUser.get();
         }
         
         /**
-         * Set Out product creator
+         * Set Orders creator
          * @param OutUser 
          */
         public void setOutUser(String OutUser){
@@ -98,7 +100,7 @@ public class Out {
         
         /**
          * 
-         * @return Out product creator for table
+         * @return Orders creator for table
          */
         public StringProperty outUserProperty(){
             return outUser;
@@ -106,14 +108,14 @@ public class Out {
         
         /**
          * 
-         * @return Out product comment
+         * @return Orders comment
          */
         public String getOutComment(){
             return outComment.get();
         }
         
         /**
-         * Set Out product comment
+         * Set Orders comment
          * @param OutComment 
          */
         public void setOutComment(String OutComment){
@@ -122,7 +124,7 @@ public class Out {
         
         /**
          * 
-         * @return Out product comment for table
+         * @return Orders comment for table
          */
         public StringProperty outCommentProperty(){
             return outComment;
@@ -130,14 +132,14 @@ public class Out {
         
         /**
          * 
-         * @return Out products value
+         * @return Orders value
          */
         public String getOutValue(){
             return outValue.get();
         }
         
         /**
-         * Set Out products value
+         * Set Orders value
          * @param OutValue 
          */
         public void setOutValue(String OutValue){
@@ -146,9 +148,33 @@ public class Out {
         
         /**
          * 
-         * @return Out products value for table
+         * @return Orders value for table
          */
         public StringProperty outValueProperty(){
             return outValue;
+        }
+        
+        /**
+         * 
+         * @return Orders state
+         */
+         public String getOutState(){
+            return outState.get();
+        }
+        
+        /**
+         * Set Orders state
+         * @param OutState 
+         */
+        public void setOutState(String OutState){
+            this.outValue.set(OutState);
+        }
+        
+        /**
+         * 
+         * @return Orders state for table
+         */
+        public StringProperty outStateProperty(){
+            return outState;
         }
 }

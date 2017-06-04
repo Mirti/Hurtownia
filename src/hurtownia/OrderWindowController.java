@@ -21,8 +21,8 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 /**
- * 
- * 
+ *
+ *
  * FXML Controller class to provide method for OrderWindow
  */
 public class OrderWindowController implements Initializable {
@@ -42,11 +42,11 @@ public class OrderWindowController implements Initializable {
     @FXML
     private TextArea taComments;
 
-    private int orderDetailId = OrderController.getselectedOrderId();
+    private int orderDetailId;
 
     /**
      * Method to set value on table headers
-     * 
+     *
      * @param url - unused
      * @param rb - unused
      */
@@ -56,17 +56,29 @@ public class OrderWindowController implements Initializable {
         orderDetailsQuantityColumn.setCellValueFactory(cellData -> cellData.getValue().orderDetailsQuantityProperty());
         orderDetailsDateColumn.setCellValueFactory(cellData -> cellData.getValue().orderDetailsDateProperty());
         orderDetailsCommentColumn.setCellValueFactory(cellData -> cellData.getValue().orderDetailsCommentProperty());
-        lblOrderId.setText("Zamówienie: #" + orderDetailId);
-    }
 
-    /**
-     * Method to get data about Order Details from database
-     * 
-     * @throws SQLException - Throws when occurs problem with SQL query
-     * @throws ClassNotFoundException - Throws when occurs problem with OrderDetailsDAO class
-     */
-    @FXML
-    private void searchOrderDetails() throws SQLException, ClassNotFoundException {
+        
+        int parentSceneControl;
+        parentSceneControl = OrderController.getSelectedOrderId();
+        if (parentSceneControl == 0) {
+            orderDetailId = OutController.getSelectedOutId();
+        }  else orderDetailId=OrderController.getSelectedOrderId();
+        
+        lblOrderId.setText("Zamówienie: #" + orderDetailId);
+
+   
+
+}
+
+/**
+ * Method to get data about Order Details from database
+ *
+ * @throws SQLException - Throws when occurs problem with SQL query
+ * @throws ClassNotFoundException - Throws when occurs problem with
+ * OrderDetailsDAO class
+ */
+@FXML
+        private void searchOrderDetails() throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
             ObservableList<OrderDetails> ordData = OrderDetailsDAO.searchOrderDetails(orderDetailId);
@@ -80,36 +92,38 @@ public class OrderWindowController implements Initializable {
 
     /**
      * Method to show data in table
+     *
      * @param ordData - List of data to show in talbe
      */
     @FXML
-    private void populateOrderDetails(ObservableList<OrderDetails> ordData) {
+        private void populateOrderDetails(ObservableList<OrderDetails> ordData) {
         //Set items to the employeeTable
         orderDetailsTable.setItems(ordData);
     }
 
     /**
      * Method to invoke method to confirm release of product in database
-     * 
+     *
      * @throws SQLException - Throws when occurs problem with SQL query
-     * @throws ClassNotFoundException - Throws when occurs problem with using OrderDetailsDAO
+     * @throws ClassNotFoundException - Throws when occurs problem with using
+     * OrderDetailsDAO
      */
     @FXML
-    private void confirmRelease() throws SQLException, ClassNotFoundException {
+        private void confirmRelease() throws SQLException, ClassNotFoundException {
         OrderDetailsDAO.confirmRelease(orderDetailId);
         Stage stage = (Stage) lblOrderId.getScene().getWindow();
         stage.close();
     }
-    
+
     /**
      * Method to invoke method to report problem with order
      */
     @FXML
-    private void reportProblem() {
+        private void reportProblem() {
         String comments = taComments.getText();
         OrderDetailsDAO.reportProblem(orderDetailId, comments);
         Stage stage = (Stage) lblOrderId.getScene().getWindow();
-        stage.close();       
+        stage.close();
     }
 
 }

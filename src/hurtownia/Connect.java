@@ -27,6 +27,13 @@ public class Connect {
     private static Statement st;
     private static ResultSet rs;
     private static String[] currentUser;
+    private static String dbUser = "root";
+    private static String dbPassword = "";
+    private static String dbName = "hurtowniaspozywcza";
+    private static String dbHost = "jdbc:mysql://localhost:3306/";
+    private static String dbImportPath;
+
+
 
     /**
      * Constructor Creates connection with SQL Database when initialize
@@ -39,9 +46,8 @@ public class Connect {
         } catch (ClassNotFoundException a) {
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
+            setDefaultCon();
             st = con.createStatement();
-            System.out.print("ok");
 
         } catch (Exception ex) {
             System.out.println("Błąd" + ex);
@@ -72,29 +78,80 @@ public class Connect {
         st.executeUpdate(query);
     }
 
-    public static void importDB() throws IOException, FileNotFoundException, SQLException {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=");
-        Statement s = con.createStatement();
-        s.executeUpdate("CREATE DATABASE hurtowniaspozywcza");
-        s.close();
-
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        String path = fileChooser.showOpenDialog(stage).getAbsolutePath();
-        System.out.print(path);
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hurtowniaspozywcza", "root", "");
-        Connect.runScript(path, con);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Potwierdzenie utworzenia bazy");
-        alert.setHeaderText(null);
-        alert.setContentText("Baza utworzona pomyślnie");
-        alert.showAndWait();
+    /**
+     *
+     * @param dbName - DataBase Name
+     * @throws SQLException
+     */
+    public static void createDB(String dbName) throws SQLException{
+        try {         
+            con = setConn(dbHost,"", dbUser, dbPassword);            
+            Statement s = con.createStatement();
+            String stmt = "CREATE DATABASE "+dbName;
+            s.executeUpdate(stmt);
+        }catch (Exception ex) {
+            System.out.println("Błąd" + ex);
+        }
     }
+    
+    /**
+     *
+     * @param dbName - DataBase Name
+     * @throws SQLException
+     */
+    public static void dropDB(String dbName) throws SQLException{
+        try {         
+            con = setConn(dbHost,"", dbUser, dbPassword);            
+            Statement s = con.createStatement();
+            String stmt = "DROP DATABASE "+dbName;
+            s.executeUpdate(stmt);
+        }catch (Exception ex) {
+            System.out.println("Błąd" + ex);
+        }
+    }    
+    
+    /**
+     *
+     * @throws IOException
+     * @throws FileNotFoundException
+     */
+    public static void setDbImportPath() throws IOException, FileNotFoundException{
+        try{
+            Stage stage = new Stage();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Resource File");
+            dbImportPath = fileChooser.showOpenDialog(stage).getAbsolutePath();
+        } catch (Exception ex) {
+            System.out.println("Błąd" + ex);
+        } 
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    public static void setDefaultCon() throws SQLException{
+        con = DriverManager.getConnection(dbHost+dbName, dbUser, dbPassword);
+    }
+
+    /**
+     *
+     * @param dbHost - DataBase host Name
+     * @param dbName - DataBase Name
+     * @param dbUser - DataBase User Name
+     * @param dbPassword - DataBase User Password
+     * @return - returning connection with provided data
+     * @throws SQLException
+     */
+    public static Connection setConn(String dbHost, String dbName, String dbUser, String dbPassword) throws SQLException{
+        Connection conn = DriverManager.getConnection(dbHost+dbName, dbUser, dbPassword);
+        return conn;
+       }
 
     /**
      * Runs MySQL script form file
      *
+     * @param con - DB connection
      * @param path - URL to script file
      * @throws FileNotFoundException - if file isn't exist
      * @throws IOException - When e.x file has invalid file format
@@ -119,11 +176,119 @@ public class Connect {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws SQLException
+     */
+    public static void importDB() throws IOException, FileNotFoundException, SQLException {
+        createDB(dbName);       
+        setDbImportPath();  
+        setDefaultCon();        
+        Connect.runScript(dbImportPath, con);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Potwierdzenie utworzenia bazy");
+        alert.setHeaderText(null);
+        alert.setContentText("Baza utworzona pomyślnie");
+        alert.showAndWait();
+        System.out.println("Baza utworzona pomyślnie");
+    }
+
+    /**
+     *
+     * @param user- Current User Data
+     */
     public static void setCurrentUser(String[] user) {
         currentUser = user;
     }
 
+    /**
+     *
+     * @return - Current User Data
+     */
     public static String[] getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static String getDbUser() {
+        return dbUser;
+    }
+
+    /**
+     *
+     * @param dbUser
+     */
+    public static void setDbUser(String dbUser) {
+        Connect.dbUser = dbUser;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static String getDbPassword() {
+        return dbPassword;
+    }
+
+    /**
+     *
+     * @param dbPassword
+     */
+    public static void setDbPassword(String dbPassword) {
+        Connect.dbPassword = dbPassword;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static String getDbName() {
+        return dbName;
+    }
+
+    /**
+     *
+     * @param dbName
+     */
+    public static void setDbName(String dbName) {
+        Connect.dbName = dbName;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static String getDbHost() {
+        return dbHost;
+    }
+
+    /**
+     *
+     * @param dbHost
+     */
+    public static void setDbHost(String dbHost) {
+        Connect.dbHost = dbHost;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static String getDbImportPath() {
+        return dbImportPath;
+    }
+
+    /**
+     *
+     * @param dbImportPath
+     */
+    public static void setDbImportPath(String dbImportPath) {
+        Connect.dbImportPath = dbImportPath;
     }
 }
